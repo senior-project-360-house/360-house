@@ -6,16 +6,16 @@ import { withFirebase } from '../Firebase';
 import { withAuthorization } from '../Session';
 
 import * as ROLES from '../../constants/roles';
-const ClientPage = () => (
+const AgentPage = () => (
   <div>
-    <h1>Client Page</h1>
-    <p> The Client Page is accessible by every client.</p>
+    <h1>Agent Page</h1>
+    <p> The Home Page is accessible by every Agent.</p>
   </div>
 );
 /*
 condtion check for role
  */
 const condition = authUser =>
-  authUser && authUser.roles.includes(ROLES.CLIENT);
+  authUser && authUser.roles.includes(ROLES.AGENT);
 
-export default withAuthorization(condition)(ClientPage);
+export default withAuthorization(condition)(AgentPage);
