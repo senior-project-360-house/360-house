@@ -14,6 +14,7 @@ class AdminPage extends Component {
 
   componentDidMount() {
     this.setState({ loading: true });
+// example of get user
 //.on method from .users trigger when users is update to re render the Admin Page
     this.props.firebase.users().on('value', userssnapshot => {
       const usersObject = userssnapshot.val();
