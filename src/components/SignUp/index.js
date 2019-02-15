@@ -3,6 +3,7 @@ import { Link, withRouter } from 'react-router-dom';
 
 import { withFirebase } from '../Firebase';
 import * as ROUTES from '../../constants/routes';
+import * as ROLES from '../../constants/roles';
 
 const SignUpPage = () => (
   <div>
@@ -16,6 +17,9 @@ const INITIAL_STATE = {
   email: '',
   passwordOne: '',
   passwordTwo: '',
+  isAdmin: false,
+  isClient: false,
+  isAgent: false,
   error: null,
 };
 
@@ -27,7 +31,13 @@ class SignUpFormBase extends Component {
   }
 
   onSubmit = event => {
-    const { username, email, passwordOne } = this.state;
+    const { username, email, passwordOne, isAdmin, isAgent, isClient } = this.state;
+
+    const roles = [];
+
+    if(isAdmin) {
+      roles.push(ROLES.ADMIN);
+    }
 
     this.props.firebase
       .doCreateUserWithEmailAndPassword(email, passwordOne)
@@ -39,6 +49,7 @@ class SignUpFormBase extends Component {
             //Set user properties
             username,
             email,
+            roles,
           });
       })
       .then(authUser => {
@@ -57,12 +68,19 @@ class SignUpFormBase extends Component {
     this.setState({ [event.target.name]: event.target.value });
   };
 
+  oncChangeCheckbox = event => {
+    this.setState({ [event.target.name]: event.target.checked});
+  }
+
   render() {
     const {
       username,
       email,
       passwordOne,
       passwordTwo,
+      isAdmin,
+      isClient,
+      isAgent,
       error,
     } = this.state;
 
@@ -102,6 +120,34 @@ class SignUpFormBase extends Component {
           type="password"
           placeholder="Confirm Password"
         />
+        {/*(TODO: Make only one choice Admin,Agent,Client possible)*/}
+        <label>
+        Admin:
+        <input
+          name="isAdmin"
+          type="checkbox"
+          checked={isAdmin}
+          onChange={this.oncChangeCheckbox}
+        />
+        </label>
+        <label>
+        Agent:
+        <input
+          name="isAgent"
+          type="checkbox"
+          checked={isAgent}
+          onChange={this.oncChangeCheckbox}
+        />
+        </label>
+        <label>
+        Client:
+        <input
+          name="isClient"
+          type="checkbox"
+          checked={isClient}
+          onChange={this.oncChangeCheckbox}
+        />
+        </label>
         <button disabled={isInvalid} type="submit">
           Sign Up
         </button>
