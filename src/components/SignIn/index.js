@@ -12,6 +12,7 @@ const SignInPage = () => (
   <div>
     <h1>SignIn</h1>
     <SignInForm />
+    <SignInGoogleForm />
     <SignUpLink />
     <PasswordForgotLink/>
   </div>
@@ -23,11 +24,70 @@ const INITIAL_STATE = {
   error: null,
 };
 
+/*
+Sign In with Google base
+TODO: Break down to many file
+ */
+class SignInGoogleFormBase extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {error : null};
+  }
+
+  onSubmit = event => {
+    this.props.firebase
+    .doSignInWithGoogle()
+    .then(socialAuthUser => {
+      /*
+      Create a user in Firebase database
+      Currently the user gets recreate everytime the user login
+      We can use the condition socialAuthUser.additionalUserInfo.isNewUser for
+      condition checking
+      */    const isAdmin = true;
+
+      return this.props.firebase
+      .user(socialAuthUser.user.uid)
+      .set({
+        username: socialAuthUser.user.displayName,
+        email: socialAuthUser.user.email,
+        roles: [isAdmin],
+      });
+    })
+    .then(() => {
+      this.setState({error: null});
+      this.props.history.push(ROUTES.HOME);
+    })
+    .catch(error => {
+      this.setState({ error });
+    });
+
+    event.preventDefault();
+  }
+  render() {
+    const {error} = this.state;
+
+    return(
+      <form onSubmit={this.onSubmit}>
+      <button type="submit">Sign In with Google</button>
+      {/*
+        error checking
+      */}
+      {error && <p>{error.message}</p>}
+      </form>
+    );
+  }
+}
+
+/*
+Sign In with Email form base
+TODO: Break in to many file and improve quality
+ */
 class SignInFormBase extends Component {
   constructor(props) {
     super(props);
 
     this.state = { ...INITIAL_STATE };
+
   }
 
   onSubmit = event => {
@@ -80,12 +140,22 @@ class SignInFormBase extends Component {
     );
   }
 }
-
+/*
+Sign in Higher-order component for SignInForm
+ */
 const SignInForm = compose(
   withRouter,
   withFirebase,
 )(SignInFormBase);
 
+/*
+Sign in Higher-order compoent for SignInGoogle
+ */
+const SignInGoogleForm = compose(
+  withRouter,
+  withFirebase,
+)(SignInGoogleFormBase)
+
 export default SignInPage;
 
-export { SignInForm };
+export { SignInForm, SignInGoogleForm };

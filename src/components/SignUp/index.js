@@ -120,7 +120,7 @@ class SignUpFormBase extends Component {
           type="password"
           placeholder="Confirm Password"
         />
-        {/*(TODO: Make only one choice Admin,Agent,Client possible)*/}
+        {/*(TODO: Make only one choice Admin,Agent,Client possible at a time)*/}
         <label>
         Admin:
         <input

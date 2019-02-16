@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "firebase": "^5.8.2",
+    "firebase": "^5.8.3",
     "firebase-admin": "^7.0.0",
     "firebaseui": "^3.5.2",
     "react": "^16.7.0",
@@ -26,5 +26,8 @@
     "not dead",
     "not ie <= 11",
     "not op_mini all"
-  ]
+  ],
+  "devDependencies": {
+    "firebase-tools": "^6.3.1"
+  }
 }

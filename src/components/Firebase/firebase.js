@@ -31,17 +31,26 @@ class Firebase {
     this.auth = app.auth();
     //Initialize firebase database
     this.database = app.database();
+    //Initialize firebase provider
+    this.googleProvider = new app.auth.GoogleAuthProvider();
   }
 
 
   // Auth API
 
-  //Sign Up
+  //Sign Up with Email
   doCreateUserWithEmailAndPassword = (email, password) =>
   this.auth.createUserWithEmailAndPassword(email, password);
-  //Sign In
+  //Sign In with Email
   doSignInWithEmailAndPassword = (email, password) =>
   this.auth.signInWithEmailAndPassword(email, password);
+
+  //Sign In with Google Account
+  //Note that if use another social logins, they must be join together
+  //so the account do not conflict
+  doSignInWithGoogle = () =>
+  this.auth.signInWithPopup(this.googleProvider);
+
   //Sign Out
   doSignOut = () => this.auth.signOut();
   //Password Forgot
@@ -57,6 +66,7 @@ class Firebase {
 
 
   /*
+  Athorization and Authentication join method
   Merge AUth and DB User API
   */
   onAuthUserListener = (next, fallback) =>

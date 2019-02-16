@@ -27,6 +27,9 @@ const NavigationAuth = ({ authUser }) => (
     <li>
       <Link to={ROUTES.ACCOUNT}>Account</Link>
     </li>
+    <li>
+      <Link to={ROUTES.HOME}>Home</Link>
+    </li>
     {/*
       condition to check user roles
     */}
