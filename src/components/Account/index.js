@@ -1,7 +1,6 @@
-import React,{Component} from 'react';
+import React from 'react';
 import {compose} from 'recompose';
 
-import {withFirebase} from '../Firebase';
 import { AuthUserContext, withAuthorization, withEmailVerification} from '../Session';
 import {PasswordChangeLink} from '../PasswordChange';
 import LoginManagement from './LoginManagement';

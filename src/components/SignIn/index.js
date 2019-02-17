@@ -164,7 +164,7 @@ const SignInForm = compose(
 )(SignInFormBase);
 
 /*
-Sign in Higher-order compoent for SignInGoogle
+Sign in Higher-order component for SignInGoogle
  */
 const SignInGoogleForm = compose(
   withRouter,

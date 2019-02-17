@@ -16,7 +16,6 @@ class AdminPage extends Component {
       users: [],
     };
   }
-
   componentDidMount() {
     this.setState({ loading: true });
 // example of get user
