@@ -41,6 +41,8 @@ process.env.NODE_ENV === 'production' ? prodConfig : devConfig;
 class Firebase {
   constructor() {
     app.initializeApp(config);
+    //Get the Provider of user email (Google, Facebook, ...)
+    this.emailAuthProvider = app.auth.EmailAuthProvider;
     //Initialize firebase authentication
     this.auth = app.auth();
     //Initialize firebase database

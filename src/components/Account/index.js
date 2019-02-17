@@ -1,8 +1,12 @@
-import React from 'react';
+import React,{Component} from 'react';
 import {compose} from 'recompose';
 
+import {withFirebase} from '../Firebase';
 import { AuthUserContext, withAuthorization, withEmailVerification} from '../Session';
 import {PasswordChangeLink} from '../PasswordChange';
+import LoginManagement from './LoginManagement';
+
+
 
 const AccountPage  = () => (
 
@@ -11,8 +15,9 @@ const AccountPage  = () => (
 
     authUser => (
       <div>
-        <h1>Account: {authUser.email}</h1>
-        <PasswordChangeLink/>
+      <h1>Account: {authUser.email}</h1>
+      <PasswordChangeLink/>
+      <LoginManagement authUser={authUser} />
       </div>
     )
   }</AuthUserContext.Consumer>

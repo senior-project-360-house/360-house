@@ -18,6 +18,16 @@ const SignInPage = () => (
   </div>
 );
 
+const ERROR_CODE_ACCOUNT_EXISTS =
+'auth/account-exists-with-different-credential';
+
+const ERROR_MSG_ACCOUNT_EXISTS = `
+An account with an E-Mail address to
+this social account already exists. Try to login from
+this account instead and associate your social accounts on
+your personal account page.
+`;
+
 const INITIAL_STATE = {
   email: '',
   password: '',
@@ -58,7 +68,12 @@ class SignInGoogleFormBase extends Component {
       this.props.history.push(ROUTES.HOME);
     })
     .catch(error => {
-      this.setState({ error });
+      //Check if the new Google Account had been use for normal sign in
+      if(error.code === ERROR_CODE_ACCOUNT_EXISTS) {
+        error.message = ERROR_MSG_ACCOUNT_EXISTS;
+      }
+
+      this.setState({error});
     });
 
     event.preventDefault();
