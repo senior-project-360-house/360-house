@@ -3,7 +3,7 @@ import React, {Component} from 'react';
 import { compose } from 'recompose';
 
 import { withFirebase } from '../Firebase';
-import { withAuthorization } from '../Session';
+import { withAuthorization, withEmailVerification } from '../Session';
 
 import * as ROLES from '../../constants/roles';
 const AgentPage = () => (
@@ -18,4 +18,8 @@ condtion check for role
 const condition = authUser =>
   authUser && authUser.roles.includes(ROLES.AGENT);
 
-export default withAuthorization(condition)(AgentPage);
+export default compose(
+  withAuthorization(condition),
+  withEmailVerification,
+  withFirebase,
+)(AgentPage);
