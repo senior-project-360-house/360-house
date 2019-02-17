@@ -2,6 +2,13 @@ import React from 'react';
 
 import AuthUserContext from './context';
 import { withFirebase } from '../Firebase';
+
+//If true, tell user to verify email, instead of render the Component that passed to this higher-order component
+const needsEmailVerification = authUser =>
+authUser && !authUser.emailVerified && authUser.providerData
+.map(provider => provider.providerID)
+.includes('password');
+
 /*
 protect routes from user who have not verified email address yet.
 */
@@ -10,7 +17,7 @@ const withEmailVerification = Component => {
     constructor(props){
       super(props);
 
-      this.setState = { isSent: false};
+      this.state = { isSent: false};
     }
 
     onSendEmailVerification = () => {
@@ -26,46 +33,44 @@ const withEmailVerification = Component => {
             <div>
             {
               /*
-                check if the users already sent a new email confirmation
+              check if the users already sent a new email confirmation
               */
               this.state.isSent ? (
-              <p>
-              E-Mail confirmation sent: Check you E-Mails (Spam
-                folder included) for a confirmation E-Mail.
-                Refresh this page once you confirmed your E-Mail.
-                </p>
-              ) :
-              /*
-                check if the user want to sent a mail confirmation
-              */
-              (
                 <p>
-                  Verify your E-Mail: Check you E-Mails (Spam folder
-                  included) for a confirmation E-Mail or send
-                  another confirmation E-Mail.
+                  E-Mail confirmation sent: Check you E-Mails (Spam
+                  folder included) for a confirmation E-Mail.
+                  Refresh this page once you confirmed your E-Mail.
                   </p>
-                )}
-                <button type onClick={this.onSendEmailVerification}
-                disabled={this.state.isSent}>
-                Send Confirm email
-                </button>
-                </div>
-              )
-              /*
-              if no condition meet process to logged in page
-               */
-              : <Component {...this.props} />}
-            )
-          }
-          </AuthUserContext.Consumer>
-        );
+                ) :
+                /*
+                check if the user want to sent a mail confirmation
+                */
+                (
+                  <p>
+                  Verify your E-Mail: Check you E-Mails (Spam folder
+                    included) for a confirmation E-Mail or send
+                    another confirmation E-Mail.
+                    </p>
+                  )}
+
+                  <button
+                  type="button"
+                  onClick={this.onSendEmailVerification}
+                  disabled={this.state.isSent}>
+                  Send Confirm email
+                  </button>
+                  </div>
+                )
+                /*
+                if no condition meet process to logged in page
+                */
+                : (<Component {...this.props} />)
+            }
+            </AuthUserContext.Consumer>
+          );
+        }
       }
-    }
-    return withFirebase(WithEmailVerification);
-  };
-  //If true, tell user to verify email, instead of render the Component that passed to this higher-order component
-  const needsEmailVerification = authUser =>
-  authUser && !authUser.emailVerified && authUser.providerData
-  .map(provider => provider.providerID)
-  .includes('password');
-  export default withEmailVerification;
+      return withFirebase(WithEmailVerification);
+    };
+
+    export default withEmailVerification;

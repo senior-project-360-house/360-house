@@ -79,8 +79,8 @@ condtion check for role
 const condition = authUser =>
   authUser && authUser.roles.includes(ROLES.ADMIN);
 
-export default
-  compose(withAuthorization(condition),
-  withFirebase,
+export default compose(
   withEmailVerification,
+  withAuthorization(condition),
+  withFirebase,
 )(AdminPage);

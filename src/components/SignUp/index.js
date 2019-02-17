@@ -43,8 +43,7 @@ class SignUpFormBase extends Component {
       .doCreateUserWithEmailAndPassword(email, passwordOne)
       .then(authUser => {
         // Create a user in Firebase realtime database
-        return this.props.firebase
-          .user(authUser.user.uid)
+        return this.props.firebase.user(authUser.user.uid)
           .set({
             //Set user properties
             username,
@@ -56,7 +55,7 @@ class SignUpFormBase extends Component {
         //send email verification
         return this.props.firebase.doSendEmailVerification();
       })
-      .then(authUser => {
+      .then(() => {
         //Reset INITIAL_STATE and rerout to home after completed register
         this.setState({ ...INITIAL_STATE });
         this.props.history.push(ROUTES.HOME);

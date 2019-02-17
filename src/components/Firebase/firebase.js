@@ -23,18 +23,17 @@ const devConfig = {
   messagingSenderId: process.env.REACT_APP_DEV_MESSAGING_SENDER_ID,
 };
 
-const devEmailredirectconfig ={
-  url: process.env.REACT_APP_DEV_CONFIRMATION_EMAIL_REDIRECT,
-};
+//choose url to be redirectto after signed in
+const prodEmailVerificationRedirectURL = {
+  url: "https://senior-project-se-195.firebaseapp.com"
+}
 
-const prodEmailredirectconfig ={
-  url: process.env.REACT_APP_PRO_CONFIRMATION_EMAIL_REDIRECT,
-};
-/*
-Firebase constants config
- */
-const emailredirectconfig =
-process.env.NODE_ENV === 'production' ? prodEmailredirectconfig : devEmailredirectconfig;
+const devEmailVerificationRedirectURL = {
+  url: "http://localhost:3000"
+}
+
+const emailVerificationRedirectURL =
+process.env.NODE_ENV === 'production' ? prodEmailVerificationRedirectURL : devEmailVerificationRedirectURL;
 
 const config =
 process.env.NODE_ENV === 'production' ? prodConfig : devConfig;
@@ -82,8 +81,7 @@ class Firebase {
   // Sign Up Email Verification
 
   doSendEmailVerification = () =>
-  this.auth.currentUser.sendEmailVerification(emailredirectconfig);
-
+this.auth.currentUser.sendEmailVerification(emailVerificationRedirectURL);
 
   /*
   Athorization and Authentication join method

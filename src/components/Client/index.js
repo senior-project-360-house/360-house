@@ -19,7 +19,7 @@ const condition = authUser =>
   authUser && authUser.roles.includes(ROLES.CLIENT);
 
 export default compose(
-  withAuthorization(condition),
   withEmailVerification,
+  withAuthorization(condition),
   withFirebase,
 )(ClientPage);

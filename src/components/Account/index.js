@@ -23,6 +23,6 @@ const condition = authUser => !!authUser;
 //Export example, follow this example
 
 export default compose(
-  withAuthorization(condition),
   withEmailVerification,
+  withAuthorization(condition),
 )(AccountPage);
