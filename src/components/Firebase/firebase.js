@@ -2,7 +2,9 @@ import app from 'firebase/app';
 import 'firebase/auth';
 import 'firebase/database';
 
-
+/*
+Firebase constants
+ */
 const prodConfig = {
   apiKey: process.env.REACT_APP_PROD_API_KEY,
   authDomain: process.env.REACT_APP_PROD_AUTH_DOMAIN,
@@ -20,6 +22,19 @@ const devConfig = {
   storageBucket: process.env.REACT_APP_DEV_STORAGE_BUCKET,
   messagingSenderId: process.env.REACT_APP_DEV_MESSAGING_SENDER_ID,
 };
+
+const devEmailredirectconfig ={
+  url: process.env.REACT_APP_DEV_CONFIRMATION_EMAIL_REDIRECT,
+};
+
+const prodEmailredirectconfig ={
+  url: process.env.REACT_APP_PRO_CONFIRMATION_EMAIL_REDIRECT,
+};
+/*
+Firebase constants config
+ */
+const emailredirectconfig =
+process.env.NODE_ENV === 'production' ? prodEmailredirectconfig : devEmailredirectconfig;
 
 const config =
 process.env.NODE_ENV === 'production' ? prodConfig : devConfig;
@@ -64,6 +79,11 @@ class Firebase {
 
   users = () => this.database.ref('users');
 
+  // Sign Up Email Verification
+
+  doSendEmailVerification = () =>
+  this.auth.currentUser.sendEmailVerification(emailredirectconfig);
+
 
   /*
   Athorization and Authentication join method
@@ -86,6 +106,9 @@ class Firebase {
         authUser = {
           uid: authUser.uid,
           email: authUser.email,
+          //Check if the user has a verified email
+          emailVerified: authUser.emailVerified,
+          providerData: authUser.providerData,
           ...dbUser,
         };
         next(authUser);
