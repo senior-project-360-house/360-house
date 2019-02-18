@@ -1,42 +1,16 @@
 import app from 'firebase/app';
 import 'firebase/auth';
 import 'firebase/database';
+import Config from './config.js';
 
 /*
 Firebase constants
  */
-const prodConfig = {
-  apiKey: process.env.REACT_APP_PROD_API_KEY,
-  authDomain: process.env.REACT_APP_PROD_AUTH_DOMAIN,
-  databaseURL: process.env.REACT_APP_PROD_DATABASE_URL,
-  projectId: process.env.REACT_APP_PROD_PROJECT_ID,
-  storageBucket: process.env.REACT_APP_PROD_STORAGE_BUCKET,
-  messagingSenderId: process.env.REACT_APP_PROD_MESSAGING_SENDER_ID,
-};
 
-const devConfig = {
-  apiKey: process.env.REACT_APP_DEV_API_KEY,
-  authDomain: process.env.REACT_APP_DEV_AUTH_DOMAIN,
-  databaseURL: process.env.REACT_APP_DEV_DATABASE_URL,
-  projectId: process.env.REACT_APP_DEV_PROJECT_ID,
-  storageBucket: process.env.REACT_APP_DEV_STORAGE_BUCKET,
-  messagingSenderId: process.env.REACT_APP_DEV_MESSAGING_SENDER_ID,
-};
 
 //choose url to be redirectto after signed in
-const prodEmailVerificationRedirectURL = {
-  url: "https://senior-project-se-195.firebaseapp.com"
-}
 
-const devEmailVerificationRedirectURL = {
-  url: "http://localhost:3000"
-}
-
-const emailVerificationRedirectURL =
-process.env.NODE_ENV === 'production' ? prodEmailVerificationRedirectURL : devEmailVerificationRedirectURL;
-
-const config =
-process.env.NODE_ENV === 'production' ? prodConfig : devConfig;
+const config = Config;
 
 class Firebase {
   constructor() {
@@ -83,7 +57,7 @@ class Firebase {
   // Sign Up Email Verification
 
   doSendEmailVerification = () =>
-this.auth.currentUser.sendEmailVerification(emailVerificationRedirectURL);
+this.auth.currentUser.sendEmailVerification({url: config.url});
 
   /*
   Athorization and Authentication join method
