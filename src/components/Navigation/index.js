@@ -33,6 +33,16 @@ const NavigationAuth = ({ authUser }) => (
     {/*
       condition to check user roles
     */}
+    {authUser.roles.includes(ROLES.CLIENT) && (
+    <li>
+      <Link to={ROUTES.CLIENT}>My Profile</Link>
+    </li>
+    )}
+    {authUser.roles.includes(ROLES.AGENT) && (
+    <li>
+      <Link to={ROUTES.AGENT}>My Profile</Link>
+    </li>
+    )}
     {authUser.roles.includes(ROLES.ADMIN) && (
     <li>
       <Link to={ROUTES.ADMIN}>ADMIN</Link>
