@@ -10,7 +10,7 @@ class UserListBase extends Component {
     super(props);
 
     this.state = {
-      loading: false,
+      isLoading: false,
       users: [],
     };
   }
@@ -39,11 +39,11 @@ class UserListBase extends Component {
   }
 
   render() {
-    const { users, loading} = this.state;
+    const { users, isLoading} = this.state;
     return (
       <div>
       <h2>Users</h2>
-      {loading && <div>Loading ...</div>}
+      {isLoading && <div>Loading ...</div>}
       <ul>
       {users.map(user => (
         <li key={user.uid}>
@@ -57,7 +57,21 @@ class UserListBase extends Component {
         <strong>Username:</strong> {user.username}
         </span>
         <span>
-        <Link to={`${ROUTES.ADMIN}/${user.uid}`}>
+        {
+          /*
+          Link back to Admin/index.js Switch that check
+          the route ADMIN_DETAILS: /admin/:id, and decide
+          the route /admin or /admin/:id
+          */
+        }
+        <Link
+        to = {{
+
+          pathname: `${ROUTES.ADMIN}/${user.uid}`,
+          state: {user},
+
+        }}
+        >
         Details
         </Link>
         </span>
@@ -69,13 +83,65 @@ class UserListBase extends Component {
   }
 }
 
-const UserItem = ({match}) => (
-  <div>
-    <h2>User ({match.params.id})</h2>
-  </div>
-);
+class UserItemBase extends Component {
+  constructor(props){
+    super(props);
+
+    this.state = {
+      user: null,
+      isLoading: false,
+      ...props.location.state,
+    }
+  }
+
+  componentDidMount() {
+      if (this.state.user) {
+      return;
+    }
+    this.setState({isLoading: true});
+    this.props.firebase
+    .user(this.props.match.params.id)
+    .on('value', snapshot => {
+      this.setState({
+        user: snapshot.val(),
+        isLoading: false,
+
+      });
+    })
+  }
+
+  componentWillUnmount() {
+    this.props.firebase.user(this.props.match.params.id).off();
+  }
+
+  render() {
+    const {user, isLoading} = this.state;
+
+    return(
+      <div>
+      <h2>User ({this.props.match.params.id})</h2>
+      {isLoading && <div>Loading ...</div>}
+
+      {user && (
+        <div>
+        <span>
+        <strong>ID:</strong> {user.uid}
+        </span>
+        <span>
+        <strong>E-Mail:</strong> {user.email}
+        </span>
+        <span>
+        <strong>Username:</strong> {user.username}
+        </span>
+        </div>
+      )}
+      </div>
+    );
+  }
+}
+
 
 const UserList = withFirebase(UserListBase);
+const UserItem = withFirebase(UserItemBase);
 
-export {UserItem};
-export default UserList;
+export {UserItem,UserList};

@@ -5,7 +5,7 @@ import { compose } from 'recompose';
 
 import { withFirebase } from '../Firebase';
 import { withAuthorization, withEmailVerification } from '../Session';
-import UserList, {UserItem} from './UserList';
+import {UserList, UserItem} from './UserList';
 
 import * as ROLES from '../../constants/roles';
 import * as ROUTES from '../../constants/routes';
@@ -18,6 +18,13 @@ const AdminPage = () =>(
         </p>
         {/*User to route ADMIN to a specific user detail*/}
         <Switch>
+          {
+            /*
+            Routes with ADMIN_DETAILS : /admin/:id to this switch
+            that Link to new route.
+             */
+          }
+
           <Route exact path={ROUTES.ADMIN_DETAILS} component={UserItem} />
           <Route exact path={ROUTES.ADMIN} component={UserList} />
         </Switch>
