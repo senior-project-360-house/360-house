@@ -1,7 +1,7 @@
 import app from 'firebase/app';
 import 'firebase/auth';
 import 'firebase/database';
-import Config from '../../Config'
+import Config from './config'
 
 /*
 Firebase constants
