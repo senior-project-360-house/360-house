@@ -8,13 +8,15 @@ import { PasswordForgotLink} from '../PasswordForget';
 import { withFirebase } from '../Firebase';
 import * as ROUTES from '../../constants/routes';
 
+import {Button,Container,Col, Form,FormGroup,Label,Input,} from 'reactstrap';
+
 const SignInPage = () => (
   <div>
     <h1>SignIn</h1>
     <SignInForm />
-    <SignInGoogleForm />
-    <SignUpLink />
-    <PasswordForgotLink/>
+    
+    {/* <SignUpLink />
+    <PasswordForgotLink/> */}
   </div>
 );
 
@@ -131,27 +133,46 @@ class SignInFormBase extends Component {
     const isInvalid = password === '' || email === '';
 
     return (
-      <form onSubmit={this.onSubmit}>
-        <input
-          name="email"
+      
+<Container className="SignIn">
+        <h2>Sign In</h2>
+        <Form className="form" onSubmit={this.onSubmit}>
+          <Col>
+            <FormGroup>
+              <Label>Email</Label>
+              <Input
+                name="email"
           value={email}
           onChange={this.onChange}
           type="text"
           placeholder="Email Address"
-        />
-        <input
-          name="password"
+              />
+            </FormGroup>
+          </Col>
+          <Col>
+            <FormGroup>
+              <Label for="examplePassword">Password</Label>
+              <Input
+                name="password"
           value={password}
           onChange={this.onChange}
           type="password"
           placeholder="Password"
-        />
-        <button disabled={isInvalid} type="submit">
+              />
+            </FormGroup>
+          </Col>
+          <Button variant="outline-primary" disabled={isInvalid} type="submit">
           Sign In
-        </button>
-
+        </Button>
+        </Form>
+        <div>
+        <SignUpLink />
+      <PasswordForgotLink/>
+      <SignInGoogleForm />
+        </div>
         {error && <p>{error.message}</p>}
-      </form>
+      </Container>
+
     );
   }
 }
