@@ -46,6 +46,10 @@ class SignUpFormBase extends Component {
 
     if(isAdmin) {
       roles.push(ROLES.ADMIN);
+    }else if (isAgent){
+      roles.push(ROLES.AGENT);
+    }else if (isClient){
+      roles.push(ROLES.CLIENT);
     }
 
     this.props.firebase
