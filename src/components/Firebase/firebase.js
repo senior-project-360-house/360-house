@@ -3,12 +3,6 @@ import 'firebase/auth';
 import 'firebase/database';
 import Config from './config.js';
 
-/*
-Firebase constants
- */
-
-
-//choose url to be redirectto after signed in
 
 const config = Config;
 
