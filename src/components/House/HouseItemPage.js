@@ -2,6 +2,8 @@ import React, {Component} from 'react';
 
 import {withFirebase} from '../Firebase';
 
+import * as ROUTES from '../../constants/routes';
+
 class HouseItemPageBase extends Component {
   constructor(props){
     super(props);
@@ -13,8 +15,12 @@ class HouseItemPageBase extends Component {
     }
   }
 
-  onRemoveHouse = uid => {
-    this.props.firebase.house(uid).remove();
+  onRemoveHouse = event => {
+    this.props.firebase.house(this.state.house.uid).remove()
+    .then(() => {
+      this.setState({house: null});
+      this.props.history.push(ROUTES.HOUSE);
+    });
   };
 
   componentDidMount() {
@@ -61,7 +67,7 @@ class HouseItemPageBase extends Component {
            */}
           <button
           type="button"
-          onClick={this.onRemoveHouse(house.uid)}>
+          onClick={this.onRemoveHouse}>
             Delete this house
           </button>
 
