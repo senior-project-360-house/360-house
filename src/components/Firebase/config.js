@@ -8,6 +8,13 @@ const prodConfig = {
     messagingSenderId: process.env.REACT_APP_PROD_MESSAGING_SENDER_ID,
   };
   
+
+
+
+
+
+
+  
   const devConfig = {
     apiKey: "AIzaSyAtV9jzhijXpcVBKxvlEtt_KT9uaIcOlgo",
     authDomain: "senior-project-se-195.firebaseapp.com",

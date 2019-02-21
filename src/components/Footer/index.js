@@ -1,8 +1,8 @@
 import React from 'react';
-const Footer = ({
-  render: function() {
-    return (
 
+class Footer extends React.Component{
+  render(){
+    return(
       <div>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossOrigin="anonymous" />
         <link rel="stylesheet" href="style/footer.css" />
@@ -16,11 +16,15 @@ const Footer = ({
           <div className="footer-left">
             <h3>360Degree <span>House</span></h3>
             <p className="footer-links">
-              <a href="#">Home</a> 
-              <a href="#">Blog</a>  
-              <a href="#">About</a>
-              <a href="#">Faq</a>
-              <a href="#">Contact</a>
+              <a href="#">Home</a>
+              ·
+        <a href="#">Blog</a>
+              ·
+        <a href="#">About</a>
+              ·
+        <a href="#">Faq</a>
+              ·
+        <a href="#">Contact</a>
             </p>
             <p className="footer-company-name">360DegreeHouse © 2018</p>
           </div>
@@ -42,7 +46,7 @@ const Footer = ({
             <p className="footer-company-about">
               <span>About the company</span>
               We are an inspiring group of house dealers.
-            </p>
+      </p>
             <div className="footer-icons">
               <a href="#"><i className="fab fa-facebook-square" /></a>
               <a href="#"><i className="fab fa-twitter-square" /></a>
@@ -51,10 +55,24 @@ const Footer = ({
           </div>
         </footer>
       </div>
+
+
     );
+    
   }
-});
-export default Footer;
+}
+ export default Footer;
+
+
+
+// const Footer = ({
+//   render: function() {
+//     return (
+// <h1>Hello</h1>
+//     );
+//   }
+// });
+// export default Footer;
 
 
 
