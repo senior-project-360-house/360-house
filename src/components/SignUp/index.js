@@ -29,19 +29,7 @@ class SignUpFormBase extends Component {
   }
 
   onSubmit = event => {
-
-
-    const { username, email, passwordOne, isAdmin, isAgent, isClient } = this.state;
-
-    const roles = [];
-
-    if(isAdmin) {
-      roles.push(ROLES.ADMIN);
-    }else if (isAgent){
-      roles.push(ROLES.AGENT);
-    }else if (isClient){
-      roles.push(ROLES.CLIENT);
-    }
+    const { username, email, passwordOne } = this.state;
 
     this.props.firebase
       .doCreateUserWithEmailAndPassword(email, passwordOne)

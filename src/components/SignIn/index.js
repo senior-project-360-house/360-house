@@ -1,13 +1,12 @@
-
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import { compose } from 'recompose';
 import Footer from '../Footer';
-
 import { SignUpLink } from '../SignUp';
 import { PasswordForgotLink} from '../PasswordForget';
 
-import {SignInForm, SignInGoogleForm} from './SignInForm';
+import { withFirebase } from '../Firebase';
+import * as ROUTES from '../../constants/routes';
 
 import {Button,Container,Col, Form,FormGroup,Label,Input,} from 'reactstrap';
 
@@ -18,7 +17,6 @@ const SignInPage = () => (
     
   </div>
 );
-
 
 const INITIAL_STATE = {
   email: '',
@@ -112,4 +110,3 @@ const SignInForm = compose(
 export default SignInPage;
 
 export { SignInForm };
-

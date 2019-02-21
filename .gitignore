@@ -24,8 +24,7 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 .firebase/*
-
+env.development
 package-lock.json
-
 src/components/Firebase/config.js
 env.development

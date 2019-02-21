@@ -18,7 +18,6 @@ const Navigation = () => (
   </div>
 );
 
-
 const NavigationAuth = () => (
 
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -47,7 +46,6 @@ const NavigationAuth = () => (
 </ul>
   </div>
 </nav>
-
 
 
 );
