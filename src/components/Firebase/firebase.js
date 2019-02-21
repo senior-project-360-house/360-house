@@ -3,12 +3,6 @@ import 'firebase/auth';
 import 'firebase/database';
 import Config from './config.js';
 
-/*
-Firebase constants
- */
-
-
-//choose url to be redirectto after signed in
 
 const config = Config;
 
@@ -53,6 +47,12 @@ class Firebase {
   user = uid => this.database.ref(`users/${uid}`);
 
   users = () => this.database.ref('users');
+
+  // Collection API
+
+  house = uid => this.database.ref(`houses/${uid}`);
+
+  houses = () => this.database.ref('houses');
 
   // Sign Up Email Verification
 
