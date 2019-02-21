@@ -30,6 +30,9 @@ const NavigationAuth = ({ authUser }) => (
     <li>
       <Link to={ROUTES.HOME}>Home</Link>
     </li>
+    <li>
+      <Link to={ROUTES.HOUSE}>House</Link>
+    </li>
     {/*
       condition to check user roles
     */}
@@ -61,6 +64,9 @@ const NavigationNonAuth = () => (
     </li>
     <li>
       <Link to={ROUTES.HOME}>Home</Link>
+    </li>
+    <li>
+      <Link to={ROUTES.HOUSE}>House</Link>
     </li>
     <li>
       <Link to={ROUTES.SIGN_IN}>Sign In</Link>
