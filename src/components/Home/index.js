@@ -1,3 +1,4 @@
+
 import React,{Component} from 'react';
 import {compose} from 'recompose';
 
@@ -46,3 +47,4 @@ const HomePage = () => (
 )
 
 export default Home;
+
