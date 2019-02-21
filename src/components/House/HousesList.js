@@ -1,5 +1,9 @@
 import React, {Component} from 'react';
+import {Link} from 'react-router-dom';
+
 import {withFirebase} from '../Firebase';
+
+import * as ROUTES from '../../constants/routes';
 
 class HousesListBase extends Component {
   constructor(props){
@@ -75,10 +79,30 @@ TODO: Update Single House Item Visual
 const HouseItem = ({house}) => (
   <li>
     <strong>{house.name}</strong> {house.address}
+    <span>
+    {
+      /*
+      Link back to House/index.js Switch that check
+      the route HOUSE_DETAILS: /house/:id, and decide
+      the route /houses or /house/:id
+      */
+    }
+    <Link
+    to = {{
+
+      pathname: `${ROUTES.HOUSE}/${house.uid}`,
+      state: {house},
+
+    }}
+    >
+    Details
+    </Link>
+    </span>
   </li>
 
 );
 
+
 const HousesList = withFirebase(HousesListBase);
 
-export default HousesList;
+export {HousesList};

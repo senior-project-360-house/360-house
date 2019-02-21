@@ -21,6 +21,8 @@ class AddHousePage extends Component {
     this.setState({ [event.target.name] : event.target.value });
   }
 
+
+
   onCreateHouse = event => {
     this.setState({isLoading: true,});
 
@@ -43,7 +45,6 @@ class AddHousePage extends Component {
     const { name, address, error } = this.state;
 
     return (
-
         <form onSubmit={this.onCreateHouse}>
           <input
           name="name"
