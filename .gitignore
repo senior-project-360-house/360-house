@@ -28,3 +28,4 @@ yarn-error.log*
 package-lock.json
 
 src/components/Firebase/config.js
+env.development
