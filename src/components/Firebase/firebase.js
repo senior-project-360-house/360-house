@@ -1,29 +1,16 @@
 import app from 'firebase/app';
 import 'firebase/auth';
 import 'firebase/database';
-
-import Config from './config'
-=======
-
+import Config from './config.js';
 
 /*
 Firebase constants
  */
 
 
-
-const devEmailVerificationRedirectURL = {
-  url: "http://localhost:3000"
-}
-
-const emailVerificationRedirectURL =
-process.env.NODE_ENV === 'production' ? prodEmailVerificationRedirectURL : devEmailVerificationRedirectURL;
-
-
 //choose url to be redirectto after signed in
 
 const config = Config;
-
 
 class Firebase {
   constructor() {
