@@ -1,23 +1,10 @@
 import app from 'firebase/app';
 import 'firebase/auth';
 import 'firebase/database';
-import Config from './config'
+import Config from './config.js';
 
-/*
-Firebase constants
- */
 
-//choose url to be redirectto after signed in
-const prodEmailVerificationRedirectURL = {
-  url: "https://senior-project-se-195.firebaseapp.com"
-}
-
-const devEmailVerificationRedirectURL = {
-  url: "http://localhost:3000"
-}
 const config = Config;
-const emailVerificationRedirectURL =
-process.env.NODE_ENV === 'production' ? prodEmailVerificationRedirectURL : devEmailVerificationRedirectURL;
 
 class Firebase {
   constructor() {
@@ -61,10 +48,16 @@ class Firebase {
 
   users = () => this.database.ref('users');
 
+  //House API
+
+  house = uid => this.database.ref(`houses/${uid}`);
+
+  houses = () => this.database.ref('houses');
+
   // Sign Up Email Verification
 
   doSendEmailVerification = () =>
-this.auth.currentUser.sendEmailVerification(emailVerificationRedirectURL);
+this.auth.currentUser.sendEmailVerification({url: config.url});
 
   /*
   Athorization and Authentication join method

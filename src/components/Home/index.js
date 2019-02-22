@@ -1,20 +1,11 @@
 import React from 'react';
-import Footer from '../Footer';
 
 
-const HomePage = () => (
-  <div >
-                <div >
-                    <div >
-                      
-                    </div>
-                    <div >
-                  
-                    </div>
-                </div>
-                <Footer />
-            </div>
+const Home = () => (
+  <div>
+    <h1>Home Page</h1>
+    <p> The Home Page is accessible by every user.</p>
+  </div>
 );
 
-
-export default (HomePage);
+export default Home;
