@@ -12,6 +12,8 @@ import {SignInForm, SignInGoogleForm} from './SignInForm';
 
 const SignInPage = () => (
   <div>
+
+  
     <h1>SignIn</h1>
     <SignInForm />
     <SignInGoogleForm />
