@@ -177,10 +177,6 @@ class SignUpFormBase extends Component {
         {error && <p>{error.message}</p>}
       </Container>
 
-
-
-
-
       <form onSubmit={this.onSubmit}>
       <input
       name="username"
