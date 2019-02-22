@@ -43,7 +43,9 @@ class AddHousePage extends Component {
 
   render() {
     const { name, address, error } = this.state;
-
+    /**
+     * TODO: Check for empty object still can be submit
+     */
     return (
         <form onSubmit={this.onCreateHouse}>
           <input
