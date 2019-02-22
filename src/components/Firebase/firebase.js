@@ -1,4 +1,4 @@
-import app from 'firebase/app';
+
 import 'firebase/auth';
 import 'firebase/database';
 import Config from './config.js';
@@ -51,7 +51,7 @@ class Firebase {
   // Sign Up Email Verification
 
   doSendEmailVerification = () =>
-this.auth.currentUser.sendEmailVerification({url: config.url});
+this.auth.currentUser.sendEmailVerification(emailVerificationRedirectURL);
 
   /*
   Athorization and Authentication join method
