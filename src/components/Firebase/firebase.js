@@ -48,16 +48,10 @@ class Firebase {
 
   users = () => this.database.ref('users');
 
-  // Collection API
-
-  house = uid => this.database.ref(`houses/${uid}`);
-
-  houses = () => this.database.ref('houses');
-
   // Sign Up Email Verification
 
   doSendEmailVerification = () =>
-this.auth.currentUser.sendEmailVerification({url: config.url});
+this.auth.currentUser.sendEmailVerification(emailVerificationRedirectURL);
 
   /*
   Athorization and Authentication join method

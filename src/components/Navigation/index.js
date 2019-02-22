@@ -55,6 +55,36 @@ const NavigationAuth = ({ authUser }) => (
       <SignOutButton />
     </li>
   </ul>
+// const NavigationAuth = () => (
+//
+//   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+//   <a class="navbar-brand" href="#">Team LOGO </a>
+//   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+//     <span class="navbar-toggler-icon"></span>
+//   </button>
+//   <div class="collapse navbar-collapse" id="navbarText">
+//     <ul class="navbar-nav mr-auto">
+//       <li class="nav-item active">
+//
+//         <a class="nav-link" href="#"> <span class="sr-only">(current)</span> <Link to={ROUTES.ACCOUNT}>Account</Link></a>
+//       </li>
+//       <li class="nav-item">
+//         <a class="nav-link" href="#"><Link to={ROUTES.LANDING}>Favorite House</Link></a>
+//       </li>
+//       <li class="nav-item">
+//         <a class="nav-link" href="#"><Link to={ROUTES.LANDING}>Message</Link></a>
+//       </li>
+//
+//     </ul>
+//     <ul class="navbar-nav justify-content-end">
+//   <li class="nav-item">
+//     <a class="nav-link" href="#"> <SignOutButton/></a>
+//   </li>
+// </ul>
+//   </div>
+// </nav>
+
+
 );
 
 const NavigationNonAuth = () => (
