@@ -9,7 +9,7 @@
 # testing
 /coverage
 
-# production
+# productiondd 
 /build
 
 # misc
@@ -27,4 +27,5 @@ yarn-error.log*
 
 package-lock.json
 src/components/Firebase/config.js
+package-lock.json
 env.development

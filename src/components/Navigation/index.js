@@ -83,9 +83,8 @@ const NavigationAuth = ({ authUser }) => (
 // </ul>
 //   </div>
 // </nav>
-
-
 );
+
 
 const NavigationNonAuth = () => (
   <ul>
