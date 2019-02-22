@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import { compose } from 'recompose';
-import Footer from '../Footer';
+// import Footer from '../Footer';
 import { SignUpLink } from '../SignUp';
 import { PasswordForgotLink} from '../PasswordForget';
 
