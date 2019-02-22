@@ -5,6 +5,7 @@ import { withFirebase } from '../Firebase';
 import * as ROUTES from '../../constants/routes';
 import * as ROLES from '../../constants/roles';
 
+import {Button,Container,Col, Form,FormGroup,Label,Input,} from 'reactstrap';
 const ERROR_CODE_ACCOUNT_EXISTS = 'auth/email-already-in-use';
 const ERROR_MSG_ACCOUNT_EXISTS = `
 An account with this E-Mail address already exists.
@@ -16,8 +17,6 @@ on your personal account page.
 
 const SignUpPage = () => (
   <div>
-  <h1>SignUp</h1>
-  <SignUpForm />
   </div>
 );
 
@@ -40,6 +39,7 @@ class SignUpFormBase extends Component {
   }
 
   onSubmit = event => {
+    const { username, email, passwordOne } = this.state;
     const { username, email, passwordOne, isAdmin, isAgent, isClient } = this.state;
 
     const roles = [];
@@ -112,6 +112,71 @@ class SignUpFormBase extends Component {
     username === '';
 
     return (
+
+
+
+<Container className="SignIn">
+        <h2>Sign In</h2>
+        <Form className="form" onSubmit={this.onSubmit}>
+          <Col>
+            <FormGroup>
+              <Label>Username</Label>
+              <input
+          name="username"
+          value={username}
+          onChange={this.onChange}
+          type="text"
+          placeholder="Full Name"
+        />
+            </FormGroup>
+          </Col>
+          <Col>
+            <FormGroup>
+              <Label for="examplePassword">Email Address</Label>
+              <input
+          name="email"
+          value={email}
+          onChange={this.onChange}
+          type="text"
+          placeholder="Email Address"
+        />
+            </FormGroup>
+          </Col>
+          <Col>
+            <FormGroup>
+              <Label for="examplePassword">Password</Label>
+              <input
+          name="passwordOne"
+          value={passwordOne}
+          onChange={this.onChange}
+          type="password"
+          placeholder="Password"
+        />
+            </FormGroup>
+          </Col>
+          <Col>
+            <FormGroup>
+              <Label for="examplePassword">Confirm Passwor</Label>
+               <input
+          name="passwordTwo"
+          value={passwordTwo}
+          onChange={this.onChange}
+          type="password"
+          placeholder="Confirm Password"
+        />
+            </FormGroup>
+          </Col>
+          <Button variant="outline-primary" disabled={isInvalid} type="submit">
+          Sign up
+        </Button>
+        </Form>
+{/*         <div>
+        <SignUpLink />
+      <PasswordForgotLink/>
+        </div> */}
+        {error && <p>{error.message}</p>}
+      </Container>
+
       <form onSubmit={this.onSubmit}>
       <input
       name="username"

@@ -1,0 +1,118 @@
+.navbar-login
+{
+    width: 305px;
+    padding: 10px;
+    padding-bottom: 0px;
+}
+
+.navbar-login-session
+{
+    padding: 10px;
+    padding-bottom: 0px;
+    padding-top: 0px;
+}
+
+.icon-size
+{
+    font-size: 87px;
+}
+
+.container-fluid{
+  color: ;
+}
+.body { padding-top: 40px; }
+
+.message{
+  padding-bottom: 10px;
+}
+
+/*Styling for message box  */
+div.wrap {
+    width: 90%;
+    margin: 0 auto 1em auto;
+    position: relative;
+}
+
+div.wrap:first-child {
+    margin-top: 1em;
+}
+
+div.comment {
+    font-size: 1em;
+    position: relative;
+    margin-left: 60px;
+    border-radius: 0.75em 0.75em 0.75em 0.75em;
+    background-color: #fffcf1;
+    line-height: 1.4em;
+    font-family: Helvetica;
+}
+
+div.comment::before {
+    content: attr(data-owner);
+    border-radius: 0.75em 0.75em 0 0;
+    background-color: #fff8dc;
+    display: block;
+    text-indent: 10%;
+    border-bottom: 3px solid #fffcf1;
+}
+
+div.comment::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    border: 10px solid transparent;
+    border-right: 10px solid #fffcf1;
+    margin: -10px 0 0 -20px;
+}
+
+div.comment p {
+    width: 80%;
+    margin: 0 auto 1em auto;
+}
+
+img {
+    position: absolute;
+    top: 50%;
+    width: 50px;
+    float: left;
+    border-radius: 10px;
+    margin-top: -25px;
+}
+
+p + ul.postscript {
+    width: 80%;
+    font-size: 0.8em;
+    margin: -0.5em auto 0 auto;
+}
+ul.postscript::after {
+    content: '';
+    height: 0.5em;
+    display: block;
+    clear: both;
+}
+ul.postscript li {
+    float: left;
+    margin-right: 0.5em;
+}
+ul.postscript li.date {
+    float: right;
+    margin-right: 0;
+}
+
+.wrap a:link,
+.wrap a:visited {
+    color: #fffcf1;
+    text-decoration: none;
+    border-bottom: 1px solid #333;
+}
+
+.wrap a:hover,
+.wrap a:active,
+.wrap a:focus {
+    color: #f00;
+    border-bottom: 1px solid #f00;
+}
+ul {
+  list-style-type: none;
+}
