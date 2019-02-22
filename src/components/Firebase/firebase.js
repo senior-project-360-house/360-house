@@ -48,7 +48,7 @@ class Firebase {
 
   users = () => this.database.ref('users');
 
-  // Collection API
+  //House API
 
   house = uid => this.database.ref(`houses/${uid}`);
 

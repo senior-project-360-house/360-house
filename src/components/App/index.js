@@ -1,5 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 import Navigation from '../Navigation';
 import LandingPage from '../Landing';
@@ -12,8 +13,10 @@ import AccountPage from '../Account';
 import AdminPage from '../Admin';
 import AgentPage from '../Agent';
 import ClientPage from '../Client';
+import House from '../House';
 
 import * as ROUTES from '../../constants/routes';
+import * as ROLES from '../../constants/roles';
 import { withAuthentication } from '../Session';
 
 const App = () => (
@@ -26,10 +29,9 @@ const App = () => (
       <Route path={ROUTES.SIGN_IN} component={SignInPage} />
       <Route path={ROUTES.PASSWORD_FORGET} component={PasswordForgetPage}/>
       <Route path={ROUTES.HOME} component={HomePage} />
-      <Route path={ROUTES.AGENT} component={AgentPage} />
-      <Route path={ROUTES.CLIENT} component={ClientPage} />
       <Route path={ROUTES.ACCOUNT} component={AccountPage} />
       <Route path={ROUTES.ADMIN} component={AdminPage} />
+      <Route path={ROUTES.HOUSE} component={House} />
       <Route path={ROUTES.PASSWORD_CHANGE} component={PasswordChangePage} />
     </div>
   </Router>
