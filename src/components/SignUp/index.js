@@ -39,7 +39,6 @@ class SignUpFormBase extends Component {
   }
 
   onSubmit = event => {
-    const { username, email, passwordOne } = this.state;
     const { username, email, passwordOne, isAdmin, isAgent, isClient } = this.state;
 
     const roles = [];
@@ -176,70 +175,70 @@ class SignUpFormBase extends Component {
         </div> */}
         {error && <p>{error.message}</p>}
       </Container>
-
-      <form onSubmit={this.onSubmit}>
-      <input
-      name="username"
-      value={username}
-      onChange={this.onChange}
-      type="text"
-      placeholder="Full Name"
-      />
-      <input
-      name="email"
-      value={email}
-      onChange={this.onChange}
-      type="text"
-      placeholder="Email Address"
-      />
-      <input
-      name="passwordOne"
-      value={passwordOne}
-      onChange={this.onChange}
-      type="password"
-      placeholder="Password"
-      />
-      <input
-      name="passwordTwo"
-      value={passwordTwo}
-      onChange={this.onChange}
-      type="password"
-      placeholder="Confirm Password"
-      />
-      {/*(TODO: Make only one choice Admin,Agent,Client possible at a time)*/}
-      <label>
-      Admin:
-      <input
-      name="isAdmin"
-      type="checkbox"
-      checked={isAdmin}
-      onChange={this.oncChangeCheckbox}
-      />
-      </label>
-      <label>
-      Agent:
-      <input
-      name="isAgent"
-      type="checkbox"
-      checked={isAgent}
-      onChange={this.oncChangeCheckbox}
-      />
-      </label>
-      <label>
-      Client:
-      <input
-      name="isClient"
-      type="checkbox"
-      checked={isClient}
-      onChange={this.oncChangeCheckbox}
-      />
-      </label>
-      <button disabled={isInvalid} type="submit">
-      Sign Up
-      </button>
-
-      {error && <p>{error.message}</p>}
-      </form>
+      //
+      // <form onSubmit={this.onSubmit}>
+      // <input
+      // name="username"
+      // value={username}
+      // onChange={this.onChange}
+      // type="text"
+      // placeholder="Full Name"
+      // />
+      // <input
+      // name="email"
+      // value={email}
+      // onChange={this.onChange}
+      // type="text"
+      // placeholder="Email Address"
+      // />
+      // <input
+      // name="passwordOne"
+      // value={passwordOne}
+      // onChange={this.onChange}
+      // type="password"
+      // placeholder="Password"
+      // />
+      // <input
+      // name="passwordTwo"
+      // value={passwordTwo}
+      // onChange={this.onChange}
+      // type="password"
+      // placeholder="Confirm Password"
+      // />
+      // {/*(TODO: Make only one choice Admin,Agent,Client possible at a time)*/}
+      // <label>
+      // Admin:
+      // <input
+      // name="isAdmin"
+      // type="checkbox"
+      // checked={isAdmin}
+      // onChange={this.oncChangeCheckbox}
+      // />
+      // </label>
+      // <label>
+      // Agent:
+      // <input
+      // name="isAgent"
+      // type="checkbox"
+      // checked={isAgent}
+      // onChange={this.oncChangeCheckbox}
+      // />
+      // </label>
+      // <label>
+      // Client:
+      // <input
+      // name="isClient"
+      // type="checkbox"
+      // checked={isClient}
+      // onChange={this.oncChangeCheckbox}
+      // />
+      // </label>
+      // <button disabled={isInvalid} type="submit">
+      // Sign Up
+      // </button>
+      //
+      // {error && <p>{error.message}</p>}
+      // </form>
     );
   }
 }
