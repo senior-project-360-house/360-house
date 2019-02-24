@@ -19,8 +19,6 @@ on your personal account page.
 
 const SignUpPage = () => (
   <div>
-  <h1>SignUp</h1>
-  <SignUpForm />
   </div>
 );
 
@@ -43,12 +41,17 @@ class SignUpFormBase extends Component {
   }
 
   onSubmit = event => {
+    const { username, email, passwordOne } = this.state;
     const { username, email, passwordOne, isAdmin, isAgent, isClient } = this.state;
 
     const roles = [];
 
     if(isAdmin) {
       roles.push(ROLES.ADMIN);
+    }else if (isAgent){
+      roles.push(ROLES.AGENT);
+    }else if (isClient){
+      roles.push(ROLES.CLIENT);
     }
 
     this.props.firebase
