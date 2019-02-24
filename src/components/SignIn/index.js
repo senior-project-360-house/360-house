@@ -12,6 +12,8 @@ import {SignInForm, SignInGoogleForm} from './SignInForm';
 
 const SignInPage = () => (
   <div>
+
+  
     <h1>SignIn</h1>
     <SignInForm />
     <SignInGoogleForm />
@@ -19,7 +21,7 @@ const SignInPage = () => (
     <PasswordForgotLink/>
   </div>
 );
-//
+//TODO: Merge this signInformBase to SignIn/SignInForm.js
 // const INITIAL_STATE = {
 //   email: '',
 //   password: '',

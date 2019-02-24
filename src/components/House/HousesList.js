@@ -39,7 +39,7 @@ class HousesListBase extends Component {
     });
   }
 
-  componentWillUnMount() {
+  componentWillUnmount() {
     this.props.firebase.houses().off();
   }
 
