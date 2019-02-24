@@ -39,7 +39,6 @@ class SignUpFormBase extends Component {
   }
 
   onSubmit = event => {
-    const { username, email, passwordOne } = this.state;
     const { username, email, passwordOne, isAdmin, isAgent, isClient } = this.state;
 
     const roles = [];
@@ -112,7 +111,7 @@ class SignUpFormBase extends Component {
     username === '';
 
     return (
-
+<div>
 
 
 <Container className="SignIn">
@@ -240,6 +239,7 @@ class SignUpFormBase extends Component {
 
       {error && <p>{error.message}</p>}
       </form>
+      </div>
     );
   }
 }
