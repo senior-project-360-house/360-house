@@ -9,7 +9,6 @@ import {UserList, UserItem} from './UserList';
 
 import * as ROLES from '../../constants/roles';
 import * as ROUTES from '../../constants/routes';
-
 const AdminPage = () =>(
       <div>
         <h1>Admin</h1>
