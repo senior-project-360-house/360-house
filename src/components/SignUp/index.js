@@ -27,6 +27,9 @@ const INITIAL_STATE = {
   email: '',
   passwordOne: '',
   passwordTwo: '',
+  isAdmin: false,
+  isClient: false,
+  isAgent: false,
   error: null,
 };
 
@@ -97,6 +100,9 @@ class SignUpFormBase extends Component {
       email,
       passwordOne,
       passwordTwo,
+      isAdmin,
+      isClient,
+      isAgent,
       error,
     } = this.state;
 
@@ -108,6 +114,9 @@ class SignUpFormBase extends Component {
 
     return (
 
+      /*
+      TODO: Render is not working
+       */
 
 
 
