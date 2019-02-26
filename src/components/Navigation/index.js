@@ -31,7 +31,7 @@ const Navigation = () => (
   <div class="collapse navbar-collapse" id="navbarText">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-      
+
         <a class="nav-link" href="#"> <span class="sr-only">(current)</span> <Link to={ROUTES.ACCOUNT}>Account</Link></a>
       </li>
       <li class="nav-item">
@@ -64,7 +64,7 @@ const Navigation = () => (
 //   <div class="collapse navbar-collapse" id="navbarText">
 //     <ul class="navbar-nav mr-auto">
 //       <li class="nav-item active">
-      
+
 //         <a class="nav-link" href="#"> <span class="sr-only">(current)</span> <Link to={ROUTES.ACCOUNT}>Account</Link></a>
 //       </li>
 //       <li class="nav-item">
@@ -150,7 +150,7 @@ const NavigationAuth = ({ authUser }) => (
 
 );
 
- 
+
 
 const NavigationNonAuth = () => (
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
@@ -160,7 +160,7 @@ const NavigationNonAuth = () => (
   </button>
   <div class="collapse navbar-collapse" id="navbarText">
     <ul class="navbar-nav mr-auto">
-      
+
     </ul>
     <ul class="navbar-nav justify-content-end">
   <li class="nav-item">
@@ -189,4 +189,3 @@ const NavigationNonAuth = () => (
 );
 
 export default Navigation;
-
