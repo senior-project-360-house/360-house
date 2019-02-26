@@ -17,3 +17,4 @@ export const CLIENT_DETAILS = '/client/:id';
 
 export const HOUSE = '/house';
 export const HOUSE_DETAILS = '/house/:id';
+export const GOOGLEADDINFO = '/googleRegister';

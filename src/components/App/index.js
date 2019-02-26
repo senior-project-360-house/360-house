@@ -14,6 +14,7 @@ import AdminPage from '../Admin';
 import AgentPage from '../Agent';
 import ClientPage from '../Client';
 import House from '../House';
+import GoogleAddInfo from '../ProviderAddInfo';
 
 import * as ROUTES from '../../constants/routes';
 import * as ROLES from '../../constants/roles';
@@ -33,6 +34,7 @@ const App = () => (
       <Route path={ROUTES.ADMIN} component={AdminPage} />
       <Route path={ROUTES.HOUSE} component={House} />
       <Route path={ROUTES.PASSWORD_CHANGE} component={PasswordChangePage} />
+      <Route path={ROUTES.GOOGLEADDINFO} component={GoogleAddInfo} />
     </div>
   </Router>
 );
