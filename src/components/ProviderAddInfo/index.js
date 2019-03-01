@@ -1,11 +1,18 @@
 import React from 'react';
 
 import GoogleAddInfoForm from './AddInfoForm';
+import {AuthUserContext} from '../Session';
 
 const GoogleAddInfoPage = () => (
   <div>
     <h1>Hello new User</h1>
-    <GoogleAddInfoForm />
+    <AuthUserContext.Consumer>
+      {
+        authUser => (
+        <GoogleAddInfoForm authUser={authUser} />
+      )
+      }
+      </AuthUserContext.Consumer>
   </div>
 );
 

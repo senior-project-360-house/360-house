@@ -41,7 +41,7 @@ Sign In with Google base
 class SignInGoogleFormBase extends Component {
   constructor(props) {
     super(props);
-    this.state = {error : null};
+    this.state = {socialAuthUser: {},error : null};
   }
 
   /*
@@ -54,21 +54,32 @@ class SignInGoogleFormBase extends Component {
     this.props.firebase
     .doSignInWithGoogle()
     .then(socialAuthUser => {
+      this.setState({socialAuthUser: socialAuthUser});
       if(socialAuthUser.additionalUserInfo.isNewUser){
+        return this.props.firebase.user(socialAuthUser.user.uid)
+        .set({
+          /*
+          TODO: When finished with all the user field, change to general function [event.target.name]: event.target.value
+          */
+          displayName: socialAuthUser.user.displayName,
+          email: socialAuthUser.user.email,
+          isAgent: false,
+          phoneNumber: socialAuthUser.user.phoneNumber,
+          photoURL: socialAuthUser.user.photoURL,
+        })
+      }
+    else{
+      return this.props.firebase.user(socialAuthUser.user.uid)
+    }
+    })
+    .then(() => {
+      if(this.state.socialAuthUser.additionalUserInfo.isNewUser){
         this.setState({error: null});
-        this.props.history.push({
-          pathname: ROUTES.GOOGLEADDINFO,
-          state: {
-            displayName : socialAuthUser.user.displayName,
-            email: socialAuthUser.user.email,
-            phoneNumber: socialAuthUser.user.phoneNumber,
-            photoURL: socialAuthUser.user.photoURL,
-          }
-        });
+        this.props.history.push(ROUTES.GOOGLEADDINFO);
       }
       else{
-      this.setState({error: null});
-      this.props.history.push(ROUTES.HOME);
+        this.setState({error: null});
+        this.props.history.push(ROUTES.HOME);
       }
     })
     .catch(error => {

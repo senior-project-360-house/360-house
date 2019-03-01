@@ -3,15 +3,16 @@ import { withRouter } from 'react-router-dom';
 import {compose} from 'recompose';
 
 import {withFirebase} from '../Firebase';
+import {withAuthentication} from '../Session';
 
 import * as SCHEMA from '../../constants/schema';
 import * as ROUTES from '../../constants/routes';
 
-let socialAuthUser = null;
 
 const INITIAL_STATE = {
-  ...SCHEMA,
+  authUser: {},
   error: null,
+  isLoading: false,
 }
 
 
@@ -20,39 +21,29 @@ class AddInfoFormBase extends Component{
   constructor(props) {
     super(props);
 
-    console.log(this.props.location.state);
-    socialAuthUser = {...this.props.location.state};
-
     this.state = {
+      authUser: {...SCHEMA.user},
       ...INITIAL_STATE,
     }
+
   }
 
   onSubmit = event => {
-    this.props.firebase
-    .doSignInWithGoogle()
-    .then(socialAuthUser => {
-      return this.props.firebase
-      .user(socialAuthUser.uid)
-      .set({
-        /*
-        TODO: When finished with all the user field, change to general function [event.target.name]: event.target.value
-         */
-        name: this.state.name,
-        email: this.state.email,
-        gender: this.state.gender,
-        isAgent: false,
-        phoneNumber: this.state.phoneNumber,
-        photoURL: this.state.photoURL,
-      });
+
+    var user = this.props.firebase.auth.currentUser;
+    console.log(this.state.authUser);
+
+    user.updateProfile({
+      ...this.state.authUser,
+
     })
     .then(() => {
-      this.setState({error: null});
-      this.props.history.push(ROUTES.HOME);
+      alert("Update Success");
     })
-    .catch(error => {
-      this.setState({error});
+    .catch(error =>{
+      alert(error);
     })
+    event.preventDefault();
   }
 
   onChange = event => {
@@ -60,59 +51,55 @@ class AddInfoFormBase extends Component{
   };
 
   componentDidMount() {
-    if(this.props.location.state === null){
-      this.props.history.push(ROUTES.HOME);
-    }
-    console.log(this.props.location.state);
-    socialAuthUser = {...this.props.location.state};
+    this.setState({
+      authUser: {
+      displayName: this.props.authUser},
+    })
+
+    console.log(this.state);
   }
 
   render() {
     const {
-      displayName,
-      email,
-      gender,
-      phoneNumber,
-      photoURL,
+      authUser,
       error,
     } = this.state;
 
-    const isInvalid =   displayName === '' ||
-      email === '' ||
-      gender === '' ||
-      phoneNumber === '';
+
+
+    const isInvalid =   authUser.displayName === '' ||
+    authUser.email === '' ||
+    authUser.gender === '' ||
+    authUser.phoneNumber === '';
 
 
     return (
       <form onSubmit={this.onSubmit}>
       <input
       name="displayName"
-      value={displayName}
       onChange={this.onChange}
-      defaultValue={socialAuthUser.displayName}
+      value={this.props.authUser.displayName || authUser.displayName}
       type="text"
       placeholder="Full Name"
       />
       <input
       name="email"
-      value={email}
       onChange={this.onChange}
-      defaultValue={socialAuthUser.email}
+      value={this.props.authUser.email || authUser.email}
       type="text"
       placeholder="email"
       />
       <input
       name="gender"
-      value={gender}
       onChange={this.onChange}
       type="text"
+      value={authUser.gender}
       placeholder="gender"
       />
       <input
       name="phoneNumber"
-      value={phoneNumber}
       onChange={this.onChange}
-      defaultValue={socialAuthUser.phoneNumber}
+      value={this.props.authUser.phoneNumber || authUser.phoneNumber}
       type="text"
       placeholder="phoneNumber"
       />
@@ -124,9 +111,8 @@ class AddInfoFormBase extends Component{
       }
       <input
       name="photoURL"
-      value={photoURL}
       onChange={this.onChange}
-      defaultValue={socialAuthUser.photoURL}
+      value={this.props.authUser.photoURL || authUser.photoURL}
       type="text"
       placeholder="photoURL"
       />
@@ -141,8 +127,8 @@ class AddInfoFormBase extends Component{
   }
 
   const AddInfoForm = compose(
+    withAuthentication,
     withFirebase,
-    withRouter,
   )(AddInfoFormBase)
 
-export default withRouter(AddInfoForm);
+  export default AddInfoForm;
