@@ -2,7 +2,9 @@ import React from 'react';
 import Footer from '../Footer';
 import Header from '../Header/header';
 import { Button, Card, Row, Col } from 'react-materialize';
-
+import 'bootstrap/dist/css/bootstrap.css';
+import '../../style/footer.css';
+import '../../style/homepage.css';
 
 // var Footer = React.Footer;
 const Landing = () => (

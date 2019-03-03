@@ -28,7 +28,7 @@ a {
 
 html{
 	height: 100%;
-	background:url("https://i.imgur.com/GqgkPSx.jpg") no-repeat center center fixed;
+	background:url("https://i.imgur.com/y4tlMtG.jpg") no-repeat center center fixed;
 	  -webkit-background-size: cover;
 	  -moz-background-size: cover;
 	  -o-background-size: cover;
@@ -44,13 +44,13 @@ html{
 				0px 8px 13px rgba(0,0,0.1),
 				0px 18px 23px rgba(0,0,0.1);
 }
-h1{
+#content h1{
 	color: white;
 	font-weight: lighter;
 	font-size: 5em;
 }
 
-h3{
+#content h3{
 	color: white;
 }
 hr{
@@ -217,7 +217,7 @@ li {
 	  padding: 5px 0;
 }
 
-}
+
 
 .card-box:after {
     display: block;
