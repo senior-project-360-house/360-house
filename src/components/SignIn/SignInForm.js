@@ -1,10 +1,18 @@
 import React, {Component} from 'react';
 import { withRouter } from 'react-router-dom';
 import { compose } from 'recompose';
-
 import { withFirebase } from '../Firebase';
-
 import * as ROUTES from '../../constants/routes';
+import {Button,Container,Col, Form,FormGroup,Label,Input,} from 'reactstrap';
+import GoogleButton from 'react-google-button'
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import AppBar from 'material-ui/AppBar';
+import RaisedButton from 'material-ui/RaisedButton';
+import TextField from 'material-ui/TextField';
+// import Toolbar from 'material-ui/core/Toolbar';
+// import Typography from 'material-ui/core/Typography';
+import PropTypes from 'prop-types';
+// import { withStyles } from 'material-ui/core/styles';
 
 import * as SCHEMA from '../../constants/schema';
 
@@ -101,7 +109,8 @@ class SignInGoogleFormBase extends Component {
 
     return(
       <form onSubmit={this.onSubmit}>
-      <button type="submit">Sign In with Google</button>
+      {/* <Button type="submit" variant="outline-*"></Button> */}
+      <GoogleButton onClick={ this.onSubmit }/>
       {/*
         error checking
         */}
@@ -148,28 +157,36 @@ class SignInGoogleFormBase extends Component {
       const isInvalid = password === '' || email === '';
 
       return (
-
+        <MuiThemeProvider>
+         <AppBar position="static" color="default">
+        {/* <Toolbar>
+          <Typography variant="h6" color="inherit">
+            Photos
+          </Typography>
+        </Toolbar> */}
+      </AppBar>
         <form onSubmit={this.onSubmit}>
-        <input
+        <TextField
         name="email"
         value={email}
         onChange={this.onChange}
         type="text"
         placeholder="Email Address"
         />
-        <input
+        <TextField
         name="password"
         value={password}
         onChange={this.onChange}
         type="password"
         placeholder="Password"
         />
-        <button disabled={isInvalid} type="submit">
+        <Button size="lg" variant="outline-*" disabled={isInvalid} type="submit">
         Sign In
-        </button>
+        </Button>
 
         {error && <p>{error.message}</p>}
         </form>
+        </MuiThemeProvider>
       );
     }
   }

@@ -119,7 +119,6 @@ class SignUpFormBase extends Component {
        */
 
 
-
 <Container className="SignIn">
         <h2>Sign Up</h2>
         <Form className="form" onSubmit={this.onSubmit}>
@@ -182,9 +181,8 @@ class SignUpFormBase extends Component {
         {error && <p>{error.message}</p>}
       </Container>
 
-
-
     );
+
   }
 }
 
