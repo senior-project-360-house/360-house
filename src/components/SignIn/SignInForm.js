@@ -9,10 +9,11 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import AppBar from 'material-ui/AppBar';
 import RaisedButton from 'material-ui/RaisedButton';
 import TextField from 'material-ui/TextField';
-import Toolbar from 'material-ui/core/Toolbar';
-import Typography from 'material-ui/core/Typography';
+// import Toolbar from 'material-ui/core/Toolbar';
+// import Typography from 'material-ui/core/Typography';
 import PropTypes from 'prop-types';
-import { withStyles } from 'material-ui/core/styles';
+// import { withStyles } from 'material-ui/core/styles';
+
 
 const ERROR_CODE_ACCOUNT_EXISTS =
 'auth/account-exists-with-different-credential';
@@ -131,11 +132,11 @@ class SignInGoogleFormBase extends Component {
       return (
         <MuiThemeProvider>
          <AppBar position="static" color="default">
-        <Toolbar>
+        {/* <Toolbar>
           <Typography variant="h6" color="inherit">
             Photos
           </Typography>
-        </Toolbar>
+        </Toolbar> */}
       </AppBar>
         <form onSubmit={this.onSubmit}>
         <TextField
