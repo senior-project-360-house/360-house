@@ -18,7 +18,7 @@ const SignInPage = () => (
     <PasswordForgotLink/>
   </div>
 );
-//
+//TODO: Merge this signInformBase to SignIn/SignInForm.js
 // const INITIAL_STATE = {
 //   email: '',
 //   password: '',
