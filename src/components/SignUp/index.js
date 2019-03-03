@@ -113,8 +113,6 @@ class SignUpFormBase extends Component {
     username === '';
 
     return (
-      
-
 
 
 
@@ -180,9 +178,8 @@ class SignUpFormBase extends Component {
         {error && <p>{error.message}</p>}
       </Container>
 
-
-
     );
+    
   }
 }
 
