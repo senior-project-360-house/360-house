@@ -7,7 +7,7 @@ import * as ROUTES from '../../constants/routes';
 import * as ROLES from '../../constants/roles';
 
 
-import { AuthUserContext } from '../Session';
+import { AuthUserContext } from '../../server/Session/index';
 
 const Navigation = () => (
   <div>

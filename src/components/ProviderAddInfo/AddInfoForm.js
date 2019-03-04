@@ -2,8 +2,8 @@ import React, {Component} from 'react';
 import { withRouter } from 'react-router-dom';
 import {compose} from 'recompose';
 
-import {withFirebase} from '../Firebase';
-import {withAuthentication} from '../Session';
+import {withFirebase} from '../../server/Firebase/index';
+import {withAuthentication} from '../../server/Session/index';
 
 import * as SCHEMA from '../../constants/schema';
 import * as ROUTES from '../../constants/routes';

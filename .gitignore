@@ -30,3 +30,4 @@ src/store
 yarn.lock
 yarn.lock
 package-lock.json
+src/server/Firebase/config.js

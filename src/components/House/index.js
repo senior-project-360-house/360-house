@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 
 import {Switch, Route} from 'react-router-dom';
 
-import {AuthUserContext} from '../Session';
+import {AuthUserContext} from '../../server/Session/index';
 
 import AddHousePage from './AddHouse';
 import {HousesList} from './HousesList';

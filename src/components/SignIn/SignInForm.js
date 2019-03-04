@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import { withRouter } from 'react-router-dom';
 import { compose } from 'recompose';
-import { withFirebase } from '../Firebase';
+import { withFirebase } from '../../server/Firebase/index';
 import * as ROUTES from '../../constants/routes';
 import {Button,Container,Col, Form,FormGroup,Label,Input,} from 'reactstrap';
 import GoogleButton from 'react-google-button'

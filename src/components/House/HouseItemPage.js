@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 
-import {withFirebase} from '../Firebase';
+import {withFirebase} from '../../server/Firebase/index';
 
 import * as ROUTES from '../../constants/routes';
 

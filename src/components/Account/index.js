@@ -1,7 +1,7 @@
 import React from 'react';
 import {compose} from 'recompose';
 
-import { AuthUserContext, withAuthorization, withEmailVerification} from '../Session';
+import { AuthUserContext, withAuthorization, withEmailVerification} from '../../server/Session/index';
 import {PasswordChangeLink} from '../PasswordChange';
 import LoginManagement from './LoginManagement';
 

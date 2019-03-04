@@ -18,7 +18,7 @@ import GoogleAddInfo from '../ProviderAddInfo';
 
 import * as ROUTES from '../../constants/routes';
 import * as ROLES from '../../constants/roles';
-import { withAuthentication } from '../Session';
+import { withAuthentication } from '../../server/Session/index';
 
 const App = () => (
   <Router>
