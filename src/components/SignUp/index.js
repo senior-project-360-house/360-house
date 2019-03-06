@@ -115,6 +115,7 @@ class SignUpFormBase extends Component {
     return (
 
 
+
 <Container className="SignIn">
         <h2>Sign Up</h2>
         <Form className="form" onSubmit={this.onSubmit}>
