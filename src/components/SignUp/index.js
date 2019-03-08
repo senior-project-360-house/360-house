@@ -193,10 +193,6 @@ class SignUpFormBase extends Component {
             Sign up{" "}
           </Button>{" "}
         </Form>{" "}
-        {/*         <div>
-                <SignUpLink />
-              <PasswordForgotLink/>
-                </div> */}{" "}
         {error && <p> {error.message} </p>}{" "}
       </Container>
     );
