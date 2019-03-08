@@ -1,14 +1,21 @@
-import React, { Component } from 'react';
-import { Link, withRouter } from 'react-router-dom';
+import React, { Component } from "react";
+import { Link, withRouter } from "react-router-dom";
 
-import { withFirebase } from '../Firebase';
-import * as ROUTES from '../../constants/routes';
-import * as ROLES from '../../constants/roles';
+import { withFirebase } from "../Firebase";
+import * as ROUTES from "../../constants/routes";
+import * as ROLES from "../../constants/roles";
 
-import {Button,Container,Col, Form,FormGroup,Label,Input,} from 'reactstrap';
+import {
+  Button,
+  Container,
+  Col,
+  Form,
+  FormGroup,
+  Label,
+  Input
+} from "reactstrap";
 
-
-const ERROR_CODE_ACCOUNT_EXISTS = 'auth/email-already-in-use';
+const ERROR_CODE_ACCOUNT_EXISTS = "auth/email-already-in-use";
 const ERROR_MSG_ACCOUNT_EXISTS = `
 An account with this E-Mail address already exists.
 Try to login with this account instead. If you think the
@@ -19,80 +26,98 @@ on your personal account page.
 
 const SignUpPage = () => (
   <div>
+    <h1>Sign Up</h1>
+    <SignUpFormBase />
   </div>
 );
 
 const INITIAL_STATE = {
-  username: '',
-  email: '',
-  passwordOne: '',
-  passwordTwo: '',
+  username: "",
+  email: "",
+  passwordOne: "",
+  passwordTwo: "",
   isAdmin: false,
   isClient: false,
   isAgent: false,
-  error: null,
+  error: null
 };
 
 class SignUpFormBase extends Component {
   constructor(props) {
     super(props);
 
-    this.state = { ...INITIAL_STATE };
+    this.state = {
+      ...INITIAL_STATE
+    };
   }
 
   onSubmit = event => {
-    const { username, email, passwordOne, isAdmin, isAgent, isClient } = this.state;
+    const {
+      username,
+      email,
+      passwordOne,
+      isAdmin,
+      isAgent,
+      isClient
+    } = this.state;
 
     const roles = [];
 
-    if(isAdmin) {
+    if (isAdmin) {
       roles.push(ROLES.ADMIN);
-    }else if (isAgent){
+    } else if (isAgent) {
       roles.push(ROLES.AGENT);
-    }else if (isClient){
+    } else if (isClient) {
       roles.push(ROLES.CLIENT);
     }
 
     this.props.firebase
-    .doCreateUserWithEmailAndPassword(email, passwordOne)
-    .then(authUser => {
-      // Create a user in Firebase realtime database
-      return this.props.firebase.user(authUser.user.uid)
-      .set({
-        //Set user properties
-        username,
-        email,
-        roles,
-      });
-    })
-    .then(()=>{
-      //send email verification
-      return this.props.firebase.doSendEmailVerification();
-    })
-    .then(() => {
-      //Reset INITIAL_STATE and rerout to home after completed register
-      this.setState({ ...INITIAL_STATE });
-      this.props.history.push(ROUTES.HOME);
-    })
-    .catch(error => {
-      //Check if the new Sign Up email had been use for google social Sign In
-      if (error.code === ERROR_CODE_ACCOUNT_EXISTS) {
-        error.message = ERROR_MSG_ACCOUNT_EXISTS;
-      }
+      .doCreateUserWithEmailAndPassword(email, passwordOne)
+      .then(authUser => {
+        // Create a user in Firebase realtime database
+        return this.props.firebase.user(authUser.user.uid).set({
+          //Set user properties
+          username,
+          email,
+          roles
+        });
+      })
+      .then(() => {
+        //send email verification
+        return this.props.firebase.doSendEmailVerification();
+      })
+      .then(() => {
+        //Reset INITIAL_STATE and rerout to home after completed register
+        this.setState({
+          ...INITIAL_STATE
+        });
+        this.props.history.push(ROUTES.HOME);
+      })
+      .catch(error => {
+        //Check if the new Sign Up email had been use for google social Sign In
+        if (error.code === ERROR_CODE_ACCOUNT_EXISTS) {
+          error.message = ERROR_MSG_ACCOUNT_EXISTS;
+        }
 
-      this.setState({ error });
-    });
+        this.setState({
+          error
+        });
+      });
 
     event.preventDefault();
   };
 
   onChange = event => {
-    this.setState({ [event.target.name]: event.target.value });
+    this.setState({
+      [event.target.name]: event.target.value
+    });
   };
 
   oncChangeCheckbox = event => {
-    this.setState({ [event.target.name]: event.target.checked});
-  }
+    this.setState({
+      [event.target.name]: event.target.checked
+    });
+  };
 
   render() {
     const {
@@ -103,91 +128,84 @@ class SignUpFormBase extends Component {
       isAdmin,
       isClient,
       isAgent,
-      error,
+      error
     } = this.state;
 
     const isInvalid =
-    passwordOne !== passwordTwo ||
-    passwordOne === '' ||
-    email === '' ||
-    username === '';
+      passwordOne !== passwordTwo ||
+      passwordOne === "" ||
+      email === "" ||
+      username === "";
 
     return (
-      
-
-
-
-<Container className="SignIn">
-        <h2>Sign Up</h2>
+      <Container className="SignIn">
+        <h2> Sign Up </h2>{" "}
         <Form className="form" onSubmit={this.onSubmit}>
           <Col>
             <FormGroup>
-              <Label>Username</Label>
+              <Label> Username </Label>{" "}
               <input
-          name="username"
-          value={username}
-          onChange={this.onChange}
-          type="text"
-          placeholder="Full Name"
-        />
-            </FormGroup>
-          </Col>
+                name="username"
+                value={username}
+                onChange={this.onChange}
+                type="text"
+                placeholder="Full Name"
+              />
+            </FormGroup>{" "}
+          </Col>{" "}
           <Col>
             <FormGroup>
-              <Label for="examplePassword">Email Address</Label>
+              <Label for="examplePassword"> Email Address </Label>{" "}
               <input
-          name="email"
-          value={email}
-          onChange={this.onChange}
-          type="text"
-          placeholder="Email Address"
-        />
-            </FormGroup>
-          </Col>
+                name="email"
+                value={email}
+                onChange={this.onChange}
+                type="text"
+                placeholder="Email Address"
+              />
+            </FormGroup>{" "}
+          </Col>{" "}
           <Col>
             <FormGroup>
-              <Label for="examplePassword">Password</Label>
+              <Label for="examplePassword"> Password </Label>{" "}
               <input
-          name="passwordOne"
-          value={passwordOne}
-          onChange={this.onChange}
-          type="password"
-          placeholder="Password"
-        />
-            </FormGroup>
-          </Col>
+                name="passwordOne"
+                value={passwordOne}
+                onChange={this.onChange}
+                type="password"
+                placeholder="Password"
+              />
+            </FormGroup>{" "}
+          </Col>{" "}
           <Col>
             <FormGroup>
-              <Label for="examplePassword">Confirm Passwor</Label>
-               <input
-          name="passwordTwo"
-          value={passwordTwo}
-          onChange={this.onChange}
-          type="password"
-          placeholder="Confirm Password"
-        />
-            </FormGroup>
-          </Col>
+              <Label for="examplePassword"> Confirm Passwor </Label>{" "}
+              <input
+                name="passwordTwo"
+                value={passwordTwo}
+                onChange={this.onChange}
+                type="password"
+                placeholder="Confirm Password"
+              />
+            </FormGroup>{" "}
+          </Col>{" "}
           <Button variant="outline-primary" disabled={isInvalid} type="submit">
-          Sign up
-        </Button>
-        </Form>
-{/*         <div>
-        <SignUpLink />
-      <PasswordForgotLink/>
-        </div> */}
-        {error && <p>{error.message}</p>}
+            Sign up{" "}
+          </Button>{" "}
+        </Form>{" "}
+        {/*         <div>
+                <SignUpLink />
+              <PasswordForgotLink/>
+                </div> */}{" "}
+        {error && <p> {error.message} </p>}{" "}
       </Container>
-
-
-
     );
   }
 }
 
 const SignUpLink = () => (
   <p>
-  Don't have an account? <Link to={ROUTES.SIGN_UP}>Sign Up</Link>
+    Don 't have an account? <Link to={ROUTES.SIGN_UP}>Sign Up</Link>{" "}
   </p>
 );
 
