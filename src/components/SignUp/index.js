@@ -196,6 +196,7 @@ class SignUpFormBase extends Component {
         {error && <p> {error.message} </p>}{" "}
       </Container>
     );
+    
   }
 }
 
