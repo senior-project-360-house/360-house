@@ -15,6 +15,8 @@ import AgentPage from '../Agent';
 import ClientPage from '../Client';
 import House from '../House';
 
+import Map from '../Map';
+
 import * as ROUTES from '../../constants/routes';
 import * as ROLES from '../../constants/roles';
 import { withAuthentication } from '../Session';
@@ -33,6 +35,7 @@ const App = () => (
       <Route path={ROUTES.ADMIN} component={AdminPage} />
       <Route path={ROUTES.HOUSE} component={House} />
       <Route path={ROUTES.PASSWORD_CHANGE} component={PasswordChangePage} />
+      <Route path={ROUTES.MAP} component={Map} />
     </div>
   </Router>
 );
