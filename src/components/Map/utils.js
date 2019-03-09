@@ -9,7 +9,7 @@ export function load_google_maps() {
     }
     // Now, Load the Google Maps API
     const script = document.createElement("script");
-    const API_KEY = 'AIzaSyAErR_bvlA2EDGhUnh3IO5jm_6ntd3PxWU';
+    const API_KEY = //Secret Key;
      script.src = `https://maps.googleapis.com/maps/api/js?libraries=places&key=${API_KEY}&callback=resolveGoogleMapsPromise`;
     script.async = true;
     document.body.appendChild(script);
