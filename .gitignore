@@ -32,3 +32,6 @@ yarn.lock
 
 package-lock.json
 src/server/Firebase/config.js
+src/components/Map/Location.js
+src/components/Map/index3.js
+src/components/Map/index2.js
