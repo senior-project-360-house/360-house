@@ -10,7 +10,6 @@ import * as ROUTES from '../../constants/routes';
 
 
 const INITIAL_STATE = {
-  authUser: {},
   error: null,
   isLoading: false,
 }
@@ -22,7 +21,9 @@ class AddInfoFormBase extends Component{
     super(props);
 
     this.state = {
-      authUser: {...SCHEMA.user},
+      authUser: {
+        ...SCHEMA.user,
+      },
       ...INITIAL_STATE,
     }
 
@@ -30,12 +31,8 @@ class AddInfoFormBase extends Component{
 
   onSubmit = event => {
 
-    var user = this.props.firebase.auth.currentUser;
-    console.log(this.state.authUser);
-
-    user.updateProfile({
+    this.props.firebase.doUpdateProfile({
       ...this.state.authUser,
-
     })
     .then(() => {
       alert("Update Success");
@@ -46,60 +43,64 @@ class AddInfoFormBase extends Component{
     event.preventDefault();
   }
 
-  onChange = event => {
-    this.setState({ [event.target.name]: event.target.value });
-  };
-
-  componentDidMount() {
+  componentWillMount() {
     this.setState({
-      authUser: {
-      displayName: this.props.authUser},
-    })
 
-    console.log(this.state);
+        authUser: {
+      displayName: this.props.authUser.displayName ,
+      email: this.props.authUser.email ,
+      phoneNumber: this.props.authUser.phoneNumber ,
+      gender: this.props.authUser.gender ,
+      photoURL: this.props.authUser.photoURL,
+    }
+    });
+
+  }
+  onChange = (propertyName) => (event) => {
+    const {authUser} = this.state;
+    const newAuthUser = {
+      ...authUser,
+      [propertyName]: event.target.value
+    }
+    this.setState({authUser: newAuthUser});
   }
 
   render() {
     const {
-      authUser,
       error,
     } = this.state;
 
 
-
-    const isInvalid =   authUser.displayName === '' ||
-    authUser.email === '' ||
-    authUser.gender === '' ||
-    authUser.phoneNumber === '';
+    const isInvalid =
+    this.state.authUser.displayName === '' ||
+    this.state.authUser.email === '' ||
+    this.state.authUser.gender === '' ||
+    this.state.authUser.phoneNumber === '';
 
 
     return (
       <form onSubmit={this.onSubmit}>
       <input
-      name="displayName"
-      onChange={this.onChange}
-      value={this.props.authUser.displayName || authUser.displayName}
+      value={this.state.authUser.displayName}
+      onChange={this.onChange('displayName')}
       type="text"
       placeholder="Full Name"
       />
       <input
-      name="email"
-      onChange={this.onChange}
-      value={this.props.authUser.email || authUser.email}
+      onChange={this.onChange('email')}
+      value={this.state.authUser.email}
       type="text"
       placeholder="email"
       />
       <input
-      name="gender"
-      onChange={this.onChange}
+      onChange={this.onChange('gender')}
       type="text"
-      value={authUser.gender}
+      value={this.state.authUser.gender}
       placeholder="gender"
       />
       <input
-      name="phoneNumber"
-      onChange={this.onChange}
-      value={this.props.authUser.phoneNumber || authUser.phoneNumber}
+      onChange={this.onChange('phoneNumber')}
+      value={this.state.authUser.phoneNumber}
       type="text"
       placeholder="phoneNumber"
       />
@@ -110,9 +111,8 @@ class AddInfoFormBase extends Component{
         //TODO: Add Real Avatar input
       }
       <input
-      name="photoURL"
-      onChange={this.onChange}
-      value={this.props.authUser.photoURL || authUser.photoURL}
+      onChange={this.onChange('photoURL')}
+      value={this.state.authUser.photoURL}
       type="text"
       placeholder="photoURL"
       />
