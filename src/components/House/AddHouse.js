@@ -1,10 +1,43 @@
 import React, {Component} from 'react';
 
 import {withFirebase} from '../Firebase';
+import Geocode from "react-geocode";
 
 const INITIAL_STATE = {
-  name: '',
-  address: '',
+  address: {
+    city: '',
+    lat: '',
+    lng: '',
+    number:'',
+    street:'',
+    zipcode:''
+    },
+  agent: {
+    name:'',
+    email:'',
+    license:'',
+    officeAddress:'',
+    phone:'',
+    profilePicture: ''
+  },
+  propertyInfor: {
+    flyer:'',
+    description:'',
+    details: {
+      area:'',
+      baths:'',
+      beds:'',
+      firePlace:'',
+      garage:'',
+      listPrice:'',
+      lotSize:'',
+      mls: '',
+      squareFeet: '',
+      schoolDistrict: '',
+      year: ''
+    }
+  },
+  reder:[],
   error: null,
 };
 
