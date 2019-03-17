@@ -8,7 +8,8 @@ export const PASSWORD_CHANGE = "/pw-change";
 export const HOME = "/home";
 export const ACCOUNT = "/account";
 export const ACCOUNT_PROFILE = "/account/profile";
-export const ACCOUNT_FAVORITE = "/account/favorite";
+export const ACCOUNT_CLIENT_FAVORITE = "/account/favorite";
+export const ACCOUNT_AGENT_ADDHOUSE ="/account/add-house";
 
 export const ADMIN = "/admin";
 export const ADMIN_DETAILS = "/admin/:id";

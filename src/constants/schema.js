@@ -4,6 +4,7 @@ const user = {
   gender: '',
   phoneNumber: '',
   isAgent: false,
+  roles: [],
   photoURL: '',
 }
 

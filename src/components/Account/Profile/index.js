@@ -34,6 +34,7 @@ class ProfilePageForm extends Component {
 						{key}: {this.state.profile[key]}
 					</div>
 				))}
+				<img alt="nothing to see" src={this.state.profile.photoURL} />
 			</div>
 		);
 	}
