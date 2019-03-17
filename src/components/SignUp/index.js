@@ -1,20 +1,12 @@
 import React, { Component } from "react";
 import { Link, withRouter } from "react-router-dom";
-
+import SignInPage from "../SignIn";
 import { withFirebase } from "../Firebase";
 import * as ROUTES from "../../constants/routes";
 import * as ROLES from "../../constants/roles";
-
-import {
-  Button,
-  Container,
-  Col,
-  Form,
-  FormGroup,
-  Label,
-  Input
-} from "reactstrap";
-
+import "../../style/signup.css";
+import { Button, Form, FormGroup, Label, Input } from "reactstrap";
+import firebase from "../Firebase/firebase";
 const ERROR_CODE_ACCOUNT_EXISTS = "auth/email-already-in-use";
 const ERROR_MSG_ACCOUNT_EXISTS = `
 An account with this E-Mail address already exists.
@@ -31,11 +23,19 @@ const SignUpPage = () => (
   </div>
 );
 
+// Use to reset sign up form
 const INITIAL_STATE = {
-  username: "",
   email: "",
+  firstName: "",
+  lastName: "",
   passwordOne: "",
   passwordTwo: "",
+  securityQuestion: "",
+  answerSercurityQuestion: "",
+  officeLocation: "",
+  licenseNumber: "",
+  gender: "",
+  phonenumber: "",
   isAdmin: false,
   isClient: false,
   isAgent: false,
@@ -53,12 +53,21 @@ class SignUpFormBase extends Component {
 
   onSubmit = event => {
     const {
-      username,
       email,
+      firstName,
+      lastName,
       passwordOne,
+      passwordTwo,
+      securityQuestion,
+      answerSercurityQuestion,
+      officeLocation,
+      licenseNumber,
+      gender,
+      phonenumber,
       isAdmin,
+      isClient,
       isAgent,
-      isClient
+      error
     } = this.state;
 
     const roles = [];
@@ -72,13 +81,25 @@ class SignUpFormBase extends Component {
     }
 
     this.props.firebase
-      .doCreateUserWithEmailAndPassword(email, passwordOne)
+      .doCreateUserWithEmailAndPassword(
+        email,
+        firstName,
+        lastName,
+        passwordOne,
+        securityQuestion,
+        answerSercurityQuestion
+      )
       .then(authUser => {
         // Create a user in Firebase realtime database
         return this.props.firebase.user(authUser.user.uid).set({
           //Set user properties
-          username,
+          //username,
           email,
+          firstName,
+          lastName,
+          passwordOne,
+          securityQuestion,
+          answerSercurityQuestion,
           roles
         });
       })
@@ -107,96 +128,443 @@ class SignUpFormBase extends Component {
     event.preventDefault();
   };
 
+  //Get input from user
   onChange = event => {
     this.setState({
       [event.target.name]: event.target.value
     });
+    console.log(this.state.firstName);
   };
 
+  onAgentSubmit = event => {
+    this.setState({
+      isAgent: "true",
+      isClient: "false"
+    });
+  };
+  onClientSubmit = event => {
+    this.setState({
+      isAgent: "false",
+      isClient: "true"
+    });
+  };
   oncChangeCheckbox = event => {
     this.setState({
       [event.target.name]: event.target.checked
     });
   };
 
+  onClick = () => {
+    this.props.history.push(ROUTES.SIGN_IN);
+  };
+
   render() {
     const {
-      username,
       email,
+      firstName,
+      lastName,
       passwordOne,
       passwordTwo,
+      securityQuestion,
+      answerSercurityQuestion,
+      officeLocation,
+      licenseNumber,
+      gender,
+      phonenumber,
       isAdmin,
       isClient,
       isAgent,
       error
     } = this.state;
 
-    const isInvalid =
+    // Verify input from client
+    const isInvalidClient =
       passwordOne !== passwordTwo ||
       passwordOne === "" ||
       email === "" ||
-      username === "";
+      firstName === "" ||
+      lastName === "" ||
+      securityQuestion === "" ||
+      answerSercurityQuestion === "" ||
+      phonenumber === "" ||
+      gender === "";
+
+    // Verify input from agent
+    const isInvalidAgent =
+      passwordOne !== passwordTwo ||
+      passwordOne === "" ||
+      email === "" ||
+      firstName === "" ||
+      lastName === "" ||
+      securityQuestion === "" ||
+      answerSercurityQuestion === "" ||
+      phonenumber === "" ||
+      gender === "" ||
+      officeLocation === "" ||
+      licenseNumber === "";
 
     return (
-      <Container className="SignIn">
-        <h2> Sign Up </h2>{" "}
-        <Form className="form" onSubmit={this.onSubmit}>
-          <Col>
-            <FormGroup>
-              <Label> Username </Label>{" "}
-              <input
-                name="username"
-                value={username}
-                onChange={this.onChange}
-                type="text"
-                placeholder="Full Name"
-              />
-            </FormGroup>{" "}
-          </Col>{" "}
-          <Col>
-            <FormGroup>
-              <Label for="examplePassword"> Email Address </Label>{" "}
-              <input
-                name="email"
-                value={email}
-                onChange={this.onChange}
-                type="text"
-                placeholder="Email Address"
-              />
-            </FormGroup>{" "}
-          </Col>{" "}
-          <Col>
-            <FormGroup>
-              <Label for="examplePassword"> Password </Label>{" "}
-              <input
-                name="passwordOne"
-                value={passwordOne}
-                onChange={this.onChange}
-                type="password"
-                placeholder="Password"
-              />
-            </FormGroup>{" "}
-          </Col>{" "}
-          <Col>
-            <FormGroup>
-              <Label for="examplePassword"> Confirm Passwor </Label>{" "}
-              <input
-                name="passwordTwo"
-                value={passwordTwo}
-                onChange={this.onChange}
-                type="password"
-                placeholder="Confirm Password"
-              />
-            </FormGroup>{" "}
-          </Col>{" "}
-          <Button variant="outline-primary" disabled={isInvalid} type="submit">
-            Sign up{" "}
-          </Button>{" "}
-        </Form>{" "}
-        {error && <p> {error.message} </p>}{" "}
-      </Container>
+      <div className="container register">
+        <div className="row">
+          {/* Left Side of SignUp */}
+          <div className="col-md-3 register-left">
+            {/* TODO: change to group logo */}
+            <img
+              src="https://upload.wikimedia.org/wikipedia/en/thumb/d/d3/SJSU_Seal.svg/1200px-SJSU_Seal.svg.png"
+              alt=""
+            />
+            <h3>Don't Have An Account!!</h3>
+            <p>Quickly Sign Up and get a lot of free house of Mr. Minh</p>
+            <Link to={ROUTES.SIGN_IN}>
+              <input type="submit" name="" value="Login" />
+            </Link>
+
+            <br />
+          </div>
+
+          {/* Sign Up Form Here */}
+          <div className="col-md-9 register-right">
+            <form className="form" onSubmit={this.onSubmit}>
+              <ul
+                className="nav nav-tabs nav-justified"
+                id="myTab"
+                role="tablist"
+              >
+                <li className="nav-item">
+                  <a
+                    className="nav-link active"
+                    id="client-tab"
+                    data-toggle="tab"
+                    href="#home"
+                    role="tab"
+                    aria-controls="home"
+                    aria-selected="true"
+                    onClick={this.onClientSubmit}
+                  >
+                    Client
+                  </a>
+                </li>
+                <li className="nav-item">
+                  <a
+                    className="nav-link"
+                    id="agent-tab"
+                    data-toggle="tab"
+                    href="#profile"
+                    role="tab"
+                    aria-controls="profile"
+                    aria-selected="false"
+                    onClick={this.onAgentSubmit}
+                  >
+                    Agent
+                  </a>
+                </li>
+              </ul>
+
+              <div className="tab-content" id="myTabContent">
+                <div
+                  className="tab-pane fade show active"
+                  id="home"
+                  role="tabpanel"
+                  aria-labelledby="home-tab"
+                >
+                  <h3 className="register-heading">Client Sign Up Form</h3>
+
+                  <div className="row register-form">
+                    <div className="col-md-6">
+                      <div className="form-group">
+                        <input
+                          name="firstName"
+                          type="text"
+                          className="form-control"
+                          placeholder="First Name *"
+                          value={firstName}
+                          onChange={this.onChange}
+                        />
+                      </div>
+                      <div className="form-group">
+                        <input
+                          name="lastName"
+                          type="text"
+                          className="form-control"
+                          placeholder="Last Name *"
+                          value={lastName}
+                          onChange={this.onChange}
+                        />
+                      </div>
+                      <div className="form-group">
+                        <input
+                          name="passwordOne"
+                          type="password"
+                          className="form-control"
+                          placeholder="Password *"
+                          value={passwordOne}
+                          onChange={this.onChange}
+                        />
+                      </div>
+                      <div className="form-group">
+                        <input
+                          type="password"
+                          name="passwordTwo"
+                          className="form-control"
+                          placeholder="Confirm Password *"
+                          value={passwordTwo}
+                          onChange={this.onChange}
+                        />
+                      </div>
+                      {/* TODO: set gender */}
+                      <div className="form-group">
+                        <div className="maxl">
+                          <Label className="radio-inline">
+                            <Input
+                              type="radio"
+                              name="gender"
+                              value="Male"
+                              checked={this.state.gender === "Male"}
+                              onChange={this.onChange}
+                            />
+                            Male
+                          </Label>
+                          <br />
+                          <Label className="radio-inline">
+                            <Input
+                              type="radio"
+                              name="gender"
+                              value="Female"
+                              checked={this.state.gender === "Female"}
+                              onChange={this.onChange}
+                            />
+                            <span>Female</span>
+                          </Label>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="col-md-6">
+                      <div className="form-group">
+                        <input
+                          type="email"
+                          name="email"
+                          className="form-control"
+                          placeholder="Your Email *"
+                          value={email}
+                          onChange={this.onChange}
+                        />
+                      </div>
+                      <div className="form-group">
+                        <input
+                          type="tel"
+                          name="phonenumber"
+                          className="form-control"
+                          placeholder="Your Phone *"
+                          value={phonenumber}
+                          onChange={this.onChange}
+                        />
+                      </div>
+                      <div className="form-group">
+                        <select
+                          name="securityQuestion"
+                          className="form-control"
+                          value={this.state.securityQuestion}
+                          onChange={this.onChange}
+                        >
+                          {/* TODO: How to write selected into option */}
+                          <option
+                            value="Please select your Sequrity Question"
+                            className="hidden"
+                          >
+                            Please select your Sequrity Question
+                          </option>
+                          <option value="What is your Birthdate?">
+                            What is your Birthdate?
+                          </option>
+                          <option value="What is Your old Phone Number">
+                            What is Your old Phone Number?
+                          </option>
+                          <option value="What is your Pet Name?">
+                            What is your Pet Name?
+                          </option>
+                        </select>
+                      </div>
+                      <div className="form-group">
+                        <input
+                          name="answerSercurityQuestion"
+                          type="text"
+                          className="form-control"
+                          placeholder="Enter Your Answer *"
+                          value={answerSercurityQuestion}
+                          onChange={this.onChange}
+                        />
+                      </div>
+                      <input
+                        type="submit"
+                        className="btnRegister"
+                        value="Register"
+                      />
+                    </div>
+                  </div>
+                </div>
+                {/* Agent form start from here */}
+                <div
+                  className="tab-pane fade show"
+                  id="profile"
+                  role="tabpanel"
+                  aria-labelledby="profile-tab"
+                >
+                  <h3 className="register-heading">Agent Sign Up Form</h3>
+                  <div className="row register-form">
+                    <div className="col-md-6">
+                      <div className="form-group">
+                        <input
+                          type="text"
+                          name="firstName"
+                          className="form-control"
+                          placeholder="First Name *"
+                          value={firstName}
+                          onChange={this.onChange}
+                        />
+                      </div>
+                      <div className="form-group">
+                        <input
+                          type="text"
+                          name="lastName"
+                          className="form-control"
+                          placeholder="Last Name *"
+                          value={lastName}
+                          onChange={this.onChange}
+                        />
+                      </div>
+                      <div className="form-group">
+                        <input
+                          type="email"
+                          name="email"
+                          className="form-control"
+                          placeholder="Email *"
+                          value={email}
+                          onChange={this.onChange}
+                        />
+                      </div>
+                      <div className="form-group">
+                        <input
+                          type="text"
+                          name="phonenumber"
+                          className="form-control"
+                          placeholder="Phone *"
+                          value={phonenumber}
+                          onChange={this.onChange}
+                        />
+                      </div>
+                      <div className="form-group">
+                        <input
+                          type="text"
+                          name="officeLocation"
+                          className="form-control"
+                          placeholder="Office Location *"
+                          value={officeLocation}
+                          onChange={this.onChange}
+                        />
+                      </div>
+                      <div className="form-group">
+                        <div className="maxl">
+                          <Label className="radio-inline">
+                            <Input
+                              type="radio"
+                              name="gender"
+                              value="Male"
+                              checked={this.state.gender === "Male"}
+                              onChange={this.onChange}
+                            />
+                            Male
+                          </Label>
+                          <br />
+                          <Label className="radio-inline">
+                            <Input
+                              type="radio"
+                              name="gender"
+                              value="Female"
+                              checked={this.state.gender === "Female"}
+                              onChange={this.onChange}
+                            />
+                            <span>Female</span>
+                          </Label>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="col-md-6">
+                      <div className="form-group">
+                        <input
+                          type="text"
+                          name="licenseNumber"
+                          className="form-control"
+                          placeholder="License Number *"
+                          value={licenseNumber}
+                          onChange={this.onChange}
+                        />
+                      </div>
+                      <div className="form-group">
+                        <input
+                          type="password"
+                          name="passwordOne"
+                          className="form-control"
+                          placeholder="Password *"
+                          value={passwordOne}
+                          onChange={this.onChange}
+                        />
+                      </div>
+                      <div className="form-group">
+                        <input
+                          type="password"
+                          name="passwordTwo"
+                          className="form-control"
+                          placeholder="Confirm Password *"
+                          value={passwordTwo}
+                          onChange={this.onChange}
+                        />
+                      </div>
+                      <div className="form-group">
+                        <select
+                          name="securityQuestion"
+                          className="form-control"
+                          value={this.state.securityQuestion}
+                          onChange={this.onChange}
+                        >
+                          <option className="hidden" disabled>
+                            Please select your Sequrity Question
+                          </option>
+                          <option value="What is your Birthdate?">
+                            What is your Birthdate?
+                          </option>
+                          <option value="What is Your old Phone Number">
+                            What is Your old Phone Number?
+                          </option>
+                          <option value="What is your Pet Name?">
+                            What is your Pet Name?
+                          </option>
+                        </select>
+                      </div>
+                      <div className="form-group">
+                        <input
+                          name="answerSercurityQuestion"
+                          type="text"
+                          className="form-control"
+                          placeholder="Enter Your Answer *"
+                          value={answerSercurityQuestion}
+                          onChange={this.onChange}
+                        />
+                      </div>
+                      <input
+                        type="submit"
+                        className="btnRegister"
+                        value="Register"
+                        onClick={this.onChange}
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
     );
-    
   }
 }
 
