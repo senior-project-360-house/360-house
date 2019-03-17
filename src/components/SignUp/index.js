@@ -18,7 +18,7 @@ on your personal account page.
 
 const SignUpPage = () => (
   <div>
-    <h1>Sign Up</h1>
+    <p>Sign Up</p>
     <SignUpFormBase />
   </div>
 );
@@ -81,14 +81,7 @@ class SignUpFormBase extends Component {
     }
 
     this.props.firebase
-      .doCreateUserWithEmailAndPassword(
-        email,
-        firstName,
-        lastName,
-        passwordOne,
-        securityQuestion,
-        answerSercurityQuestion
-      )
+      .doCreateUserWithEmailAndPassword(email, passwordOne)
       .then(authUser => {
         // Create a user in Firebase realtime database
         return this.props.firebase.user(authUser.user.uid).set({
@@ -130,10 +123,14 @@ class SignUpFormBase extends Component {
 
   //Get input from user
   onChange = event => {
-    this.setState({
-      [event.target.name]: event.target.value
-    });
-    console.log(this.state.firstName);
+    this.setState(
+      {
+        [event.target.name]: event.target.value
+      },
+      () => {
+        console.log(this.state.text);
+      }
+    );
   };
 
   onAgentSubmit = event => {

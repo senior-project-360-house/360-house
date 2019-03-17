@@ -62,9 +62,7 @@ const NavigationAuth = ({ authUser }) => (
 
 const NavigationNonAuth = () => (
   <nav className="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-    <a className="navbar-brand" href="#">
-      Team LOGO
-    </a>
+    <Link to={ROUTES.HOME}>Team LOGO</Link>
     <button
       className="navbar-toggler"
       type="button"
@@ -80,14 +78,10 @@ const NavigationNonAuth = () => (
       <ul className="navbar-nav mr-auto" />
       <ul className="navbar-nav justify-content-end">
         <li className="nav-item">
-          <a className="nav-link" href="#">
-            <Link to={ROUTES.SIGN_IN}>Sign In</Link>
-          </a>
+          <Link to={ROUTES.SIGN_IN}>Sign In</Link>
         </li>
         <li className="nav-item">
-          <a className="nav-link" href="#">
-            <Link to={ROUTES.SIGN_UP}>Sign Up</Link>
-          </a>
+          <Link to={ROUTES.SIGN_UP}>Sign Up</Link>
         </li>
       </ul>
     </div>
