@@ -11,7 +11,7 @@ import LoginManagement from "./LoginManagement";
 import * as ROUTES from "../../../constants/routes";
 
 const authUser = JSON.parse(localStorage.getItem("authUser"));
-
+// TODO: Await for user profile
 class ProfilePageForm extends Component {
 	constructor(props) {
 		super(props);
