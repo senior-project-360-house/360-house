@@ -11,9 +11,7 @@ import ProfilePage from "./Profile";
 import FavoritePage from './Client/Favorite/index';
 import AccountNavigation from "./AccountNavigation";
 
-import AgentPage from './Agent';
 import AddHousePage from './Agent/AddHouse';
-import ClientPage from './Client';
 
 import * as ROUTES from "../../constants/routes";
 import * as ROLES from '../../constants/roles';
