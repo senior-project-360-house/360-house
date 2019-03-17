@@ -308,7 +308,6 @@ class SignUpFormBase extends Component {
                           onChange={this.onChange}
                         />
                       </div>
-                      {/* TODO: set gender */}
                       <div className="form-group">
                         <div className="maxl">
                           <Label className="radio-inline">
@@ -363,7 +362,6 @@ class SignUpFormBase extends Component {
                           value={this.state.securityQuestion}
                           onChange={this.onChange}
                         >
-                          {/* TODO: How to write selected into option */}
                           <option
                             value="Please select your Sequrity Question"
                             className="hidden"
