@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button, ButtonGroup, ButtonToolbar } from 'reactstrap';
 
-import { withFirebase } from '../Firebase';
+import { withFirebase } from '../../server/Firebase/index';
 
 const SignOutButton = ({ firebase }) => (
 
