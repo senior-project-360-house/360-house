@@ -1,29 +1,33 @@
 import React, { Component, MapContainer } from 'react';
 
-import {load_google_maps, load_bus, load_school,load_market,load_shop } from './utils';
-import geolib from 'geolib'
+import {load_google_maps, load_bus, load_school,load_school2,load_market,load_shop,getLatAndLong } from './utils';
+import geolib from 'geolib';
+
 
 class MapPage extends Component {
 
   constructor(props) {
     super(props);
     this.state = {
-      filtered: null,
-      sidebarOpen: false,
-      query: ""
+      a: []
     }
+    let temp = getLatAndLong();
+    temp.then(data => {
+      this.setState({ a: data.results[0].geometry.location })
+    });
   }
 
+
+
   componentDidMount() {
+
     let googleMapsPromise = load_google_maps();
     let bus = load_bus();
     let school = load_school();
+    let school2 = load_school2();
     let market = load_market();
     let shop = load_shop();
-    let position = {
-      lat: 37.3382,
-      lng: -121.8863
-    }
+
     let icon = "https://maps.google.com/mapfiles/kml/shapes/";
     let busIcon = icon+"bus_maps.png";
     let shopIcon = icon+"shopping_maps.png";
@@ -35,17 +39,23 @@ class MapPage extends Component {
       googleMapsPromise,
       bus,
       school,
+      school2,
       market,
       shop
     ]).then(values => {
       let google = values[0];
       let venuesA = [];
-      let lat = position.lat;
-      let lng = position.lng;
-      venuesA.push(values[1].response.venues);
-      venuesA.push(values[2].response.venues);
-      venuesA.push(values[3].response.venues);
-      venuesA.push(values[4].response.venues);
+      let position = {
+        lat: this.state.a.lat,
+        lng: this.state.a.lng
+      }
+      let lat = this.state.a.lat;
+      let lng = this.state.a.lng;
+      venuesA.push(values[1].response.minivenues);
+      venuesA.push(values[2].response.minivenues);
+      venuesA.push(values[3].response.minivenues);
+      venuesA.push(values[4].response.minivenues);
+      venuesA.push(values[5].response.minivenues);
       this.google = google;
       this.markers = [];
       this.infowindow = new google.maps.InfoWindow();
@@ -54,12 +64,14 @@ class MapPage extends Component {
         scrollwheel: true,
         center: { lat: lat, lng: lng }
       });
+
       venuesA.forEach(venues => {
         this.venues = venues;
+
         this.venues.forEach(venue => {
           if(geolib.getDistance({latitude: lat, longitude: lng},{latitude: venue.location.lat, longitude: venue.location.lng}) <= 5000){
-            console.log(venue.name);
             let marker;
+
             if(venue.name.includes("Bus Stop")){
               marker = new google.maps.Marker({
                position: { lat: venue.location.lat, lng: venue.location.lng },
@@ -93,7 +105,7 @@ class MapPage extends Component {
                 icon:marketIcon
                });
              }
-             else if(venue.name.includes("School")){
+             else if(venue.name.includes("School") || venue.name.includes("College") || venue.name.includes("University")){
                marker = new google.maps.Marker({
                  position: { lat: venue.location.lat, lng: venue.location.lng },
                  map: this.map,

@@ -23,13 +23,22 @@ const SignUpPage = () => (
 );
 
 const INITIAL_STATE = {
-  username: '',
   email: '',
   passwordOne: '',
   passwordTwo: '',
   isAdmin: false,
   isClient: false,
   isAgent: false,
+  //this part for AGENT
+  agentProfile:{
+    aboutMe:'',
+    agentName:'',
+    houseList:[],
+    phoneNumber: '',
+    profilePicture: ''
+  },
+  //this is for CLIENT
+  renderImage: [],
   error: null,
 };
 
@@ -179,7 +188,7 @@ class SignUpFormBase extends Component {
       </Container>
 
     );
-    
+
   }
 }
 

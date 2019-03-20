@@ -3,6 +3,7 @@ import React, {Component} from 'react';
 import {withFirebase} from '../Firebase';
 
 import * as ROUTES from '../../constants/routes';
+import {Alert} from 'reactstrap';
 
 class HouseItemPageBase extends Component {
   constructor(props){
@@ -55,9 +56,6 @@ class HouseItemPageBase extends Component {
           <strong>House ID:</strong> {house.uid}
           </span>
           <span>
-          <strong>Name:</strong> {house.name}
-          </span>
-          <span>
           <strong>Adress:</strong> {house.address}
           </span>
 
@@ -65,11 +63,13 @@ class HouseItemPageBase extends Component {
           TODO: pop up or some type of alert to user to remind
           that house that get delete can not be recover
            */}
-          <button
-          type="button"
-          onClick={this.onRemoveHouse}>
-            Delete this house
-          </button>
+           <Alert color="warning">
+             <button
+               type="button"
+                 onClick={this.onRemoveHouse}>
+                   The selected house will be deleted!
+                 </button>
+           </Alert>
 
           </div>
 

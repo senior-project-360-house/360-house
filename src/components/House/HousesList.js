@@ -20,23 +20,21 @@ class HousesListBase extends Component {
 
     this.props.firebase.houses().on('value', snapshot => {
       const houseObject = snapshot.val();
-
-      if(houseObject) {
-        const housesList = Object.keys(houseObject).map(key => ({
-          ...houseObject[key],
-          uid: key
-        }))
-        this.setState({
-          houses: housesList,
-          isLoading: false,
-        });
-      } else{
-        this.setState({
-          houses: null,
-          isLoading: false,
+      let newState = [];
+      for(let h in houseObject){
+        newState.push({
+          id: h,
+          image:houseObject[h].Image,
+          address:houseObject[h].address,
+          agent:houseObject[h].agent,
+          flyer:houseObject[h].flyer,
+          propertyInfor:houseObject[h].propertyInfor
         });
       }
-    });
+      this.setState({
+        houses: newState
+      })
+     });
   }
 
   componentWillUnmount() {
@@ -78,7 +76,7 @@ TODO: Update Single House Item Visual
  */
 const HouseItem = ({house}) => (
   <li>
-    <strong>{house.name}</strong> {house.address}
+    <strong>{house.address.number} {house.address.street} {house.address.city} {house.address.zipcode}</strong> {house.flyer}
     <span>
     {
       /*
