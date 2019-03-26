@@ -1,0 +1,199 @@
+  <DOCTYPE html>
+    <html>
+    <head>
+      <title></title>
+      <link rel="stylesheet" href="test.css">
+      <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.5/angular.min.js"></script>
+      <script src="https://www.gstatic.com/firebasejs/5.8.2/firebase.js"></script>
+  <script>
+    // Initialize Firebase
+    var config = {
+      apiKey: "AIzaSyD7Z-LTmPyu70EJIMvIvoLEnrwdf1YAhL8",
+      authDomain: "myweb-59797.firebaseapp.com",
+      databaseURL: "https://myweb-59797.firebaseio.com",
+      projectId: "myweb-59797",
+      storageBucket: "myweb-59797.appspot.com",
+      messagingSenderId: "262957159288"
+    };
+    firebase.initializeApp(config);
+  </script>
+    </head>
+    <body>
+      <nav class="navbar navbar-inverse navbar">
+        <div class="container">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <div class="navbar-header">
+            <a href="#" class="navbar-brand">360-Degree House 3D-Render</a>
+          </div>
+          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+              <li><a href="#">About</a></li>
+              <li><a href="#">Contact Us</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+              <li><a href="">Minh Ngo</a></li>
+              <li><a href="">Sign Out</a></li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-6 col-md-6 col-sm-12 pink">
+            <div id="content">
+              <div id="clara-embed" style="width: 600px; height: 500px;"></div>
+              <script defer src="https://clara.io/js/claraplayer.min.js"></script>
+              <script defer src="jsFile.js"></script>
+              <script>
+              var clara = claraplayer('clara-embed');
+
+              clara.on('loaded', function() {
+                console.log('Clara player is loaded and ready');
+                </script>
+
+                <button class="bton" id="import">Import</button>
+                <button class="bton" id="rotate">Rotate</button>
+                <button class="bton" id="scale">Change Size</button>
+                <button class="bton" id="clear">Clear</button>
+                </div>
+                <br>
+                <input type="button" class="btn-primary pagination-centered" value="Refresh Page" onClick="window.location.reload()">
+                <div id="clara"></div>
+                </div>
+
+                <div class="col-lg-3 col-md-6 col-sm-12">
+                <br>
+                <div class="btn-group">
+                <button type="button" class="btn btn-default dropdown-toggle" id="drop" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="fas fa-home"></i>
+                Furniture List
+                <span class="glyphicon glyphicon-chevron-down"></span>
+                </button>
+
+                <ul class="dropdown-menu" id="special">
+                <li class="dropdown-header">Chair</li>
+                <div class="container" id="containerList">
+                <li>
+                <div class="row placeholder">
+                <div class="col-lg-1" id="item1"><div class="thumbnail no-padding "><img src="images/streetLamp.png"><a href="#" data-toggle="popover" title="Popover Header" data-content="Some content inside the popover">View</a></div></div>
+
+                <div class="col-lg-1" id="item2"><div class="thumbnail no-padding"><img src="images/simplechair.png"><span class="glyphicon glyphicon-search"></span></div></div>
+                <div class="col-lg-1" id="item2"><div class="thumbnail no-padding"><img src="images/simplechair.png"><span class="glyphicon glyphicon-search"></span></div></div>
+                </div>
+                </li>
+
+                <li>
+                <div class="row">
+                <div class="col-lg-1" id="item4"><div class="thumbnail"><img src="https://imgur.com/ytrVfkt.jpg"><span class="glyphicon glyphicon-search"></span></div></div>
+                <div class="col-lg-1" id="item5"><div class="thumbnail"><img src="https://imgur.com/NH8bk9v.jpg"><span class="glyphicon glyphicon-search"></span></div></div>
+                <div class="col-lg-1" id="item6"><div class="thumbnail"><img src="https://imgur.com/S7crdK8.jpg"><span class="glyphicon glyphicon-search"></span></div></div>
+                </div>
+                </li>
+
+                <li>
+                <div class="row">
+                <div class="col-lg-1" id="item7"><div class="thumbnail"><img src="https://imgur.com/o2LacD8.jpg"><span class="glyphicon glyphicon-search"></span></div></div>
+                <div class="col-lg-1" id="item8"><div class="thumbnail"><img src="https://imgur.com/m8smL9T.jpg"><span class="glyphicon glyphicon-search"></span></div></div>
+                <div class="col-lg-1" id="item9"><div class="thumbnail"><img src="https://imgur.com/lCtWRxH.jpg"><span class="glyphicon glyphicon-search"></span></div></div>
+                </div>
+                </li>
+
+                </div>
+                </ul>
+                </div>
+                </div>
+                </div>
+                </div>
+
+                <div style="display: none;" id="menu">
+                <iframe id="popupInfo" src="https://clara.io/embed/781d494b-c18f-409d-bff0-c297ec258666?renderer=webgl" width="200" height="200" allowfullscreen></iframe>
+                </div>
+
+                <!-- Latest compiled and minified CSS -->
+                <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+                <!-- jQuery library -->
+                <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+                <!-- Latest compiled JavaScript -->
+                <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+                <!-- Modal -->
+                <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Candle Lamp</h5>
+                <img src="images/streetlamp.png">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+                </div>
+                <div class="modal-body">
+                ...
+                </div>
+                <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+                </div>
+                </div>
+                </div>
+                <!--Pop-Over stuffs  -->
+                <!-- Side-by-side menu -->
+                <!-- Include iframe from embedded view -->
+
+                <!--
+                <script>
+                $(document).ready(function(){
+                  $('[data-toggle="popover"]').popover();
+                });
+
+                $('body').on("click", ".dropdown-menu", function (e) {
+                  $(this).parent().is(".open") && e.stopPropagation();
+                });
+                </script>
+                -->
+
+
+                <script>
+                // $(document).ready(function(){
+                //     $('[data-toggle="popover"]').popover();
+                // });
+
+                //This code is used to stop the dropdown menu from auto-closed.
+                $('body').on("click", ".dropdown-menu", function (e) {
+                  $(this).parent().is(".open") && e.stopPropagation();
+                });
+
+                $(".placeholder").mouseover(function() {
+                  // .position() uses position relative to the offset parent,
+                  // so it supports position: relative parent elements
+                  var pos = $(this).position();
+                  // .outerWidth() takes into account border and padding.
+                  var width = $(this).outerWidth();
+                  //check the current posititon
+                  var snum= "01";
+                  //create variable = menu o
+                  var menuOfbox = "#menu" + snum;
+                  console.log(pos);
+                  $(this).append($("#menu"));
+
+
+                  //show the menu directly over the placeholder
+                  //calculate relative posititon of the elements
+                  $("#menu").css({
+                    position: "absolute",
+                    top: pos.top + "px",
+                    left: (pos.left + 300) + "px"
+                  }).show();
+                });
+                </script>
+                </body>
+                </html>

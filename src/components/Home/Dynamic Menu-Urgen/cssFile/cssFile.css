@@ -1,0 +1,87 @@
+#player {
+    width: 700px;
+    height: 500px;
+    border: 1px solid black;
+    margin-bottom: 22px;
+    margin-right: 22px;
+    float: left;
+}
+
+#codepen {
+	position: fixed;
+	top:0;
+	right: 0;
+	margin: 5px;
+}
+
+#content input {
+	border: 2px solid #566963;
+	font-family: Arial;
+	font-size: 15px;
+	padding: 5px;
+}
+
+button, select {
+	box-shadow: inset 0px 1px 3px 0px #91b8b3;
+	background-color: #768d87;
+	border-radius: 5px;
+	border: 1px solid #566963;
+	display: block;
+	cursor: pointer;
+	color: #ffffff;
+	font-family: Arial;
+	font-size: 15px;
+	font-weight: bold;
+	padding: 8px 16px;
+	text-decoration: none;
+	text-shadow: 0px -1px 0px #2b665e;
+    margin: 5px;
+}
+
+button:hover {
+	background-color:#6c7c7c;
+}
+
+button:active {
+	position:relative;
+	top:1px;
+}
+
+button:disabled {
+  background-color: #aaa;
+  text-shadow: none;
+  box-shadow: none;
+  border-width: 0px;
+  color: #ccc;
+}
+
+button:focus {
+  outline: none;
+}
+
+.roundedButton {
+    width: 100px;
+    height: 100px;
+    border-radius: 10px;
+    background-size: contain;
+    display: inline-block;
+}
+
+.highlight {
+    color: red;
+}
+
+hr {
+    clear: left;
+}
+
+.roundedImg {
+	width: 100px;
+  height: 100px;
+  border-radius: 10px;
+  background-size: contain;
+  display: inline-block;
+  cursor: pointer;
+  margin: 5px;
+  border: 3px solid #566963;
+}
