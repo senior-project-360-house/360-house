@@ -1,5 +1,6 @@
-import makeAsyncScriptLoader from "react-async-script";
-import {ClaraPlayer} from "./ClaraPlayer";
+import {
+	ClaraPlayer
+} from "./ClaraPlayer";
 
 const URL = `https://clara.io/js/claraplayer.min.js`;
 // the name of the global that recaptcha/api.js sets on window ie: window.grecaptcha
