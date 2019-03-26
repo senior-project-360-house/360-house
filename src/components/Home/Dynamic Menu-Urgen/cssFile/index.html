@@ -1,0 +1,66 @@
+
+<html>
+<head>
+
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	<nav class="navbar navbar-inverse navbar-fixed-top">
+		<div class="container">
+			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<div class="navbar-header">
+				<a href="#" class="navbar-brand">360-Degree House 3D-Render</a>
+			</div>
+			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+				<ul class="nav navbar-nav">
+					<li><a href="#">About</a></li>
+					<li><a href="#">Contact Us</a></li>
+				</ul>
+				<ul class="nav navbar-nav navbar-right">
+					<li><a href="">Minh Ngo</a></li>
+					<li><a href="">Sign Out</a></li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+	<br></br>
+
+	<script src="https://www.gstatic.com/firebasejs/5.8.2/firebase.js"></script>
+	<script>
+	  // Initialize Firebase
+	  var config = {
+	    apiKey: "AIzaSyD7Z-LTmPyu70EJIMvIvoLEnrwdf1YAhL8",
+	    authDomain: "myweb-59797.firebaseapp.com",
+	    databaseURL: "https://myweb-59797.firebaseio.com",
+	    projectId: "myweb-59797",
+	    storageBucket: "myweb-59797.appspot.com",
+	    messagingSenderId: "262957159288"
+	  };
+	  firebase.initializeApp(config);
+	</script>
+
+	<div id="player" style="width: 800px; height: 600px;"></div>
+	<script src="jquery-3.3.1.min.js"></script>
+	<script src="build/three.min.js"></script>
+	<script src="https://clara.io/js/claraplayer.min.js"></script>
+	<script src="jsFile.js"></script>
+
+
+
+</head>
+<body>
+
+	<div id="player"></div>
+	<button id="import">Import</button>
+	<button id="rotate">Rotate</button>
+	<button id="scale">Change Size</button>
+	<button id="clear">Clear</button>
+	<button id="save" style="margin-top: 30px;">Save</button>
+	<div>
+		<img id="resultImage" style="border: 1px solid;margin-left: 50px;">
+	</div>
+</body>
+</html>
