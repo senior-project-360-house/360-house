@@ -27,7 +27,6 @@ your personal account page.
 const INITIAL_STATE = {
   email: "",
   password: "",
-  avatar: "",
   error: null
 };
 
