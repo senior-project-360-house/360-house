@@ -126,8 +126,6 @@ class SignInFormBase extends Component {
     super(props);
 
     this.state = { ...USER_INITIAL_STATE };
-
-    this.state = { ...INITIAL_STATE };
   }
 
   onSubmit = event => {
