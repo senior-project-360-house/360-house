@@ -42,6 +42,15 @@ class Home extends Component {
 				>
 					Scence ID
 				</Button>
+				<Button
+					variant="outline-light"
+					type="button"
+					onClick={() => {
+						this.api.commands.activateCommand('nodeScale');
+					}}
+				>
+					Scale
+				</Button>
 			</div>
 		);
 	}
