@@ -17,7 +17,7 @@ class Home extends Component {
 			console.log("Clara player is loaded and ready");
 		});
 		clara.sceneIO.fetchAndUse(this.state.uuid);
-
+	
 		this.api = clara;
 	}
 	componentDidMount() {}

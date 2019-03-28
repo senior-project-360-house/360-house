@@ -1,8 +1,4 @@
-import {
-	ClaraPlayer
-} from "./ClaraPlayer";
 
-const URL = `https://clara.io/js/claraplayer.min.js`;
 // the name of the global that recaptcha/api.js sets on window ie: window.grecaptcha
 const claraService = {};
 const ClaraLoadTimer = setInterval(() => {
