@@ -1,7 +1,7 @@
 import React from 'react';
 
 import AuthUserContext from './context';
-import { withFirebase } from '../Firebase';
+import { withFirebase } from '../Firebase/index';
 
 //If true, tell user to verify email, instead of render the Component that passed to this higher-order component
 const needsEmailVerification = authUser =>

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
 import { compose } from "recompose";
-import { withFirebase } from "../Firebase";
+import { withFirebase } from "../../server/Firebase/index";
 import * as ROUTES from "../../constants/routes";
 import {
   Button,
@@ -13,6 +13,16 @@ import {
   Input
 } from "reactstrap";
 import GoogleButton from "react-google-button";
+import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
+import AppBar from "material-ui/AppBar";
+import RaisedButton from "material-ui/RaisedButton";
+import TextField from "material-ui/TextField";
+// import Toolbar from 'material-ui/core/Toolbar';
+// import Typography from 'material-ui/core/Typography';
+import PropTypes from "prop-types";
+// import { withStyles } from 'material-ui/core/styles';
+
+import * as SCHEMA from "../../constants/schema";
 
 const ERROR_CODE_ACCOUNT_EXISTS =
   "auth/account-exists-with-different-credential";
@@ -24,7 +34,12 @@ this account instead and associate your social accounts on
 your personal account page.
 `;
 
-const INITIAL_STATE = {
+const ERROR_CODE_POPUP_REQUEST = "auth/cancelled-popup-request";
+
+const ERROR_MSG_POPUP_REQUEST = `Your browser had PopUp block, please add our website
+to the popup block whitelis`;
+
+const USER_INITIAL_STATE = {
   email: "",
   password: "",
   error: null
@@ -32,39 +47,54 @@ const INITIAL_STATE = {
 
 /*
 Sign In with Google base
-TODO: Break down to many file
 */
 class SignInGoogleFormBase extends Component {
   constructor(props) {
     super(props);
-    this.state = { error: null };
+    this.state = { socialAuthUser: {}, error: null };
   }
 
+  /*
+  Create a user in Firebase database
+  Currently the user gets recreate everytime the user login
+  We can use the condition socialAuthUser.additionalUserInfo.isNewUser for
+  condition checking
+  */
   onSubmit = event => {
     this.props.firebase
       .doSignInWithGoogle()
       .then(socialAuthUser => {
-        /*
-      Create a user in Firebase database
-      Currently the user gets recreate everytime the user login
-      We can use the condition socialAuthUser.additionalUserInfo.isNewUser for
-      condition checking
-      */
-
-        return this.props.firebase.user(socialAuthUser.user.uid).set({
-          username: socialAuthUser.user.displayName,
-          email: socialAuthUser.user.email,
-          roles: []
-        });
+        this.setState({ socialAuthUser: socialAuthUser });
+        if (socialAuthUser.additionalUserInfo.isNewUser) {
+          return this.props.firebase.user(socialAuthUser.user.uid).set({
+            /*
+          TODO: When finished with all the user field, change to general function [event.target.name]: event.target.value
+          */
+            displayName: socialAuthUser.user.displayName,
+            email: socialAuthUser.user.email,
+            isAgent: false,
+            phoneNumber: socialAuthUser.user.phoneNumber,
+            photoURL: socialAuthUser.user.photoURL
+          });
+        } else {
+          return this.props.firebase.user(socialAuthUser.user.uid);
+        }
       })
       .then(() => {
-        this.setState({ error: null });
-        this.props.history.push(ROUTES.HOME);
+        if (this.state.socialAuthUser.additionalUserInfo.isNewUser) {
+          this.setState({ error: null });
+          this.props.history.push(ROUTES.GOOGLEADDINFO);
+        } else {
+          this.setState({ error: null });
+          this.props.history.push(ROUTES.HOME);
+        }
       })
       .catch(error => {
         //Check if the new Google Account had been use for normal sign in
         if (error.code === ERROR_CODE_ACCOUNT_EXISTS) {
           error.message = ERROR_MSG_ACCOUNT_EXISTS;
+        } else if (error.code === ERROR_CODE_POPUP_REQUEST) {
+          error.message = ERROR_MSG_POPUP_REQUEST;
         }
 
         this.setState({ error });
@@ -90,12 +120,12 @@ class SignInGoogleFormBase extends Component {
 
 /*
   Sign In with Email form base
-  TODO: Break in to many file and improve quality
   */
 class SignInFormBase extends Component {
   constructor(props) {
     super(props);
-    console.log(this.props.firebase);
+
+    this.state = { ...USER_INITIAL_STATE };
 
     this.state = { ...INITIAL_STATE };
   }
@@ -106,7 +136,7 @@ class SignInFormBase extends Component {
     this.props.firebase
       .doSignInWithEmailAndPassword(email, password)
       .then(() => {
-        this.setState({ ...INITIAL_STATE });
+        this.setState({ ...USER_INITIAL_STATE });
         this.props.history.push(ROUTES.HOME);
       })
       .catch(error => {

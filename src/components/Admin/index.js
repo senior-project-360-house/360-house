@@ -3,8 +3,8 @@ import React, {Component} from 'react';
 import { Switch, Route, Link } from 'react-router-dom';
 import { compose } from 'recompose';
 
-import { withFirebase } from '../Firebase';
-import { withAuthorization, withEmailVerification } from '../Session';
+import { withFirebase } from '../../server/Firebase/index';
+import { withAuthorization, withEmailVerification } from '../../server/Session/index';
 import {UserList, UserItem} from './UserList';
 
 import * as ROLES from '../../constants/roles';
