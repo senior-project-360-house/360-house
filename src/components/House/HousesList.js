@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
-
-import {withFirebase} from '../Firebase';
+import {withFirebase} from '../../server/Firebase/index';
 
 import * as ROUTES from '../../constants/routes';
 
@@ -17,7 +16,6 @@ class HousesListBase extends Component {
 
   componentDidMount(){
     this.setState({isLoading: true});
-
     this.props.firebase.houses().on('value', snapshot => {
       const houseObject = snapshot.val();
       let newState = [];

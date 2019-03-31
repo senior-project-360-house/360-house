@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 
-import {withFirebase} from '../Firebase';
+import {withFirebase} from '../../server/Firebase/index';
 import Geocode from "react-geocode";
 
 const INITIAL_STATE = {

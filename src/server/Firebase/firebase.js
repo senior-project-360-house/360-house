@@ -43,6 +43,9 @@ class Firebase {
   doPasswordUpdate = password =>
   this.auth.currentUser.updatePassword(password);
 
+  //User's profile updateProfile
+  doUpdateProfile = data => this.user(this.auth.currentUser.uid).set(data);
+
   // User API
   user = uid => this.database.ref(`users/${uid}`);
 
@@ -53,6 +56,10 @@ class Firebase {
   house = uid => this.database.ref(`houses/${uid}`);
 
   houses = () => this.database.ref('houses');
+
+  //image
+  imgItems = () => this.database.ref('itemImg');
+
 
   // Sign Up Email Verification
 

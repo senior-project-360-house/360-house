@@ -1,40 +1,47 @@
 import React, { Component, MapContainer } from 'react';
-
+import MapUtil from "./utils.js";
 import {load_google_maps, load_bus, load_school,load_school2,load_market,load_shop,getLatAndLong } from './utils';
+import {withFirebase} from '../../server/Firebase/index';
 import geolib from 'geolib';
-
-
 class MapPage extends Component {
-
   constructor(props) {
     super(props);
     this.state = {
-      a: []
-    }
-    let temp = getLatAndLong();
-    temp.then(data => {
-      this.setState({ a: data.results[0].geometry.location })
-    });
+      items: []
+    };
   }
+  componentDidMount(){
+    const itemsRef = this.props.firebase.database.ref('houses');
+    itemsRef.on('value', (snapshot) => {
+      let hs = snapshot.val();
+      let newState = [];
+      newState.push({
+        lat: hs.house1.lat,
+        lng: hs.house1.lng
+      });
+      this.setState({
+          items: newState
+      });
+    });
+
+  }
+  render() {
 
 
-
-  componentDidMount() {
-
-    let googleMapsPromise = load_google_maps();
-    let bus = load_bus();
-    let school = load_school();
-    let school2 = load_school2();
-    let market = load_market();
-    let shop = load_shop();
-
+    let lat = 37.294650;
+    let lng = -121.781710;
     let icon = "https://maps.google.com/mapfiles/kml/shapes/";
     let busIcon = icon+"bus_maps.png";
     let shopIcon = icon+"shopping_maps.png";
     let schoolIcon = icon+"schools.png";
     let marketIcon = icon+"grocery.png";
     let house = icon+"homegardenbusiness.png";
-
+    let googleMapsPromise = load_google_maps();
+    let bus = load_bus(lat,lng);
+    let school = load_school(lat,lng);
+    let school2 = load_school2(lat,lng);
+    let market = load_market(lat,lng);
+    let shop = load_shop(lat,lng);
     Promise.all([
       googleMapsPromise,
       bus,
@@ -45,20 +52,18 @@ class MapPage extends Component {
     ]).then(values => {
       let google = values[0];
       let venuesA = [];
-      let position = {
-        lat: this.state.a.lat,
-        lng: this.state.a.lng
-      }
-      let lat = this.state.a.lat;
-      let lng = this.state.a.lng;
+      this.google = google;
+      this.markers = [];
+      this.infowindow = new google.maps.InfoWindow();
       venuesA.push(values[1].response.minivenues);
       venuesA.push(values[2].response.minivenues);
       venuesA.push(values[3].response.minivenues);
       venuesA.push(values[4].response.minivenues);
       venuesA.push(values[5].response.minivenues);
-      this.google = google;
-      this.markers = [];
-      this.infowindow = new google.maps.InfoWindow();
+      let position = {
+        lat: lat,
+        lng: lng
+      }
       this.map = new google.maps.Map(document.getElementById('map'), {
         zoom:12,
         scrollwheel: true,
@@ -116,6 +121,7 @@ class MapPage extends Component {
                  icon:schoolIcon
                 });
               }
+
               else{
                 marker = new google.maps.Marker({
                   position: { lat: lat, lng: lng },
@@ -130,7 +136,6 @@ class MapPage extends Component {
               else { marker.setAnimation(google.maps.Animation.BOUNCE); }
               setTimeout(() => { marker.setAnimation(null) }, 1500);
             });
-
             google.maps.event.addListener(marker, 'click', () => {
                this.infowindow.setContent(marker.name);
                this.map.setCenter(marker.position);
@@ -145,12 +150,10 @@ class MapPage extends Component {
       });
 
     })
-  }
-  render() {
     return (
-        <div style={{height:'1000px', width:'1000px'}} id="map"></div>
+        this.state &&<div style={{height:'1000px', width:'1000px'}} id="map"></div>
     );
   }
 }
 
-export default MapPage;
+export default withFirebase(MapPage);

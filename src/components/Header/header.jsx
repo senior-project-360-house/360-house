@@ -5,14 +5,14 @@ import { Link } from 'react-router-dom';
 import SignOutButton from '../SignOut';
 import * as ROUTES from '../../constants/routes';
 import * as ROLES from '../../constants/roles';
-import { AuthUserContext } from '../Session';
+import { AuthUserContext } from '../../server/Session';
 import { Button, Card, Row, Col } from 'react-materialize';
 
 class Header extends React.Component{
   render(){
     return (
     <div>
-            
+
             <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
                 <a class="navbar-brand" href="#">Team LOGO</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
