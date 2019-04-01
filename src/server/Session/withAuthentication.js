@@ -1,7 +1,7 @@
 import React from 'react';
 
 import AuthUserContext from './context';
-import { withFirebase } from '../Firebase';
+import { withFirebase } from '../Firebase/index';
 /*
 Authentication check to store user data to local state and distributing it
  */
