@@ -1,19 +1,19 @@
-import React, { Component } from 'react';
+import React, {Component} from "react";
 // import Footer from '../Footer';
-import { SignUpLink } from '../SignUp';
-import { PasswordForgotLink} from '../PasswordForget';
+import {SignUpLink} from "../SignUp";
+import {PasswordForgotLink} from "../PasswordForget";
 
-import * as ROUTES from '../../constants/routes';
+import * as ROUTES from "../../constants/routes";
 
-import {SignInForm, SignInGoogleForm} from './SignInForm';
+import {SignInForm, SignInGoogleForm} from "./SignInForm";
 
 const SignInPage = () => (
-  <div>
-    <SignInForm />
-    <SignInGoogleForm />
-    <SignUpLink />
-    <PasswordForgotLink/>
-  </div>
+	<div>
+		<SignInForm />
+		<SignInGoogleForm />
+		<SignUpLink />
+		<PasswordForgotLink />
+	</div>
 );
 //TODO: Merge this signInformBase to SignIn/SignInForm.js
 // const INITIAL_STATE = {

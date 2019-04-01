@@ -61,37 +61,28 @@ const NavigationAuth = ({authUser}) => (
 );
 
 const NavigationNonAuth = () => (
-	<nav className="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-		<a className="navbar-brand" href="#">
-			Team LOGO
-		</a>
-		<button
-			className="navbar-toggler"
-			type="button"
-			data-toggle="collapse"
-			data-target="#navbarText"
-			aria-controls="navbarText"
-			aria-expanded="false"
-			aria-label="Toggle navigation"
-		>
-			<span className="navbar-toggler-icon" />
-		</button>
-		<div className="collapse navbar-collapse" id="navbarText">
-			<ul className="navbar-nav mr-auto" />
-			<ul className="navbar-nav justify-content-end">
-				<li className="nav-item">
-					<a className="nav-link" href="#">
-						<Link to={ROUTES.SIGN_IN}>Sign In</Link>
-					</a>
-				</li>
-				<li className="nav-item">
-					<a className="nav-link" href="#">
-						<Link to={ROUTES.SIGN_UP}>Sign Up</Link>
-					</a>
-				</li>
-			</ul>
-		</div>
-	</nav>
+	<Navbar className="navbar" collapseOnSelect expand="lg" fixed="top">
+		{/* <Container> */}
+		<Navbar.Brand className="text-light" href={ROUTES.HOME}>
+			{"TeamLogo"}
+		</Navbar.Brand>
+		<Navbar.Toggle aria-controls="responsive-navbar-nav" />{" "}
+		<Navbar.Collapse className="justify-content-end">
+			<Nav className="nav-item">
+				<Nav.Item>
+					<Nav.Link className="text-light" href={ROUTES.SIGN_IN}>
+						<span className="text">{"Sign In"}</span>
+					</Nav.Link>
+				</Nav.Item>
+				<Nav.Item>
+					<Nav.Link className="text-light" href={ROUTES.SIGN_UP}>
+						<span className="text">{"Sign Up"}</span>
+					</Nav.Link>
+				</Nav.Item>
+			</Nav>
+		</Navbar.Collapse>
+		{/* </Container> */}
+	</Navbar>
 );
 
 export default Navigation;
