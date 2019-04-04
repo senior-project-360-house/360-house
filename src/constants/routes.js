@@ -29,3 +29,5 @@ export const HOUSE = "/house";
 export const HOUSE_DETAILS = "/house/:id";
 export const GOOGLEADDINFO = "/googleRegister";
 export const MAP = '/map';
+export const OVERVIEW ='/overview';
+export const AGENTPROFILE='/agentprofile';

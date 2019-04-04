@@ -1,0 +1,60 @@
+.fade.in {
+  opacity: 1;
+}
+.modal.in .modal-dialog {
+  -webkit-transform: translate(0, 0);
+  -o-transform: translate(0, 0);
+  transform: translate(0, 0);
+}
+.modal-backdrop.in {
+  opacity: 0.5;
+}
+
+
+
+
+div > span > h3  {
+  color: black;
+  text-align: right;
+  font-size: 20px;
+  /* text-shadow: 1px 1px gray; */
+}
+div > span > h4  {
+  color: black;
+  text-align: right;
+
+  /* text-shadow: 1px 1px gray; */
+}
+div > span > button  {
+
+  align-items: right;
+
+  /* text-shadow: 1px 1px gray; */
+}
+.nobreak {
+  white-space: nowrap;
+}
+
+.d1{
+  align-items: right;
+}
+
+.table {
+  background: #000000;
+}
+
+div.hr {
+  height: 15px;
+  background: #ffffff no-repeat scroll center;
+}
+
+.redc{
+  color: blue;
+}
+div.hr {
+  height: 15px;
+  background: hr1.gif no-repeat scroll center;
+}
+div.hr hr {
+  display: none;
+}

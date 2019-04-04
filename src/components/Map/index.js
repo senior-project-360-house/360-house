@@ -3,10 +3,32 @@ import MapUtil from "./utils.js";
 import {load_google_maps, load_bus, load_school,load_school2,load_market,load_shop,getLatAndLong } from './utils';
 import {withFirebase} from '../../server/Firebase/index';
 import geolib from 'geolib';
+import Row from 'react-bootstrap/Row';
+import Table from 'react-bootstrap/Table';
+import Col from 'react-bootstrap/Col';
+
+let shortestBus={
+  name:'',
+  distance: 16000
+};
+let shortestSchool = {
+  name:'',
+  distance: 16000
+};
+let shortestMarket = {
+  name:'',
+  distance: 16000
+};
+let shortestShopping = {
+  name:'',
+  distance: 16000
+};
+
 class MapPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      open: false,
       items: []
     };
   }
@@ -37,6 +59,11 @@ class MapPage extends Component {
     let marketIcon = icon+"grocery.png";
     let house = icon+"homegardenbusiness.png";
     let googleMapsPromise = load_google_maps();
+
+    // let lat = Number(this.state.items[0]?this.state.items[0].lat:null);
+    // let lng = Number(this.state.items[0]?this.state.items[0].lng:null);
+    // console.log(lat);
+
     let bus = load_bus(lat,lng);
     let school = load_school(lat,lng);
     let school2 = load_school2(lat,lng);
@@ -74,10 +101,13 @@ class MapPage extends Component {
         this.venues = venues;
 
         this.venues.forEach(venue => {
-          if(geolib.getDistance({latitude: lat, longitude: lng},{latitude: venue.location.lat, longitude: venue.location.lng}) <= 5000){
+          if(geolib.getDistance({latitude: lat, longitude: lng},{latitude: venue.location.lat, longitude: venue.location.lng}) <= 16000){
             let marker;
-
             if(venue.name.includes("Bus Stop")){
+              if(venue.location.distance < shortestBus.distance) {
+                shortestBus.name = venue.name;
+                shortestBus.distance = venue.location.distance
+              };
               marker = new google.maps.Marker({
                position: { lat: venue.location.lat, lng: venue.location.lng },
                map: this.map,
@@ -89,6 +119,10 @@ class MapPage extends Component {
              });
            }
            else if(venue.name.includes("Shopping") && !venue.name.includes("Parking")){
+             if(venue.location.distance < shortestShopping.distance) {
+               shortestShopping.name = venue.name;
+               shortestShopping.distance = venue.location.distance
+             };
              marker = new google.maps.Marker({
                position: { lat: venue.location.lat, lng: venue.location.lng },
                map: this.map,
@@ -100,6 +134,10 @@ class MapPage extends Component {
               });
             }
             else if(venue.name.includes("Market")){
+              if(venue.location.distance < shortestMarket.distance) {
+                shortestMarket.name = venue.name;
+                shortestMarket.distance = venue.location.distance
+              };
               marker = new google.maps.Marker({
                 position: { lat: venue.location.lat, lng: venue.location.lng },
                 map: this.map,
@@ -111,6 +149,12 @@ class MapPage extends Component {
                });
              }
              else if(venue.name.includes("School") || venue.name.includes("College") || venue.name.includes("University")){
+              if(venue.location.distance < shortestSchool.distance) {
+                {
+                  shortestSchool.name = venue.name;
+                  shortestSchool.distance = venue.location.distance
+                };
+              };
                marker = new google.maps.Marker({
                  position: { lat: venue.location.lat, lng: venue.location.lng },
                  map: this.map,
@@ -123,6 +167,12 @@ class MapPage extends Component {
               }
 
               else{
+                if(venue.location.distance < shortestMarket.distance) {
+                  {
+                    shortestMarket.name = venue.name;
+                    shortestMarket.distance = venue.location.distance
+                  };
+                };
                 marker = new google.maps.Marker({
                   position: { lat: lat, lng: lng },
                   map: this.map,
@@ -145,15 +195,50 @@ class MapPage extends Component {
             this.markers.push(marker);
           }
         });
+        console.log(shortestShopping);
 
 
       });
 
     })
     return (
-        this.state &&<div style={{height:'1000px', width:'1000px'}} id="map"></div>
-    );
-  }
+      <Row>
+        <Col style={{height:'1000px', width:'1000px'}} id="map"></Col>
+        <Col>
+        <h2>Nearby Location</h2>
+        <Table striped bordered hover>
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Distance</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>{shortestSchool.name}</td>
+              <td>{convertToMile(shortestSchool.distance)} miles</td>
+            </tr>
+            <tr>
+              <td>{shortestBus.name}</td>
+              <td>{convertToMile(shortestBus.distance)} miles</td>
+            </tr>
+            <tr>
+              <td>{shortestMarket.name}</td>
+              <td>{convertToMile(shortestMarket.distance)} miles</td>
+            </tr>
+            <tr>
+              <td>{shortestShopping.name}</td>
+              <td>{convertToMile(shortestShopping.distance)} miles</td>
+            </tr>
+        </tbody>
+      </Table>
+    </Col>
+  </Row>
+)}
+}
+
+function convertToMile(distance){
+  return parseFloat((Number(distance)*0.00062137).toFixed(2));
 }
 
 export default withFirebase(MapPage);

@@ -4,8 +4,6 @@ import {withFirebase} from '../../server/Firebase/index';
 
 import * as ROUTES from '../../constants/routes';
 import {Alert} from 'reactstrap';
-
-import * as ROUTES from "../../constants/routes";
 //TODO: Dynamic update house state, currently the state is not change
 class HouseItemPageBase extends Component {
 	constructor(props) {

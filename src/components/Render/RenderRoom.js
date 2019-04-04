@@ -145,7 +145,7 @@ class RenderRoom extends Component {
       var sof = 0;
       var ki = 0;
       return (
-        <Container>
+
         <Row>
         <Col>
         				<h1>Home Page</h1>
@@ -288,7 +288,7 @@ class RenderRoom extends Component {
         </div>
         </Col>
         </Row>
-        </Container>
+    
       );
     }
   }

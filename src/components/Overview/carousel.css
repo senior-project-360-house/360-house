@@ -1,0 +1,30 @@
+/*
+.container{
+  width: 100% !important;
+  height: 100% !important;
+} */
+/* td > div{
+  width: 100% !important;
+  height: 100% !important;
+} */
+body{
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+}
+
+table td {
+    width: auto;
+    overflow: hidden;
+    display: inline-block;
+    white-space: nowrap;
+}
+
+/* .spaces {
+  margin-left: 20px;
+} */
+
+.mdb{
+  max-width: 100%;
+  max-height: 100%
+}

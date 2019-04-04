@@ -23,6 +23,9 @@ import Tour from "../Tour";
 import * as ROUTES from "../../constants/routes";
 import * as ROLES from "../../constants/roles";
 import Map from '../Map';
+import Overview from "../Overview";
+import Agent from "../Agent"
+
 import {withAuthentication} from "../../server/Session/index";
 
 const App = () => (
@@ -46,6 +49,8 @@ const App = () => (
 			<Route path={ROUTES.MENU} component={Menu} />
 			<Route path={ROUTES.TOUR} component={Tour} />
 			<Route path={ROUTES.MAP} component={Map} />
+			<Route path={ROUTES.OVERVIEW} component={Overview} />
+			<Route path={ROUTES.AGENTPROFILE} component={Agent} />
 
 		</div>
 	</Router>

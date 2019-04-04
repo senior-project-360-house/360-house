@@ -8,12 +8,11 @@ import { Redirect, Router, Route } from 'react-router-dom';
 import { withRouter } from 'react-router';
 import * as ROUTES from '../../constants/routes';
 import sced from './utils';
-
+import NavBars from '../Overview/NavBar.js'
 import { MDBCarousel, MDBCarouselCaption, MDBCarouselInner, MDBCarouselItem, MDBView, MDBMask, MDBContainer } from
 "mdbreact";
 var room = [];
 let path;
-let idS;
 
 
 class Render extends React.Component {
@@ -53,6 +52,8 @@ class Render extends React.Component {
     room = this.state.items;
     var count = 0;
         return (
+          <div>
+          <NavBars/>
           <MDBContainer>
             <h4 className="mt-5 mb-2">Basic example</h4>
             <MDBCarousel activeItem={1} length={4} showIndicators={true} className="z-depth-1">
@@ -67,6 +68,7 @@ class Render extends React.Component {
 
           </MDBCarousel>
         </MDBContainer>
+        </div>
         )
       }
 }
@@ -94,6 +96,7 @@ function leftside (link, id, name,count) {
 
 function onSubmit(id){
   window.sced = id;
+  //console.log(path);
   path.push({
   pathname: ROUTES.RENDERROOM});
 };
