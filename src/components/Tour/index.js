@@ -1,10 +1,9 @@
-import {withFirebase} from '../../server/Firebase/index';
-import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
+import { withFirebase } from "../../server/Firebase/index";
+import React from "react";
+import "./style.css";
+import NavBars from "../Overview/NavBar";
 
-
-let saveID
-class Tour extends React.Component{
+class Tour extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -12,11 +11,14 @@ class Tour extends React.Component{
     };
   }
 
-  componentDidMount(){
-    const itemsRef = this.props.firebase.database.ref('houses');
+  componentDidMount() {
+    const itemsRef = this.props.firebase.database.ref("houses");
     console.log(itemsRef);
-    itemsRef.on('value', (snapshot) => {
-
+    document.querySelector("#nav02").classList.add("activeNav");
+    document.querySelector("#nav01").classList.remove("activeNav");
+    document.querySelector("#nav03").classList.remove("activeNav");
+    document.querySelector("#nav04").classList.remove("activeNav");
+    itemsRef.on("value", snapshot => {
       let hs = snapshot.val();
       let newState = hs.house1.tour;
       this.setState({
@@ -28,9 +30,23 @@ class Tour extends React.Component{
   render() {
     console.log(this.state.id);
     return (
-      <div>
-      <p>hmdfhjadhjagdajhs</p>
-      <iframe style={{maxWidth: '100%'}} width={640} height={480} frameBorder={0} allowFullScreen src={this.state.id} />
+      <div className="Tour" style={{"padding-bottom":"100px"}}>
+        <div className="TopBar">
+          <NavBars />
+        </div>
+        <div className="ToolView">
+          <iframe
+            className="frameView"
+            frameBorder={0}
+            allowFullScreen
+            src={this.state.id}
+            title="iframe 360"
+          />
+          <div className="Introduction">
+            Introduction:
+            <p>Use your mouse and keyboard to move</p>
+          </div>
+        </div>
       </div>
     );
   }

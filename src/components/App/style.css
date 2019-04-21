@@ -1,0 +1,46 @@
+* {
+    position: relative;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    position: relative;
+    margin: 0;
+    padding-bottom: 6rem;
+    min-height: 100%;
+    font-family: "Helvetica Neue", Arial, sans-serif;
+
+    
+}
+
+*,
+*:before,
+*:after {
+    box-sizing: inherit;
+}
+
+html {
+    height: 100%;
+    box-sizing: border-box;
+}
+
+.NavBarTop {
+    margin-bottom: 0;
+    padding: 0;
+}
+
+.MyApp {
+    margin-bottom: 0;
+    padding: 0;
+}
+
+.MyFooter {
+    /* position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0; */
+
+    margin-bottom: 0;
+    padding: 0;
+}

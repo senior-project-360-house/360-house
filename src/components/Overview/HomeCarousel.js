@@ -1,71 +1,116 @@
+import React from "react";
 
-import React, { Component } from 'react';
+import Carousel from "react-bootstrap/Carousel";
+import Image from "react-bootstrap/Image";
+import { Container, Button } from "react-bootstrap";
+import { withFirebase } from "../../server/Firebase/index";
+const authUser = JSON.parse(localStorage.getItem("authUser"));
 
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Table from 'react-bootstrap/Table';
-import Col from 'react-bootstrap/Col';
-import ShowMore from 'react-show-more';
-import { Collapse, Button} from 'reactstrap';
-import { MDBCarousel, MDBCarouselCaption, MDBCarouselInner, MDBCarouselItem, MDBView, MDBMask, MDBContainer } from
-"mdbreact";
-import {withFirebase} from '../../server/Firebase/index';
+
+
+let faveList = [];
 
 class HomeCarousel extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
+    console.log(this.props.firebase.database.ref("houses"));
+    this.handleSelect = this.handleSelect.bind(this);
     this.state = {
+      index: 0,
+      houseId: "",
+      direction: null,
       open: false,
       isLoading: false,
       showText: false,
       dis: []
-    }
+    };
+    this.addHouse = this.addHouse.bind(this);
   }
-  toggle() {
+
+  handleSelect(selectedIndex, e) {
     this.setState({
-      open: !this.state.open
+      index: selectedIndex,
+      direction: e.direction
     });
+  }
+
+  addHouse(){
+    console.log(authUser.favHouses);
+    var userRef = this.props.firebase.database.ref('users/' + authUser.uid);
+    userRef.child('favHouses').update({hs: this.state.houseId});
+    alert("House has been added to your favorit list!");
   }
 
   componentDidMount() {
-    this.setState({isLoading: true});
-    this.props.firebase.database.ref('houses').on('value', (snapshot) => {
+    this.setState({ isLoading: true });
+    this.props.firebase.database.ref("houses").on("value", snapshot => {
       const furnitures = snapshot.val().house1;
       let newState = [];
       let imgs = furnitures.image;
-      for(var x in imgs){
-      newState.push(imgs[x]);
+      for (var x in imgs) {
+        newState.push(imgs[x]);
       }
-      console.log(imgs);
-      this.setState({dis: newState});
+      this.setState({ dis: newState, houseId: "house1" });
     });
   }
 
+  handleFirstName(e) {
+      let value = e.target.value;
+      this.setState( prevState => ({ newUser :
+           {...prevState.newUser, firstName: value
+           }
+     }))
+     }
 
-  render(){
+
+
+  render() {
+    const { index, direction } = this.state;
     let images = this.state.dis;
-    var count = 0;
-    return(
-       <MDBCarousel activeItem={1} length={3} showControls={true} showIndicators={true} className="z-depth-1">
-         <MDBCarouselInner>
-          {images.map(data => {
-            count++;
-            return fillIn(count, data);
-          })}
-         </MDBCarouselInner>
-       </MDBCarousel>
+    faveList.push(this.state.houseId);
+    return (
+      <div className="HouseShow">
+        <div className="top">
+          <Carousel
+            activeIndex={index}
+            direction={direction}
+            onSelect={this.handleSelect}
+          >
+            {images.map(data => {
+              return fillIn(data);
+            })}
+          </Carousel>
+        </div>
+
+        <div style={{"text-align": "center"}}className="bottom">
+          <h3>Price: $2,000,000</h3>
+          <h3>Address: 1234 Tully Road, San Jose CA, 95111</h3>
+          {authUser.isClient === "true" ? (
+                       <Button onClick = {this.addHouse} style={{"display": "inline-block"}}>Add to favorite list </Button>
+                      ) : (
+                        ""
+                      )}
+        </div>
+      </div>
     );
   }
 }
 
-function fillIn (count, image){
+function fillIn(image) {
   return (
-    <MDBCarouselItem itemId={count--}>
-      <MDBView>
-        <img className="d-block w-100" style={{"max-width" : "100%", "max-height" : "100%"}} src={image} alt="First slide" />
-        <MDBMask overlay="black-light" />
-      </MDBView>
-    </MDBCarouselItem>
+    <Carousel.Item>
+      <Image
+        atl="#"
+        className="image d-block w-100"
+        src={image}
+        alt="House Images"
+      />
+
+      <Carousel.Caption>
+        {/* <h3>Information</h3> */}
+        {/* <p>Information</p> */}
+      </Carousel.Caption>
+    </Carousel.Item>
   );
 }
-export default withFirebase (HomeCarousel);
+export default withFirebase(HomeCarousel);

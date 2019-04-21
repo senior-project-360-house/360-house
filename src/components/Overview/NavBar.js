@@ -1,68 +1,48 @@
-import React, { Component} from 'react';
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Table from 'react-bootstrap/Table';
-import Col from 'react-bootstrap/Col';
-import Navbar from 'react-bootstrap/Navbar';
-import Nav from 'react-bootstrap/Nav';
-import Form from 'react-bootstrap/Form';
-import FormControl from 'react-bootstrap/FormControl';
-import ShowMore from 'react-show-more';
-import { Collapse, Button} from 'reactstrap';
-import {withFirebase} from '../../server/Firebase/index';
-import {Link} from "react-router-dom";
+import React from "react";
 
-import { Redirect, Router, Route } from 'react-router-dom';
-import { withRouter } from 'react-router';
-import * as ROUTES from '../../constants/routes';
+import Nav from "react-bootstrap/Nav";
 
-import SingleHome from "./SingleHome"
-import HomeCarousel from "./HomeCarousel"
-import SingleAgent from './SingleAgent'
-import './carousel.css'
-import Render from "../Render"
-import MapPage from "../Map"
-
-class NavBars extends React.Component{
-  render(){
-    return(
-      <div>
-      <nav className="navbar navbar-expand-lg bg-light justify-content-center">
-        <button
-          className="navbar-toggler"
-          type="button"
-          data-toggle="collapse"
-          data-target="#navbarText"
-          aria-controls="navbarText"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span className="navbar-toggler-icon" />
-        </button>
-        <div className="collapse navbar-collapse" id="navbarText">
-          <ul className="navbar-nav mr-auto" />
-          <ul className="navbar-nav justify-content-end">
-            <li className="nav-item">
-              <a className="nav-link" href="#">
-                <Link to={ROUTES.OVERVIEW}>Overview</Link>
-              </a>
-            </li>
-            <li className="nav-item">
-              <a className="nav-link" href="#">
-                <Link to={ROUTES.RENDER}>Render</Link>
-              </a>
-            </li>
-            <li className="nav-item">
-              <a className="nav-link" href="#">
-                <Link to={ROUTES.MAP}>Map</Link>
-              </a>
-            </li>
-          </ul>
-        </div>
-      </nav>
-
+import * as ROUTES from "../../constants/routes";
+import "./navbar.css";
+class NavBars extends React.Component {
+  generatorNameClass(props) {
+    return props.isActived === "false" ? "textNav" : "activeNav";
+  }
+  render() {
+    return (
+      <div className="container navRender">
+        <Nav className="justify-content-center" activeKey="/home">
+          <Nav.Item>
+            <Nav.Link href={ROUTES.OVERVIEW}>
+              <span id="nav01" className="textNav activeNav">
+                {"Overview"}
+              </span>
+            </Nav.Link>
+          </Nav.Item>
+          <Nav.Item>
+            <Nav.Link href={ROUTES.TOUR}>
+              <span id="nav02" className="textNav">
+                {"360 Tour"}
+              </span>
+            </Nav.Link>
+          </Nav.Item>
+          <Nav.Item>
+            <Nav.Link href={ROUTES.RENDER}>
+              <span id="nav03" className="textNav">
+                {"Render"}
+              </span>
+            </Nav.Link>
+          </Nav.Item>
+          <Nav.Item>
+            <Nav.Link href={ROUTES.MAP}>
+              <span id="nav04" className="textNav">
+                {"Map"}
+              </span>
+            </Nav.Link>
+          </Nav.Item>
+        </Nav>
       </div>
-    )
+    );
   }
 }
 
