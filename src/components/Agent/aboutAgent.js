@@ -16,106 +16,22 @@ import Image from "react-bootstrap/Image";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import "./style.css";
-import Request from "./MessageRequest";
-
-const authUser = JSON.parse(localStorage.getItem("authUser"));
 
 let path;
 let remember;
 
 let lastInfor;
-class Agent extends Component {
+let imagesource = false;
+
+class AboutAgent extends Component {
   constructor(props) {
     super(props);
-    path = this.props.history;
-    lastInfor = this.props.history.location.state;
-
-    console.log(authUser.isAgent);
     this.state = {
       houses: [],
-      caseNum: 0,
       isLoading: false,
-      hide: false,
-      request: false,
       dis: [],
-      authUser: {}
+      agent: [],
     };
-    this.handleToggleClick = this.handleToggleClick.bind(this);
-    this.handleToggleRequest = this.handleToggleRequest.bind(this);
-    this.requestToggle = this.requestToggle.bind(this);
-    this.viewAsBuyer = this.viewAsBuyer.bind(this);
-  }
-
-  handleToggleClick() {
-    this.setState(prevState => ({
-      hide: !prevState.hide,
-      caseNum: 0
-    }));
-  }
-
-  handleToggleRequest() {
-    this.setState(prevState => ({
-      request: !prevState.request,
-      caseNum: 1
-    }));
-  }
-  componentDidMount() {
-    this.setState({ isLoading: true });
-    const authUser = JSON.parse(localStorage.getItem("authUser"));
-    this.props.firebase.database.ref("account").on("value", snapshot => {
-      const data = snapshot.val().agentAccount;
-      let newState = [];
-      let imgs = data.agentAccount1;
-      newState.push({
-        email: imgs.email,
-        isAgent: imgs.isAgent,
-        password: imgs.password
-      });
-      this.setState({ dis: newState, authUser: authUser, isLoading: false });
-    });
-
-    this.props.firebase.database.ref("houses").on("value", snapshot => {
-      let h = [];
-      for(var obj in authUser.listingHouse){
-        if(authUser.listingHouse[obj] !== "null"){
-          let idTemp = authUser.listingHouse[obj].id;
-          h.push({
-            id: idTemp,
-            imageX: snapshot.val()[idTemp].images["0"],
-            address: snapshot.val()[idTemp].propertyInfor.details.address,
-            price: snapshot.val()[idTemp].propertyInfor.details.listPrice
-          });
-        }
-      }
-      this.setState({ houses: h, authUser: authUser, isLoading: false });
-    });
-  }
-
-  editaccount() {
-    path.push(
-      {
-        pathname: "/agenteditaccount"
-      },
-      remember
-    );
-  }
-
-  viewAsBuyer() {
-    this.handleToggleClick();
-    if ((document.getElementById("nav128_02").value = "FIND A HOME")) {
-      document.getElementById("nav128_02").classList.remove("activeNav");
-      document.getElementById("nav128_01").classList.add("activeNav");
-    }
-}
-  requestToggle() {
-    document.getElementById("nav128_02").classList.add("activeNav");
-    document.getElementById("nav128_01").classList.remove("activeNav");
-    document.getElementById("nav128_03").classList.remove("activeNav");
-
-    this.setState(prevState => ({
-      request: !prevState.request,
-      caseNum: 1
-    }));
   }
   renderRightSide() {
     switch (this.state.caseNum) {
@@ -128,9 +44,34 @@ class Agent extends Component {
     }
   }
 
-  renderViewRequest() {
-    return <Request />;
+  componentDidMount() {
+    this.setState({ isLoading: true });
+    this.props.firebase.database.ref("account").on("value", snapshot => {
+      const data = snapshot.val().agentAccount;
+      let newState = [];
+      let imgs = data.agentAccount1;
+
+      this.setState({ agent: imgs, isLoading: false });
+    });
+    this.props.firebase.database.ref("houses").on("value", snapshot => {
+      let h = [];
+      let authUser = this.state.agent;
+      for(var obj in this.state.agent.listingHouse){
+        if(authUser.listingHouse[obj] !== "null"){
+          let idTemp = authUser.listingHouse[obj].id;
+          h.push({
+            id: idTemp,
+            imageX: snapshot.val()[idTemp].images["0"],
+            address: snapshot.val()[idTemp].propertyInfor.details.address,
+            price: snapshot.val()[idTemp].propertyInfor.details.listPrice
+          });
+          imagesource = true;
+        }
+      }
+      this.setState({ houses: h, isLoading: false });
+    });
   }
+
   renderOpenHouseList() {
     const renderListHouse = this.state.houses.map(house => {
       return this.formBuild(house);
@@ -138,9 +79,12 @@ class Agent extends Component {
     return <div>{renderListHouse}</div>;
   }
 
-  reDirect(){
-    
+  printEmpty(){
+    return(
+      <p>You have no favorite house!</p>
+    );
   }
+
   formBuild(aHouses) {
     return (
       <div className="XXcol-1-2-128">
@@ -151,18 +95,6 @@ class Agent extends Component {
             <br />
             {aHouses.address}
           </h2>
-        </div>
-        <div
-          style={
-            this.state.hide
-              ? { visibility: "hidden" }
-              : { visibility: "visible" }
-          }
-          className="btnDeleteAgent128"
-        >
-
-          <button className="bts danger" variant="danger">Delete</button>
-          <button className="bts regular" variant="primary">Edit</button>
         </div>
       </div>
     );
@@ -204,30 +136,16 @@ class Agent extends Component {
                   </span>
                 </Nav.Link>
               </Nav.Item>
-              <Nav.Item>
-                <Nav.Link href={!this.state.hide ? "" : ROUTES.HOMEPAGE}>
-                  <span
-                    // onClick={!this.state.hide ? this.handleToggleRequest : {}}
-                    onClick={this.requestToggle}
-                    id="nav128_02"
-                    className="textNav"
-                  >
-                    {() => {}}
-                    {!this.state.hide ? "VIEW REQUESTS" : "FIND A HOME"}
-                  </span>
-                </Nav.Link>
-              </Nav.Item>
-              <Nav.Item>
+              {/* <Nav.Item>
                 <Nav.Link>
                   <span
-                    id="nav128_03"
-                    onClick={this.viewAsBuyer}
+                    id="nav128_01"
                     className="textNav"
                   >
-                    {!this.state.hide ? "VIEW AS BUYER" : "BACK"}
+                    <Link to={ROUTES.OVERVIEW}>BACK</Link>
                   </span>
                 </Nav.Link>
-              </Nav.Item>
+              </Nav.Item> */}
             </Nav>
 
             <div className="row">
@@ -245,31 +163,18 @@ class Agent extends Component {
                   <Card.Body>
                     <Card.Title>
                       <h3 class="name">
-                        {authUser.firstName + " " + authUser.lastName}
+                        {this.state.agent.firstName + " " + this.state.agent.lastName}
                       </h3>
                     </Card.Title>
                     <Card.Text>
                       <p class="info">
                         {/* TODO: add field bio */}
-                        {authUser.aboutme}
-                        {authUser.site}
+                        {this.state.agent.aboutme}
+                        {this.state.agent.company}
                       </p>
                     </Card.Text>
 
-                    {(authUser.isAgent) ? (
-                      <div className="btn-request">
-                        <button className ="agentbutton agenteditbutton" onClick={e => this.editaccount()}>
-                          Edit Profile
-                        </button>
-
-                        <Link to={ROUTES.ADDHOUSE}>
-                          <button className ="agentbutton agentaddhousebutton">Add House</button>
-                        </Link>
-
-                      </div>
-                    ) : (
-                      ""
-                    )}
+                   
                   </Card.Body>
                 </Card>
               </div>
@@ -285,4 +190,4 @@ class Agent extends Component {
     );
   }
 }
-export default withFirebase(Agent);
+export default withFirebase(AboutAgent);
