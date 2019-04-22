@@ -78,18 +78,20 @@ class Landing extends React.Component {
                   <h1> Let' explore them all </h1>
                   <div>
                   <div className="d-flex justify-content-center h-100">
-                    <div>
-                      <form>
+                      <form className="searchbar">
                       <input
+                        className="search_input"
                         type="text"
                         name="address"
                         value={this.state.address}
                         onChange={this.handleAddressChange}
+                        placeholder="Search by zipcode, street address or..."
                       />
-                      <button type="button" onClick={this.onSubmit}>submit</button>
-
+                      <a href="#" onClick={this.onSubmit} className="search_icon">
+                            <i className="fas fa-search" />
+                          </a>
                      </form>
-                    </div>
+                    
                   </div>
                   </div>
                   <h3> Your dream house is waiting... </h3>

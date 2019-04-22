@@ -42,36 +42,37 @@
     height: 60px;
     background-color: transparent;
     border-radius: 30px;
+    font: normal 36px 'Cookie', cursive;
 }
 
 .homepage .search_input {
-    color: black;
+    color: white;
     border: 0;
     outline: 0;
-    background: transparent;
+    background: none;
     width: 0;
-    caret-color: transparent;
+    caret-color: red;
     line-height: 40px;
     transition: width 0.4s linear;
 }
 
 .homepage .searchbar:hover>.search_input {
-    padding: 0 10px;
+    /* padding: 0 10px; */
     width: 450px;
-    background: white;
     caret-color: red;
     transition: width 0.4s linear;
 }
 
 .homepage .searchbar:hover>.search_icon {
-    /* background: white; */
+    background: transparent;
     color: #e74c3c;
 }
 
 ::placeholder {
     /* Chrome, Firefox, Opera, Safari 10.1+ */
-    color: black;
+    color: whitesmoke;
     opacity: 1;
+    font-size: 20px;
     font-weight: bold;
     /* Firefox */
 }
@@ -83,8 +84,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    border-radius: 50%;
-    color: transparent;
+    border-radius: 30%;
+    /* color: white; */
 }
 
 
