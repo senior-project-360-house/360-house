@@ -137,6 +137,10 @@ class Agent extends Component {
     });
     return <div>{renderListHouse}</div>;
   }
+
+  reDirect(){
+    
+  }
   formBuild(aHouses) {
     return (
       <div className="XXcol-1-2-128">
@@ -156,8 +160,9 @@ class Agent extends Component {
           }
           className="btnDeleteAgent128"
         >
-          <Button variant="danger">Delete</Button>
-          <Button variant="primary">Edit</Button>
+
+          <button className="bts danger" variant="danger">Delete</button>
+          <button className="bts regular" variant="primary">Edit</button>
         </div>
       </div>
     );
@@ -252,15 +257,13 @@ class Agent extends Component {
                     </Card.Text>
 
                     {(authUser.isAgent) ? (
-                      <div
-                        className="btn-request"
-                      >
-                        <Button onClick={e => this.editaccount()}>
+                      <div>
+                        <button className ="agentbutton agenteditbutton" onClick={e => this.editaccount()}>
                           Edit Profile
-                        </Button>
+                        </button>
 
                         <Link to={ROUTES.ADDHOUSE}>
-                          <Button>Add House</Button>
+                          <button className ="agentbutton agentaddhousebutton">Add House</button>
                         </Link>
 
                       </div>
