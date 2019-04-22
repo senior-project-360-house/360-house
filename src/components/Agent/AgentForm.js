@@ -3,6 +3,7 @@ import React, { Component } from "react";
 import * as ROUTES from "../../constants/routes";
 
 import { Container, Button } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 import { withFirebase } from "../../server/Firebase/index";
 import Card from "react-bootstrap/Card";
@@ -31,32 +32,7 @@ class Agent extends Component {
 
     console.log(authUser.isAgent);
     this.state = {
-      houses: [
-        {
-          imageX:
-            "https://images.pexels.com/photos/186077/pexels-photo-186077.jpeg?h=350&auto=compress&cs=tinysrgb",
-          address: "124 ohonadf",
-          price: "$1"
-        },
-        {
-          imageX:
-            "https://images.pexels.com/photos/186077/pexels-photo-186077.jpeg?h=350&auto=compress&cs=tinysrgb",
-          address: "nha so 2 ohonadf",
-          price: "$2"
-        },
-        {
-          imageX:
-            "https://images.pexels.com/photos/186077/pexels-photo-186077.jpeg?h=350&auto=compress&cs=tinysrgb",
-          address: "nha so 2 ohonadf",
-          price: "$3"
-        },
-        {
-          imageX:
-            "https://images.pexels.com/photos/186077/pexels-photo-186077.jpeg?h=350&auto=compress&cs=tinysrgb",
-          address: "nha so 2 ohonadf",
-          price: "$4"
-        }
-      ],
+      houses: [],
       caseNum: 0,
       isLoading: false,
       hide: false,
@@ -83,7 +59,6 @@ class Agent extends Component {
       caseNum: 1
     }));
   }
-
   componentDidMount() {
     this.setState({ isLoading: true });
     const authUser = JSON.parse(localStorage.getItem("authUser"));
@@ -97,6 +72,22 @@ class Agent extends Component {
         password: imgs.password
       });
       this.setState({ dis: newState, authUser: authUser, isLoading: false });
+    });
+
+    this.props.firebase.database.ref("houses").on("value", snapshot => {
+      let h = [];
+      for(var obj in authUser.listingHouse){
+        if(authUser.listingHouse[obj] !== "null"){
+          let idTemp = authUser.listingHouse[obj].id;
+          h.push({
+            id: idTemp,
+            imageX: snapshot.val()[idTemp].images["0"],
+            address: snapshot.val()[idTemp].propertyInfor.details.address,
+            price: snapshot.val()[idTemp].propertyInfor.details.listPrice
+          });
+        }
+      }
+      this.setState({ houses: h, authUser: authUser, isLoading: false });
     });
   }
 
@@ -115,12 +106,7 @@ class Agent extends Component {
       document.getElementById("nav128_02").classList.remove("activeNav");
       document.getElementById("nav128_01").classList.add("activeNav");
     }
-    //  else {
-    //   document.getElementById("nav128_02").classList.remove("activeNav");
-    //   document.getElementById("nav128_01").classList.add("activeNav");
-    //   document.getElementById("nav128_03").classList.remove("activeNav");
-    // }
-  }
+}
   requestToggle() {
     document.getElementById("nav128_02").classList.add("activeNav");
     document.getElementById("nav128_01").classList.remove("activeNav");
@@ -272,9 +258,11 @@ class Agent extends Component {
                         <Button onClick={e => this.editaccount()}>
                           Edit Profile
                         </Button>
-                        <Button onClick={e => this.addhouse()}>
-                          Add House
-                        </Button>
+
+                        <Link to={ROUTES.ADDHOUSE}>
+                          <Button>Add House</Button>
+                        </Link>
+
                       </div>
                     ) : (
                       ""

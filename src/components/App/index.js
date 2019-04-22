@@ -36,6 +36,7 @@ import ClientEdit from "../Client/ClientEdit";
 import checkoutform from "../Agent/checkoutform";
 import "./style.css";
 import Landing from "../Landing";
+import HouseList from "../Landing/HouseList";
 const App = () => (
   <Router>
     <div>
@@ -69,6 +70,7 @@ const App = () => (
         <Route path={ROUTES.CLIENT} component={Client} />
         <Route path={ROUTES.CLIENTEDIT} component={ClientEdit} />
         <Route path={ROUTES.PAYMENT} component={checkoutform} />
+        <Route path={ROUTES.SEARCH} component={HouseList} />
 
 
       </div>

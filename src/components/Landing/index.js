@@ -1,8 +1,4 @@
 import React from "react";
-
-// import "bootstrap/dist/css/bootstrap.css";
-
-// import "../../style/homepage.css";
 import "./Landing.css";
 
 import { Link } from "react-router-dom";
@@ -16,14 +12,61 @@ import { withRouter } from "react-router";
 import { withFirebase } from "../../server/Firebase/index";
 import { Container } from "semantic-ui-react";
 
+let path;
+let match = [];
 class Landing extends React.Component {
   constructor(props) {
-    super(props);
+      super(props);
+      path = this.props.history;
+      this.state = {
+        videoURL: "http://clips.vorwaerts-gmbh.de/VfE_html5.mp4",
+        address: "",
+        houses: [],
+        matches: []
+      };
+      this.handleAddressChange = this.handleAddressChange.bind(this);
+      this.onSubmit = this.onSubmit.bind(this);
+    }
 
-    this.state = {
-      videoURL: "http://clips.vorwaerts-gmbh.de/VfE_html5.mp4"
-    };
+  onSubmit(){
+    match= [];
+    let housesSearch = this.state.houses;
+    var input = this.state.address;
+    console.log(input);
+
+    for(var h in housesSearch){
+      if(housesSearch[h].val.propertyInfor.details.address.includes(input) && input !== ''){
+        match.push({
+          id:housesSearch[h].id, img: housesSearch[h].val.images["0"], price: housesSearch[h].val.propertyInfor.details.listPrice, address: housesSearch[h].val.propertyInfor.details.address});
+      }
+    }
+    this.setState({matches: match});
+
+    path.push({
+      pathname: ROUTES.SEARCH
+    },match);
   }
+  handleAddressChange(e){
+    this.setState({address: e.target.value});
+ }
+
+ componentDidMount(){
+   const temp = this.props.firebase.database.ref('houses');
+   temp.on('value', (snapshot) => {
+     let hs = snapshot.val();
+     let house = [];
+
+   for(var h in hs){
+       house.push({id: h, val:hs[h]});
+   }
+   this.setState({
+       houses: house
+     });
+  });
+ }
+
+
+
   render() {
     return (
       <div className="homepage">
@@ -34,21 +77,20 @@ class Landing extends React.Component {
                 <div id="content">
                   <h1> Let' explore them all </h1>
                   <div>
-                    <div className="d-flex justify-content-center h-100">
-                      <div className="searchbar">
-                        <input
-                          className="search_input"
-                          type="text"
-                          name
-                          placeholder="Search by zipcode, bedrooms or anything..."
-                        />
-                        <Link to={ROUTES.OVERVIEW}>
-                          <a href="#" className="search_icon">
-                            <i className="fas fa-search" />
-                          </a>
-                        </Link>
-                      </div>
+                  <div className="d-flex justify-content-center h-100">
+                    <div>
+                      <form>
+                      <input
+                        type="text"
+                        name="address"
+                        value={this.state.address}
+                        onChange={this.handleAddressChange}
+                      />
+                      <button type="button" onClick={this.onSubmit}>submit</button>
+
+                     </form>
                     </div>
+                  </div>
                   </div>
                   <h3> Your dream house is waiting... </h3>
                   <hr />
@@ -102,4 +144,4 @@ class Landing extends React.Component {
   }
 }
 
-export default Landing;
+export default withFirebase(Landing);

@@ -18,7 +18,6 @@ let path;
 let remember;
 
 const authUser = JSON.parse(localStorage.getItem("authUser"));
-console.log(authUser);
 
 const INITIAL_STATE = {
   newHouse: {
@@ -54,6 +53,7 @@ class AddHouse extends React.Component {
 
     this.state = {
      ...INITIAL_STATE,
+     newHouseID: "",
      agent:{
        company: authUser.company,
        aboutme: authUser.aboutme,
@@ -75,6 +75,7 @@ class AddHouse extends React.Component {
   }
 
   onSubmit = event => {
+    //this.addHouse();
     const {
       newHouse,
       agent:{
@@ -166,10 +167,25 @@ class AddHouse extends React.Component {
             });
         });
       });
+      let check = false;
+      this.props.firebase.houses().on('value', (snapshot) => {
+        let id = "";
+        for(var idd in snapshot.val()){
+          if(!idd.includes("house")) id = idd;
+          console.log(id);
+        }
+        if(!check && id!==""){
+          var number = Object.keys(authUser.listingHouse).length;
+          var userRef = this.props.firebase.database.ref('users/' + authUser.uid).child('listingHouse');
+          userRef.push({id});
+          alert("House has been added to your favorit list!");
+          check = true;
+        }
 
-
-    event.preventDefault();
+      });
+      event.preventDefault();
   };
+
 
   //Get input from user
   onChange = event => {

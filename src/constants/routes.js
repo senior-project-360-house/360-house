@@ -43,3 +43,4 @@ export const CLIENTEDIT = "/clientedit";
 
 export const REQUEST = "/request";
 export const PAYMENT = "/payment";
+export const SEARCH = "/search";

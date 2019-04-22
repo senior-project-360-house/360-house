@@ -35,9 +35,9 @@ class HomeCarousel extends React.Component {
   }
 
   addHouse(){
-    console.log(authUser.favHouses);
-    var userRef = this.props.firebase.database.ref('users/' + authUser.uid);
-    userRef.child('favHouses').update({hs: this.state.houseId});
+    var number = Object.keys(authUser.favHouses).length;
+    let id = this.state.houseId;
+    var userRef = this.props.firebase.database.ref('users/' + authUser.uid).child('favHouses').push({id});
     alert("House has been added to your favorit list!");
   }
 
