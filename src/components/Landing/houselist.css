@@ -1,0 +1,229 @@
+.clientContent {
+    margin-top: 70px;
+    margin-left: 70px;
+    margin-right: 50px;
+    margin-bottom: 60px;
+    text-align: center;
+    border-radius: 50px;
+    background-repeat: no-repeat;
+    margin: 20px;
+}
+
+.single-house {
+    width: 50%;
+    float: left;
+}
+
+.SingleHouseInfo img {
+    max-width: 80%;
+    width: 600px;
+    max-height: 80%;
+    height: 300px;
+    border-radius: 20px;
+    border: 1px solid #ddd;
+    padding: 3px;
+    opacity: 0.8;
+}
+
+.SingleHouseInfo img:hover {
+    box-shadow: 0 0 2px 1px rgba(0, 140, 186, 0.5);
+    opacity: 1;
+}
+
+.SingleHouseInfo h2 {
+    /* background-color: white; */
+    position: absolute;
+    z-index: 1;
+    left: 15%;
+    bottom: 10%;
+    font-weight: 700;
+    font-size: 1.2em;
+    color: white;
+    text-shadow: rgba(0, 0, 0, 0.5) 1px 5px 3px;
+    text-align: left;
+}
+
+.clientbutton {
+    margin: 10px;
+}
+
+.ClientColumn {
+    background-color: #ebf0f1;
+    padding: 15px;
+}
+
+.ClientInfo {
+    margin-top: 15px;
+}
+
+.ClientImage {
+    margin: auto;
+    width: 50%;
+    height: 35%;
+}
+
+.ClientName {
+    margin-bottom: 10px;
+    font-weight: 500;
+    font-size: 18px;
+}
+
+.FavoriteHouseColumn {
+    background-color: #ecf0f1;
+    border-radius: 50px;
+    padding: 15px;
+    display: inline;
+}
+
+
+/* clientform css */
+
+.ClientEditProfile {
+    font-family: Lato;
+    margin-bottom: 10vw;
+    padding: 100px;
+    margin-top: 5vw;
+    margin-left: 20vw;
+    margin-right: 20vw;
+    border: 1px solid grey;
+    border: 1px solid rgb(206, 200, 200);
+    box-shadow: 0px 10px 50px rgba(0, 0, 0, 0.3);
+    border-radius: 50px;
+}
+
+.ClientEditProfile .HeaderEdit {
+    margin-top: 15px;
+    text-align: center;
+    font-weight: 600;
+    font-size: 2.5vw;
+    color: #0abde3;
+}
+
+
+/* .ClientEditProfile .EditFormClient {
+  text-align: center;
+} */
+
+.ClientEditProfile .EditFormClient .PreEditName {
+    /* margin: 80px; */
+    padding: 20px;
+    font-weight: 600;
+    font-size: 20px;
+}
+
+.ClientEditProfile .EditFormClient .Clientform-control {
+    margin-left: 20px;
+    margin-bottom: 30px;
+    font-weight: 500;
+    font-size: 18px;
+    width: 95%;
+    padding: 12px;
+}
+
+.ClientEditProfile .EditFormClient .ButtonEditClient {
+    margin-bottom: 20px;
+}
+
+.ClientEditProfile .EditFormClient .ButtonEditClient .btn-toolbar {
+    margin: auto;
+}
+
+h1 {
+    margin: 1em 0 0.5em 0;
+    color: #343434;
+    font-weight: normal;
+    font-family: 'Ultra', sans-serif;
+    font-size: 80px;
+    line-height: 42px;
+    text-transform: uppercase;
+    text-shadow: 0 2px white, 0 3px #777;
+}
+
+h3 {
+    margin: 1em 0 .6em 0;
+    padding: 0 0 0 20px;
+    font-weight: normal;
+    color: white;
+    font-family: 'Hammersmith One', sans-serif;
+    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.4);
+    position: relative;
+    font-size: 24px;
+    line-height: 40px;
+    font-family: 'Questrial', sans-serif;
+}
+
+.suggestion {
+    margin-top: 70px;
+    margin-left: 70px;
+    margin-right: 50px;
+    margin-bottom: 60px;
+    text-align: center;
+    border-radius: 50px;
+    background-repeat: no-repeat;
+    margin: 20px;
+    height: 100%;
+}
+
+.suggestion h3 {
+    color: #5383d3;
+    font: normal 36px 'Cookie', cursive;
+    margin-bottom: 30px;
+}
+
+.list-type5 {
+    width: 410px;
+    margin: 0 auto;
+}
+
+.list-type5 ol {
+    list-style-type: none;
+    list-style-type: decimal !ie;
+    /*IE 7- hack*/
+    margin: 0;
+    margin-left: 1em;
+    padding: 0;
+    counter-reset: li-counter;
+}
+
+.list-type5 ol li {
+    position: relative;
+    margin-bottom: 1.5em;
+    padding: 0.5em;
+    background-color: #F0D756;
+    padding-left: 58px;
+}
+
+.list-type5 a {
+    text-decoration: none;
+    color: black;
+    font-size: 15px;
+    font-family: 'Raleway', sans-serif;
+}
+
+.list-type5 li:hover {
+    box-shadow: inset -1em 0 #6CD6CC;
+    -webkit-transition: box-shadow 0.5s;
+    /* For Safari 3.1 to 6.0 */
+    transition: box-shadow 0.5s;
+}
+
+.list-type5 ol li:before {
+    position: absolute;
+    top: -0.3em;
+    left: -0.5em;
+    width: 1.8em;
+    height: 1.2em;
+    font-size: 2em;
+    line-height: 1.2;
+    font-weight: bold;
+    text-align: center;
+    color: white;
+    background-color: #6CD6CC;
+    transform: rotate(-20deg);
+    -ms-transform: rotate(-20deg);
+    -webkit-transform: rotate(-20deg);
+    z-index: 99;
+    overflow: hidden;
+    content: counter(li-counter);
+    counter-increment: li-counter;
+}

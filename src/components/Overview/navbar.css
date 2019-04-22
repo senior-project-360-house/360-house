@@ -1,0 +1,35 @@
+@import url('https://fonts.googleapis.com/css?family=Lato');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.navRender {
+    background-color: white;
+    border: none;
+    font-family: Lato;
+    font-weight: 500;
+    font-size: 1.5em;
+
+}
+
+.navRender .textNav {
+    font-family: Lato;
+    color: black;
+    font-weight: 700;
+}
+
+
+.navRender .textNav:hover {
+    font-weight: 700;
+    font-size: 1.6em;
+    color: #3498db;
+}
+
+.navRender .activeNav {
+    font-size: 1.6em;
+    font-weight: 700;
+    color: #3498db;
+}

@@ -1,8 +1,9 @@
 import React, {Component} from "react";
 
-import {withFirebase} from "../../server/Firebase/index";
+import {withFirebase} from '../../server/Firebase/index';
 
-import * as ROUTES from "../../constants/routes";
+import * as ROUTES from '../../constants/routes';
+import {Alert} from 'reactstrap';
 //TODO: Dynamic update house state, currently the state is not change
 class HouseItemPageBase extends Component {
 	constructor(props) {
@@ -52,31 +53,33 @@ class HouseItemPageBase extends Component {
 				<h2>House ({this.props.match.params.id})</h2>
 				{isLoading && <div>Loading ...</div>}
 
-				{house && (
-					<div>
-						<span>
-							<strong>House ID:</strong> {house.uid}
-						</span>
-						<span>
-							<strong>Name:</strong> {house.name}
-						</span>
-						<span>
-							<strong>Adress:</strong> {house.address}
-						</span>
-						<img alt="nothing to see" src={house.image} />
+        {house && (
+          <div>
+          <span>
+          <strong>House ID:</strong> {house.uid}
+          </span>
+          <span>
+          <strong>Adress:</strong> {house.address}
+          </span>
 
 						{/*
           TODO: pop up or some type of alert to user to remind
           that house that get delete can not be recover
            */}
-						<button type="button" onClick={this.onRemoveHouse}>
-							Delete this house
-						</button>
-					</div>
-				)}
-			</div>
-		);
-	}
+           <Alert color="warning">
+             <button
+               type="button"
+                 onClick={this.onRemoveHouse}>
+                   The selected house will be deleted!
+                 </button>
+           </Alert>
+
+          </div>
+
+        )}
+      </div>
+    );
+  }
 }
 const HouseItemPage = withFirebase(HouseItemPageBase);
 

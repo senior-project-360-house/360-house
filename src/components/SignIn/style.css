@@ -1,0 +1,108 @@
+@import url("https://fonts.googleapis.com/css?family=Lato");
+
+.SignInPage {
+    background-image: url(moneyhouse.png);
+    background-size: cover;
+    background-position: center;
+    /* position: relative; */
+    /* height: 100vh; */
+    background-color: #ecf0f1;
+    color: black;
+    font-family: Lato;
+    font-weight: 500;
+    /* position: relative; */
+    margin-top: 5vh;
+    margin-bottom: 5vh;
+
+    box-shadow: 0px 10px 50px rgba(0, 0, 0, 0.3);
+
+}
+
+.SignInPage .SignInForm {
+
+    padding: 10px;
+    margin: auto;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    /* margin-left: 10px; */
+    border-radius: 7px;
+    border: 1px solid white;
+    width: 30vw;
+    background-color: white;
+    box-shadow: 0px 10px 50px rgba(0, 0, 0, 0.3);
+    opacity: 1;
+}
+
+.SignInPage .SignInForm .form {
+    width: 20vw;
+    padding: 10px;
+    margin: auto;
+    /* opacity: 1; */
+}
+
+.SignInPage .SignInForm .form h1 {
+    font-weight: 700;
+    text-align: center;
+    margin-top: 20px;
+    opacity: 1;
+}
+
+.SignInPage .SignInForm .form .theLabel {
+    color: blueviolet;
+    font-size: 15px;
+    margin-bottom: 5px;
+    margin-left: 10px;
+
+}
+
+.SignInPage .SignInForm .form .theFormControl {
+    margin-bottom: 10px;
+
+}
+
+.SignInPage .SignInForm .form #buttonLogin1 {
+    /* position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 20px;
+    font-weight: 700; */
+    margin-top: 25px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 40%;
+    padding: 10px;
+    text-align: center;
+
+}
+
+.SignInPage .SignInForm .Gmail {
+    margin-top: 40px;
+    text-align: center;
+
+}
+
+.SignInPage .SignInForm .Gmail .logingmail {
+    margin: auto;
+    width: 70%;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+.SignInPage .SignInForm .extraOption {
+    color: blue;
+    text-align: center;
+    margin: 0;
+}
+
+.SignInPage .SignInForm .extraOption p {
+    color: blue;
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.SignInPage .SignInForm .extraOption h5 {
+    color: blue;
+    font-size: 16px;
+    font-weight: 400;
+}

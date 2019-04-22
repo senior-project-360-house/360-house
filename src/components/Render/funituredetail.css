@@ -1,0 +1,29 @@
+@import url('https://fonts.googleapis.com/css?family=Lato');
+
+.card {
+
+  padding: 5px;
+  font-size: 25px;
+  font-family: Lato;
+}
+
+.card>.header {
+  background-color: #ced6e0;
+  color: #1e90ff;
+  width: 100%;
+  border-bottom: 1px solid #0D88E0;
+  /* margin: 5px; */
+  padding: 5px;
+  text-align: center;
+  font-family: Lato;
+  font-weight: 500;
+  color: #2c3e50;
+}
+
+.card>.content li {
+  margin-top: 10px;
+  margin-left: 2px;
+  font-family: Lato;
+  font-weight: 500;
+  font-size: 18px;
+}
