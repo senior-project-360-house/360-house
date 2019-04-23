@@ -50,7 +50,8 @@ class PasswordForgetFormBase extends Component {
 
     return (
       <Container className="forms">
-      <Form className="target forms" style={{"width": "50%"}}onSubmit={this.onSubmit}>
+      <h1>Update Password</h1>
+      <Form className="target" style={{"width": "50%"}}onSubmit={this.onSubmit}>
         <label><p1 className="forget-header">Type in your email to reset password</p1></label>
         <input
           name="email"

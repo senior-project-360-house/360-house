@@ -1,12 +1,12 @@
 import React, {Component} from 'react';
 import {Link, withRouter } from 'react-router-dom';
-
+import { Container, Button, Form } from "react-bootstrap";
+import './style.css';
 import {withFirebase} from '../../server/Firebase/index';
 import * as ROUTES from '../../constants/routes';
 
 const PasswordChangePage = () => (
-  <div>
-    <h1>Update Password</h1>
+  <div className="pwfg">
     <PasswordChangeForm/>
   </div>
 );
@@ -49,7 +49,10 @@ class PasswordChangeFormBase extends Component {
     const isInvalid = newPassword !== retypePassword || newPassword === '';
 
     return(
-      <form onSubmit={this.onSubmit}>
+      <Container className="changepasswordForm">
+      <h1>Update Password</h1>
+      <Form className="changed-target" style={{"width": "50%"}} onSubmit={this.onSubmit}>
+      <label><p1 className="forget-header">Type in your email to reset password</p1></label>
       <input
       name="newPassword"
       value={newPassword}
@@ -64,12 +67,13 @@ class PasswordChangeFormBase extends Component {
       type="text"
       placeholder= "Retype New Password"
       />
-      <button disabled={isInvalid} type="submit">
+      <Button disabled={isInvalid} type="submit">
         Update Password
-      </button>
+      </Button>
 
       {error && <p>{error.message}</p>}
-      </form>
+      </Form>
+      </Container>
     );
   }
 }

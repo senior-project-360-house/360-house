@@ -1,0 +1,19 @@
+.changed-target {
+    width: 10vw;
+    padding: 10px;
+    margin: auto;
+}
+
+.changepasswordForm {
+    text-align: center;
+    padding: 10px;
+    margin: auto;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    /* margin-left: 10px; */
+    border-radius: 7px;
+    border: 1px solid white;
+    width: 10vw;
+    height: 30vw;
+    background-color: white;
+}
