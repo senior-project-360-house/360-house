@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import * as ROUTES from "../../constants/routes";
 import {withFirebase} from '../../server/Firebase/index';
-
+import {Container} from 'react-bootstrap';
 //import for individual card
 import Card from "react-bootstrap/Card";
 import {Button} from "react-bootstrap";
@@ -130,7 +130,24 @@ buildFavoriteHouseList(){
 
 printEmpty(){
   return(
-    <p>Your favorite list is empty!</p>
+    <div>
+      <Container>
+        <div className="suggestion">
+        <h3>Your favorite list is empty.
+        
+        You can try the below suggestions and add houses to the list for later.
+        </h3>
+        
+        <div class="list-type5">
+        <ol>
+        <li><p>Search by Zipcode ? </p></li>
+        <li><p>Search by street address ? </p></li>
+        <li><p>Search by city ? </p></li>
+        </ol>
+        </div>
+        </div>
+        </Container>
+    </div>
   );
 }
 
