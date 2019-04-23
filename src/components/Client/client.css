@@ -45,8 +45,7 @@
     margin: 10px;
 }
 
-.ClientColumn {
-    background-color: #ebf0f1;
+.ClientColumns {
     padding: 15px;
 }
 
@@ -66,10 +65,11 @@
     font-size: 18px;
 }
 
-.FavoriteHouseColumn {
+.FavoriteHouseColumns {
     background-color: #ecf0f1;
     padding: 15px;
-    display: inline;
+    border-radius: 50px;
+    height: auto;
 }
 
 
@@ -124,13 +124,3 @@
 .ClientEditProfile .EditFormClient .ButtonEditClient .btn-toolbar {
     margin: auto;
 }
-
-
-/* .bg{
-  background-image: url("https://futurism.com/wp-content/uploads/2015/11/neildegrassetyson.jpg");
-  height: 900px;
-  background-position: center center;
-  background-size: cover;
-  background-repeat: no-repeat;
-  
-} */

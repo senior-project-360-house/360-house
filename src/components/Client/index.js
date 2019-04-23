@@ -182,7 +182,7 @@ printEmpty(){
         </div>
 
         <div className="row">
-        <div className="ClientColumn col-sm-2">
+        <div className="ClientColumns col-sm-2">
         <Card style={{ "box-shadow": "5px 4px 8px 5px rgba(0,0,0,0.2)" }} className="ClientInfo">
         <Card.Img className="ClientImage" variant="top" src={"https://i.imgur.com/onLuiBV.jpg"}/>
         <Card.Body>
@@ -209,7 +209,7 @@ printEmpty(){
         </Card>
         {/* <p>Hello </p> */}
         </div>
-        <div className="FavoriteHouseColumn col-sm-10">
+        <div className="FavoriteHouseColumns col-sm-10">
         {(imagesource)?this.buildFavoriteHouseList():this.printEmpty()}
         {/* <p>Hello</p> */}
         </div>

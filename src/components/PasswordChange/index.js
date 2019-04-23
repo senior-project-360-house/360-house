@@ -52,7 +52,7 @@ class PasswordChangeFormBase extends Component {
       <Container className="changepasswordForm">
       <h1>Update Password</h1>
       <Form className="changed-target" style={{"width": "50%"}} onSubmit={this.onSubmit}>
-      <label><p1 className="forget-header">Type in your email to reset password</p1></label>
+      <label><p1 className="forget-header">Type in your password in these two boxes below to reset password</p1></label>
       <input
       name="newPassword"
       value={newPassword}
