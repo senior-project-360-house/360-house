@@ -38,6 +38,7 @@ import "./style.css";
 import Landing from "../Landing";
 import HouseList from "../Landing/HouseList";
 import AboutAgent from "../Agent/aboutAgent";
+import EditHouse from "../Agent/EditHouse";
 const App = () => (
   <Router>
     <div>
@@ -73,6 +74,7 @@ const App = () => (
         <Route path={ROUTES.PAYMENT} component={checkoutform} />
         <Route path={ROUTES.SEARCH} component={HouseList} />
         <Route path={ROUTES.ABOUTAGENT} component={AboutAgent} />
+        <Route path={ROUTES.EDITHOUSE} component={EditHouse} />
 
 
 

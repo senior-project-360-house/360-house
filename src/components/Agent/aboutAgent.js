@@ -85,17 +85,23 @@ class AboutAgent extends Component {
     );
   }
 
+
+
   formBuild(aHouses) {
     return (
       <div className="XXcol-1-2-128">
+      <Link to={ROUTES.OVERVIEW}>
         <div className="HouseInfo128">
+        
           <Image src={aHouses.imageX} alt="" />
           <h2>
             Price: {aHouses.price}
             <br />
             {aHouses.address}
           </h2>
+         
         </div>
+        </Link>
       </div>
     );
   }

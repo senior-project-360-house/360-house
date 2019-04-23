@@ -78,27 +78,34 @@ class Landing extends React.Component {
                   <h1> Let' explore them all </h1>
                   <div>
                   <div className="d-flex justify-content-center h-100">
-                      <form className="searchbar">
+                  <div className="wrap">
+                      <form className="search">
                       <input
-                        className="search_input"
                         type="text"
                         name="address"
+                        class="searchTerm"
                         value={this.state.address}
                         onChange={this.handleAddressChange}
                         placeholder="Search by zipcode, street address or..."
                       />
-                      <a href="#" onClick={this.onSubmit} className="search_icon">
+                      <button onClick={this.onSubmit} type="submit" class="searchButton">
+                      <i class="fa fa-search"></i>
+                      </button>
+                      {/* <a href="#" onClick={this.onSubmit} className="search_icon">
                             <i className="fas fa-search" />
-                          </a>
+                          </a> */}
                      </form>
+                     </div>
                     
                   </div>
                   </div>
-                  <h3> Your dream house is waiting... </h3>
+              
                   <hr />
+                  <Link to={ROUTES.OVERVIEW}>
                   <button className="btn Minh-primary-outline clickOn btn-lg">
-                    <Link to={ROUTES.OVERVIEW}>Check this out!</Link>
+                    Check this out!
                   </button>
+                  </Link>
                 </div>
               </div>
             </div>
