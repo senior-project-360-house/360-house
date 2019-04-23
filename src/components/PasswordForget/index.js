@@ -1,14 +1,15 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-
+import { Container, Button, Form } from "react-bootstrap";
 import { withFirebase } from "../../server/Firebase/index";
 import * as ROUTES from "../../constants/routes";
+import './style.css';
+
 
 const PasswordForgetPage = () => (
-  <div>
-    <h1>Password Forget</h1>
+  <div className="pwfg">
     <PasswordForgetForm />
-  </div>
+  </div >
 );
 
 const INITIAL_STATE = {
@@ -48,7 +49,9 @@ class PasswordForgetFormBase extends Component {
     const isInvalid = email === "";
 
     return (
-      <form onSubmit={this.onSubmit}>
+      <Container className="forms">
+      <Form className="target forms" style={{"width": "50%"}}onSubmit={this.onSubmit}>
+        <label><p1 className="forget-header">Type in your email to reset password</p1></label>
         <input
           name="email"
           value={email}
@@ -56,12 +59,13 @@ class PasswordForgetFormBase extends Component {
           type="text"
           placeholder="Email Address"
         />
-        <button disabled={isInvalid} type="submit">
+        <Button variant="primary" disabled={isInvalid} type="submit">
           Reset Password
-        </button>
+        </Button>
 
         {error && <p>{error.message}</p>}
-      </form>
+      </Form>
+      </Container>
     );
   }
 }

@@ -11,7 +11,6 @@ import { Link } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 
 import { PasswordForgotLink } from "../PasswordForget";
-import * as SCHEMA from "../../constants/schema";
 import './signinform.css';
 
 
@@ -224,50 +223,3 @@ const SignInGoogleForm = compose(
 )(SignInGoogleFormBase);
 
 export { SignInForm, SignInGoogleForm };
-
-
-
-{/* <div className="SignInForm">
-        <div className="form">
-          <h1 className="signIn">Sign In</h1>
-          <Form name="form" onSubmit={this.onSubmit}>
-
-            <Form.Label className="theLabel">Email address</Form.Label>
-            <Form.Control
-              className="theFormControl"
-              onChange={this.onChange}
-              type="email"
-              name="email"
-              value={email}
-              placeholder="Enter email"
-            />
-            <Form.Label className="theLabel">Password</Form.Label>
-            <Form.Control
-              className="theFormControl"
-              onChange={this.onChange}
-              type="password"
-              name="password"
-              value={password}
-              placeholder="Enter password"
-            />
-
-            <Button
-              disabled={isInvalid}
-              className="theButton"
-              id="buttonLogin1"
-              variant="primary"
-              type="submit"
-            >
-              <p>Login</p>
-            </Button>
-            {error && <p className="err" >{error.message}</p>}
-          </Form>
-        </div>
-        <div className="extraOption">
-          <PasswordForgotLink />
-          <h5>Don't Have an Account></h5>
-          <Link to={ROUTES.SIGN_UP}>
-            <p>Sign Up</p>
-          </Link>
-        </div>
-      </div> */}
