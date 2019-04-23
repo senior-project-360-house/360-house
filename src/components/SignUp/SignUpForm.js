@@ -1,11 +1,10 @@
 import React, { Component } from "react";
 import { Link, withRouter } from "react-router-dom";
 import { compose } from "recompose";
-
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { withFirebase } from "../../server/Firebase";
 import FileUploader from "react-firebase-file-uploader";
-import CustomUploadButton from 'react-firebase-file-uploader/lib/CustomUploadButton';
+
 
 import firebase from "firebase";
 import * as ROUTES from "../../constants/routes";

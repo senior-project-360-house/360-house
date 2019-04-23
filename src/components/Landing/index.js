@@ -11,6 +11,7 @@ import * as ROUTES from "../../constants/routes";
 import { withRouter } from "react-router";
 import { withFirebase } from "../../server/Firebase/index";
 import { Container } from "semantic-ui-react";
+import { HeroVideo } from "react-hero-video";
 
 let path;
 let match = [];
@@ -70,6 +71,10 @@ class Landing extends React.Component {
   render() {
     return (
       <div className="homepage">
+       <HeroVideo
+    videoSrc="https://www.youtube.com/embed/kNAphsl67vI?controls=0&showinfo=0&rel=0&autoplay=1&loop=1&playlist=W0LHTWG-UmQ"
+    // https://www.youtube.com/embed/W0LHTWG-UmQ?controls=0&showinfo=0&rel=0&autoplay=1&loop=1&playlist=W0LHTWG-UmQ
+  ></HeroVideo>
         <div>
           <div>
             <div className="row">

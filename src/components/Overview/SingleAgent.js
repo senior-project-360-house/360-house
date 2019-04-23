@@ -5,11 +5,12 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import * as ROUTES from "../../constants/routes";
 import { withFirebase } from "../../server/Firebase/index";
 import RequestView from "../Request/Buyer/BuyerRequest";
-// import ModalExample from './Modal';
-// import "bootstrap/dist/css/bootstrap.css";
 import Button from "react-bootstrap/Button";
 import ButtonToolbar from "react-bootstrap/ButtonToolbar";
 import { Link } from "react-router-dom";
+
+
+
 class SingleAgent extends Component {
   constructor(props) {
     super(props);

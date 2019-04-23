@@ -1,9 +1,10 @@
 import React from "react";
-
 import Nav from "react-bootstrap/Nav";
-
 import * as ROUTES from "../../constants/routes";
 import "./navbar.css";
+
+
+
 class NavBars extends React.Component {
   generatorNameClass(props) {
     return props.isActived === "false" ? "textNav" : "activeNav";
