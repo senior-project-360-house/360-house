@@ -13,4 +13,3 @@ node_modules
 output
 
 # End of https://www.gitignore.io/api/purescript
-./node_modules
