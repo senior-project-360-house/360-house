@@ -75,7 +75,7 @@ class Landing extends React.Component {
             <div className="row">
               <div className="col-lg-12">
                 <div id="content">
-                  <h1> Let' explore them all </h1>
+                  <h1> Find your dream house </h1>
                   <div>
                   <div className="d-flex justify-content-center h-100">
                   <div className="wrap">
