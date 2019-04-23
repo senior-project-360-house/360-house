@@ -1,8 +1,8 @@
                                         .homepage {
-                                            /* background: url("https://imgur.com/uhBRgH9.jpg") no-repeat center center fixed;
-                                    -webkit-background-size: cover;
-                                    -moz-background-size: cover;
-                                    -o-background-size: cover; */
+                                            background: url("https://imgur.com/uhBRgH9.jpg") no-repeat center center fixed;
+                                            -webkit-background-size: cover;
+                                            -moz-background-size: cover;
+                                            -o-background-size: cover;
                                             background-size: cover;
                                             color: #000;
                                             margin: 0;
@@ -36,7 +36,7 @@
                                         
                                          ::placeholder {
                                             /* Chrome, Firefox, Opera, Safari 10.1+ */
-                                            color: whitesmoke;
+                                            color: black;
                                             opacity: 1;
                                             font-size: 20px;
                                             font-weight: bold;
