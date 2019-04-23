@@ -1,0 +1,23 @@
+.Tour .TopBar {
+    margin-top: 50px;
+}
+
+.Tour .ToolView {
+    margin-top: 15px;
+    margin-left: 50px;
+    margin-right: 50px;
+    margin-bottom: 15px;
+    border: 1px solid;
+    padding: 10px;
+}
+
+.Tour .ToolView .frameView {
+    width: 100%;
+    height: 70vh;
+}
+
+.Tour .ToolView .Introduction {
+    margin-top: 10px;
+    font-weight: 700;
+    font-size: 25px;
+}

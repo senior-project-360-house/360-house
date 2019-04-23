@@ -1,0 +1,183 @@
+                                        .homepage {
+                                            background: url("https://imgur.com/uhBRgH9.jpg") no-repeat center center fixed;
+                                    -webkit-background-size: cover;
+                                    -moz-background-size: cover;
+                                    -o-background-size: cover;
+                                            background-size: cover;
+                                            color: #000;
+                                            margin: 0;
+                                            padding: 0;
+                                        }
+
+                                        #content {
+                                            text-align: center;
+                                            padding-top: 10%;
+                                            /* font-family: 'Roboto Mono', monospace; */
+                                            font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, Ubuntu;
+                                            text-shadow: 0px 4px 3px rgba(0, 0, 0.4), 0px 8px 13px rgba(0, 0, 0.1), 0px 18px 23px rgba(0, 0, 0.1);
+                                        }
+
+                                        #content h1 {
+                                            color: cyan;
+                                            font-weight: lighter;
+                                            padding: 50px;
+                                            font: normal 5em 'Roboto';
+                                        }
+
+                                        #content a {
+                                            color: white;
+                                        }
+
+                                        .homepage hr {
+                                            width: 400px;
+                                            border-top: 1px solid #f8f8f8;
+                                            border-bottom: 1px solid rgba(0, 0, 0.3);
+                                        }
+
+                                         ::placeholder {
+                                            /* Chrome, Firefox, Opera, Safari 10.1+ */
+                                            color: black;
+                                            opacity: 1;
+                                            font-size: 20px;
+                                            font-weight: bold;
+                                            /* Firefox */
+                                        }
+
+                                        .homepage .card-box {
+                                            border-radius: 1em;
+                                            background: transparent;
+                                            min-height: 100px;
+                                            position: relative;
+                                            padding: 30px 30px 20px;
+                                            margin-bottom: 20px;
+                                            display: -ms-flexbox;
+                                            display: flex;
+                                            -ms-flex-direction: column;
+                                            flex-direction: column;
+                                            -webkit-box-pack: justify;
+                                            -ms-flex-pack: justify;
+                                            justify-content: space-between;
+                                            position: relative;
+                                            cursor: pointer;
+                                        }
+
+                                        .homepage .card-box:hover {
+                                            background: transparent;
+                                            box-shadow: 5px 0 0 transparent, -5px 0 0 transparent;
+                                            padding: 5px 0;
+                                        }
+
+                                        .homepage .card-box:after {
+                                            display: block;
+                                            /* background: #2196F3; */
+                                            background: #FAFAFA;
+                                            border-top: none;
+                                            content: '';
+                                            width: 100%;
+                                            position: absolute;
+                                            left: 0;
+                                            right: 0;
+                                            top: 0;
+                                        }
+
+                                        .homepage .card-title h2 {
+                                            margin: 0;
+                                            font-weight: bold;
+                                            padding-top: 5%;
+                                            color: white;
+                                            text-transform: uppercase;
+                                            font-size: 60px;
+                                            line-height: 1;
+                                            margin-bottom: 15px;
+                                            font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, Ubuntu;
+                                            text-shadow: 0px 4px 3px rgba(0, 0, 0.4), 0px 8px 13px rgba(0, 0, 0.1), 0px 18px 23px rgba(0, 0, 0.1);
+                                        }
+
+                                        .homepage .card-title p {
+                                            margin: 0;
+                                            margin-bottom: 10px;
+                                            font-size: 26px;
+                                        }
+
+                                        hr {
+                                            clear: both;
+                                            visibility: hidden;
+                                        }
+
+                                        #extraInfo {
+                                            font-weight: bold;
+                                            color: #ff0080;
+                                            font-size: 30px;
+                                            text-align: center;
+                                            background-color: $color;
+                                            animation: loading $loadingTime linear infinite;
+                                            font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, Ubuntu;
+                                        }
+
+                                        homepage .Minh-primary-outline a {
+                                            font-weight: 500;
+                                            font-size: 25px;
+                                            color: white;
+                                            font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, Ubuntu, cursive;
+                                            /* text-shadow: 0px 4px 3px rgba(0, 0, 0.4), 0px 8px 13px rgba(0, 0, 0.1), 0px 18px 23px rgba(0, 0, 0.1); */
+                                        }
+
+                                        homepage .Minh-primary-outline a:hover,
+                                        a:visited {
+                                            font-weight: 500;
+                                            font-size: 35px;
+                                            color: #ff0080;
+                                            font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, Ubuntu, cursive;
+                                            /* text-shadow: 0px 4px 3px rgba(0, 0, 0.4), 0px 8px 13px rgba(0, 0, 0.1), 0px 18px 23px rgba(0, 0, 0.1); */
+                                        }
+
+                                        .homepage .clickOn {
+                                            color: #ff0080;
+                                        }
+
+                                        .search {
+                                            width: 100%;
+                                            padding: 0px;
+                                            position: relative;
+                                            display: flex;
+                                            height: 100%
+                                        }
+
+                                        .searchTerm {
+                                            padding: 50px;
+                                            width: 100%;
+                                            border: 3px solid #00B4CC;
+                                            border-right: none;
+                                            padding: 5px;
+                                            height: 50px;
+                                            border-radius: 5px 0 0 5px;
+                                            outline: none;
+                                            color: #9DBFAF;
+                                        }
+
+                                        .searchTerm:focus {
+                                            color: red;
+                                            font-size: 30px;
+                                        }
+
+                                        .searchButton {
+                                            width: 40px;
+                                            height: 50px;
+                                            border: 1px solid #00B4CC;
+                                            background: #00B4CC;
+                                            text-align: center;
+                                            color: #fff;
+                                            border-radius: 0 5px 5px 0;
+                                            cursor: pointer;
+                                            font-size: 20px;
+                                            padding: 0px;
+                                        }
+                                        /*Resize the wrap to see the search bar change!*/
+
+                                        .wrap {
+                                            width: 30%;
+                                            position: absolute;
+                                            top: 50%;
+                                            left: 50%;
+                                            transform: translate(-50%, -50%);
+                                        }

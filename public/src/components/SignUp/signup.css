@@ -1,0 +1,205 @@
+@import url("https://fonts.googleapis.com/css?family=Lato");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.signUpForm {
+  background-color: #f2e7e5;
+  color: #555;
+  font-family: Lato;
+  font-weight: 300;
+  position: relative;
+  box-shadow: 0px 10px 50px rgba(0, 0, 0, 0.3);
+}
+
+.imageSJSU {
+  width: auto;
+  height: 110px;
+}
+
+.signUpForm .register-left h3 {
+  font-size: 1.6em;
+  font-weight: 700;
+  color: #0062cc;
+}
+
+.signUpForm .register-left p {
+  font-size: 1.2em;
+  font-weight: 500;
+  color: #555;
+}
+
+.signUpForm .register-left {
+  text-align: center;
+  font-weight: 500;
+  font-size: 1.2em;
+  color: #495057;
+  margin-top: 4%;
+}
+
+.signUpForm .button {
+  margin-right: 2%;
+  font-size: 1em;
+  border-radius: 1.5rem;
+  padding: 2%;
+  background-color: #0062cc !important;
+  color: white !important;
+}
+
+.signUpForm .button:hover {
+  background-color: #3498db !important;
+}
+
+.signUpForm .register-left input {
+  border: none;
+  border-radius: 1.5rem;
+  font-size: 1.4em;
+  padding: 2%;
+  height: 7%;
+  width: 60%;
+  margin-top: 30%;
+  margin-bottom: 3%;
+  cursor: pointer;
+}
+
+.signUpForm .role {
+  margin: 10px;
+}
+
+.signUpForm .role input {
+  border-radius: 1.5rem;
+  font-size: 1.2em;
+}
+
+.signUpForm .register-right {
+  background: white;
+  border-top-left-radius: 10% 50%;
+  border-bottom-left-radius: 10% 50%;
+}
+.signUpForm .register-right .UpAvatar {
+  position: relative;
+  
+}
+.signUpForm .register-right .UpAvatar img{
+  border: 8px solid rgba(119, 113, 113, 0.7);
+  
+}
+
+.signUpForm .register-left img {
+  margin-top: 15%;
+  margin-bottom: 5%;
+  width: 45%;
+  -webkit-animation: mover 2s infinite alternate;
+  animation: mover 1s infinite alternate;
+}
+
+@-webkit-keyframes mover {
+  0% {
+    transform: translateY(0);
+  }
+
+  100% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes mover {
+  0% {
+    transform: translateY(0);
+  }
+
+  100% {
+    transform: translateY(-10px);
+  }
+}
+
+.signUpForm .register-form {
+  padding: 10%;
+  margin-top: 10%;
+  margin-bottom: -5%;
+}
+
+.signUpForm .button {
+  background-color: #0062cc;
+}
+
+.signUpForm .btnRegister {
+  /* float: right; */
+  /* margin-top: 10%; */
+  border: none;
+  border-radius: 1.5rem;
+  padding: 2%;
+  background: #0062cc;
+  color: #fff;
+  font-weight: 600;
+  width: 50%;
+  cursor: pointer;
+}
+
+#CameraXXX {
+  position: absolute;
+  bottom: 5px;
+  left: 350px;
+  color:  rgba(61, 58, 58, 0.7);
+  font-size: 35px;
+}
+.signUpForm .btnRegister:hover,
+.btnRegister:visited {
+  background: #3498db;
+  border: none;
+}
+
+.signUpForm .btnRegister:disabled,
+.signUpForm .btnRegister[disabled] {
+  background: grey;
+}
+
+
+.signUpForm .nav-tabs {
+  margin-top: 3%;
+  border: none;
+  background: #0062cc;
+  border-radius: 1.5rem;
+  width: 28%;
+  float: right;
+}
+
+.signUpForm .nav-tabs .nav-link {
+  padding: 2%;
+  height: 34px;
+  font-weight: 600;
+  color: #fff;
+  border-top-right-radius: 1.5rem;
+  border-bottom-right-radius: 1.5rem;
+}
+
+.signUpForm .nav-tabs .nav-link:hover {
+  border: none;
+}
+
+.signUpForm .nav-tabs .nav-link.active {
+  width: 100px;
+  color: #0062cc;
+  border: 2px solid #0062cc;
+  border-top-left-radius: 1.5rem;
+  border-bottom-left-radius: 1.5rem;
+}
+
+.signUpForm .register-heading {
+  text-align: center;
+  font-size: 2.8em;
+  margin-top: 2%;
+  margin-bottom: -17%;
+  color: #495057;
+}
+
+.signUpForm .iinvisible {
+  display: none;
+}
+.signUpForm .viisible {
+  display: block;
+}
+

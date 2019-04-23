@@ -1,0 +1,132 @@
+.clientContent {
+    margin-top: 70px;
+    margin-left: 70px;
+    margin-right: 50px;
+    margin-bottom: 60px;
+    text-align: center;
+    border-radius: 50px;
+    background-repeat: no-repeat;
+    margin: 20px;
+}
+
+.single-house {
+    width: 50%;
+    float: left;
+}
+
+.SingleHouseInfo img {
+    max-width: 80%;
+    width: 600px;
+    max-height: 80%;
+    height: 300px;
+    border-radius: 20px;
+    border: 1px solid #ddd;
+    padding: 3px;
+    opacity: 0.8;
+}
+
+.SingleHouseInfo img:hover {
+    box-shadow: 0 0 2px 1px rgba(0, 140, 186, 0.5);
+    opacity: 1;
+}
+
+.SingleHouseInfo h2 {
+    /* background-color: white; */
+    position: absolute;
+    left: 15%;
+    bottom: 10%;
+    font-weight: 700;
+    font-size: 1vw;
+    color: white;
+    text-shadow: rgba(0, 0, 0, 0.5) 1px 5px 3px;
+    text-align: left;
+}
+
+.clientbutton {
+    margin: 10px;
+}
+
+.ClientInfo {
+    margin-top: 15px;
+}
+
+.ClientImage {
+    margin: auto;
+    width: 50%;
+    height: 35%;
+}
+
+.ClientName {
+    margin-bottom: 10px;
+    font-weight: 500;
+    font-size: 18px;
+}
+
+.FavoriteHouseColumn {
+    background-color: #ecf0f1;
+    padding: 15px;
+    display: inline;
+}
+
+
+/* clientform css */
+
+.ClientEditProfile {
+    font-family: Lato;
+    margin-bottom: 10vw;
+    padding: 100px;
+    margin-top: 5vw;
+    margin-left: 20vw;
+    margin-right: 20vw;
+    border: 1px solid grey;
+    border: 1px solid rgb(206, 200, 200);
+    box-shadow: 0px 10px 50px rgba(0, 0, 0, 0.3);
+    border-radius: 50px;
+}
+
+.ClientEditProfile .HeaderEdit {
+    margin-top: 15px;
+    text-align: center;
+    font-weight: 600;
+    font-size: 2.5vw;
+    color: #0abde3;
+}
+
+
+/* .ClientEditProfile .EditFormClient {
+  text-align: center;
+} */
+
+.ClientEditProfile .EditFormClient .PreEditName {
+    /* margin: 80px; */
+    padding: 20px;
+    font-weight: 600;
+    font-size: 20px;
+}
+
+.ClientEditProfile .EditFormClient .Clientform-control {
+    margin-left: 20px;
+    margin-bottom: 30px;
+    font-weight: 500;
+    font-size: 18px;
+    width: 95%;
+    padding: 12px;
+}
+
+.ClientEditProfile .EditFormClient .ButtonEditClient {
+    margin-bottom: 20px;
+}
+
+.ClientEditProfile .EditFormClient .ButtonEditClient .btn-toolbar {
+    margin: auto;
+}
+
+
+/* .bg{
+  background-image: url("https://futurism.com/wp-content/uploads/2015/11/neildegrassetyson.jpg");
+  height: 900px;
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+
+} */
