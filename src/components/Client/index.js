@@ -8,7 +8,7 @@ import {Button} from "react-bootstrap";
 import Nav from "react-bootstrap/Nav";
 import Image from "react-bootstrap/Image";
 //for button
-
+import "./client.css";
 
 //css for client
 
@@ -192,7 +192,7 @@ printEmpty(){
         </Card>
         {/* <p>Hello </p> */}
         </div>
-        <div className="FavoriteHouseColumn col-sm-9">
+        <div className="FavoriteHouseColumn col-sm-10">
         {(imagesource)?this.buildFavoriteHouseList():this.printEmpty()}
         {/* <p>Hello</p> */}
         </div>

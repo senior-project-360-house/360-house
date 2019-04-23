@@ -4,15 +4,14 @@
     padding: 0;
 }
 
-body {
+
+/* body {
     position: relative;
     margin: 0;
     padding-bottom: 6rem;
     min-height: 100%;
     font-family: "Helvetica Neue", Arial, sans-serif;
-
-    
-}
+} */
 
 *,
 *:before,
@@ -31,16 +30,37 @@ html {
 }
 
 .MyApp {
-    margin-bottom: 0;
-    padding: 0;
+    /* margin-bottom: 0;
+    padding: 0; */
+    flex: 1 0 auto;
+    padding: var( — space) var( — space) 0;
+    width: 100%;
 }
 
-.MyFooter {
-    /* position: absolute;
+.MyApp:after {
+    content: ‘\00a0’;
+    display: block;
+    margin-top: var( — space);
+    height: 0;
+    visibility: hidden;
+}
+
+
+/* .MyFooter {
+    position: absolute;
     right: 0;
     bottom: 0;
-    left: 0; */
-
+    left: 0;
     margin-bottom: 0;
     padding: 0;
+} */
+
+.Site {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+}
+
+.Site-content {
+    flex: 1;
 }

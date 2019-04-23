@@ -40,8 +40,10 @@ import HouseList from "../Landing/HouseList";
 import AboutAgent from "../Agent/aboutAgent";
 import EditHouse from "../Agent/EditHouse";
 const App = () => (
+  <div className="Site">
+  <div className="Site-content">
   <Router>
-    <div>
+    <div >
       <div className="NavBarTop">
         <Navigation />
       </div>
@@ -79,11 +81,11 @@ const App = () => (
 
 
       </div>
-      <div className="MyFooter">
-        <Footer />
-      </div>
     </div>
   </Router>
+  </div>
+  <Footer />
+  </div>
 );
 
 export default withAuthentication(App);
