@@ -1,24 +1,17 @@
 import React, { Component } from 'react';
-import { Redirect, Router, Route } from 'react-router-dom';
 import * as ROUTES from "../../constants/routes";
-import { withRouter } from 'react-router';
 import {withFirebase} from '../../server/Firebase/index';
-import { AuthUserContext } from "../../server/Session/index";
+
 //import for individual card
-import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
 import Card from "react-bootstrap/Card";
 import {Button} from "react-bootstrap";
-import {Container} from 'react-bootstrap';
 import Nav from "react-bootstrap/Nav";
 import Image from "react-bootstrap/Image";
 //for button
-import {ButtonGroup} from 'reactstrap';
-import Navbar from './NavBar';
+
 
 //css for client
-import './client.css'
-import './style.css'
+
 
 let path;
 let remember;
@@ -137,7 +130,7 @@ buildFavoriteHouseList(){
 
 printEmpty(){
   return(
-    <p>You have no favorite house!</p>
+    <p>Your favorite list is empty!</p>
   );
 }
 
