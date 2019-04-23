@@ -1,9 +1,11 @@
 import React from "react";
-
 import "./style.css";
+
+
 const FooterPage = () => {
   return (
     <div>
+      
       <footer class="footer-distributed">
         <div class="footer-left">
           <h3>
@@ -44,23 +46,14 @@ const FooterPage = () => {
         <div class="footer-right">
           <p class="footer-company-about">
             <span>About the company</span>
-            Lorem ipsum dolor sit amet, consectateur adispicing elit. Fusce
-            euismod convallis velit, eu auctor lacus vehicula sit amet.
+            360 degree house is a team of inspiring students in pursue of quality products and seamless user experience.
           </p>
 
           <div class="footer-icons">
-            <a href="#">
-              <i class="fa fa-facebook" />
-            </a>
-            <a href="#">
-              <i class="fa fa-twitter" />
-            </a>
-            <a href="#">
-              <i class="fa fa-linkedin" />
-            </a>
-            <a href="#">
-              <i class="fa fa-github" />
-            </a>
+          <img src="https://img.icons8.com/color/52/000000/facebook.png"/>
+          <img src="https://img.icons8.com/color/52/000000/twitter.png"/>
+          <img src="https://img.icons8.com/color/52/000000/youtube.png"/>
+          <img src="https://img.icons8.com/color/52/000000/message-group.png"/>
           </div>
         </div>
       </footer>
