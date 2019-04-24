@@ -38,7 +38,8 @@ class Agent extends Component {
       hide: false,
       request: false,
       dis: [],
-      authUser: {}
+      authUser: {},
+      coverImage: null,
     };
     this.handleToggleClick = this.handleToggleClick.bind(this);
     this.handleToggleRequest = this.handleToggleRequest.bind(this);
@@ -71,13 +72,7 @@ class Agent extends Component {
 }
 
 deleteAction=(e, house) => {
-  var userRef = this.props.firebase.database.ref('users/' + authUser.uid).child('listingHouse');
-  for(var i in authUser.listingHouse){
-    if(authUser.listingHouse[i].i == house.idH) {
-      userRef.child(i).remove();
-    }
-  }
-  this.props.firebase.database.ref('houses/' + house.idH).remove();
+  this.props.firebase.database.ref('houses/' + house.id).remove();
 }
 
   componentDidMount() {
@@ -95,41 +90,25 @@ deleteAction=(e, house) => {
       this.setState({ dis: newState, authUser: authUser, isLoading: false });
     });
 
-    this.props.firebase.database.ref("houses").on("value", snapshot => {
-      let h = [];
-      let ids = [];
-      let updateInfor = [];
-      let newInfor = [];
-      console.log(snapshot.val());
-
-      for(var i in authUser.listingHouse){
-        if(authUser.listingHouse[i] !== null) updateInfor.push(authUser.listingHouse[i].i);
-      }
-      console.log(updateInfor);
-      var userRef = this.props.firebase.database.ref('users/' + authUser.uid).child("listingHouse");
-      for(var i in snapshot.val()){
-        if(!i.includes("house") && snapshot.val()[i].agent.email === authUser.email) {
-          ids.push({id: i, infor:snapshot.val()[i]});
-          updateInfor = this.removeDups(updateInfor);
-          if(!updateInfor.includes(i)) {
-            userRef.push({i});
-            updateInfor.push(i);
+    this.subscribe = this.props.firebase.database.ref("houses").orderByChild('agent/id').equalTo(authUser.uid).on("value", snapshots => {
+      let houses = [];
+      snapshots.forEach(snapshot => {
+        houses.push(
+          {
+            id: snapshot.key,
+            ...snapshot.val()
           }
-        }
-      }
-
-      for(var obj in ids){
-        if(ids[obj].infor !== "null"){
-          h.push({
-            idH: ids[obj].id,
-            imageX: ids[obj].infor.images["0"],
-            address: ids[obj].infor.propertyInfor.details.address,
-            price: ids[obj].infor.propertyInfor.details.listPrice
-          });
-        }
-      }
-      this.setState({ houses: h, authUser: authUser, isLoading: false });
+        )
+      })
+      this.setState({
+        houses: houses,
+        coverImage: houses.images ? houses.images[0] : null,
+        isLoading: false
+      })
     });
+  }
+  componentWillUnmount(){
+    this.subscribe.off();
   }
 
   editaccount() {
@@ -182,11 +161,11 @@ deleteAction=(e, house) => {
     return (
       <div className="XXcol-1-2-128">
         <div className="HouseInfo128">
-          <Image src={aHouses.imageX} alt="" />
+          <Image src={this.state.coverImage || null} alt="no image" />
           <h2>
-            Price: {aHouses.price}
+            Price: {aHouses.propertyInfor.details.price}
             <br />
-            {aHouses.address}
+            {aHouses.propertyInfor.details.address}
           </h2>
         </div>
         <div

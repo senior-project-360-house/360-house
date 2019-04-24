@@ -64,7 +64,8 @@ class AddHouse extends React.Component {
        name: authUser.firstName+' '+authUser.lastName,
        office: authUser.officeLocation,
        phone: authUser.phonenumber,
-       profilePicture: authUser.avatar
+       profilePicture: authUser.avatar,
+       id: authUser.uid,
      },
      propertyInfor: {},
      details:{},
@@ -92,6 +93,7 @@ class AddHouse extends React.Component {
         office,
         phone,
         profilePicture,
+        id
       },
       propertyInfor,
       details,
@@ -142,6 +144,7 @@ class AddHouse extends React.Component {
                 office,
                 phone,
                 profilePicture,
+                id
               },
               images: urlSnapshots,
               propertyInfor: {
