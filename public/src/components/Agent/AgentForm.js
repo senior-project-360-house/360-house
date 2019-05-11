@@ -90,7 +90,8 @@ deleteAction=(e, house) => {
       this.setState({ dis: newState, authUser: authUser, isLoading: false });
     });
 
-    this.subscribe = this.props.firebase.database.ref("houses").orderByChild('agent/id').equalTo(authUser.uid).on("value", snapshots => {
+    this.subscribe = this.props.firebase.database.ref("houses").orderByChild('agent/id').equalTo(authUser.uid)
+    this.subscribe.on("value", snapshots => {
       let houses = [];
       snapshots.forEach(snapshot => {
         houses.push(

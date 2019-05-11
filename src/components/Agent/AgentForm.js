@@ -77,13 +77,13 @@ class Agent extends Component {
     this.props.firebase.database.ref("houses").on("value", snapshot => {
       let h = [];
       for(var obj in authUser.listingHouse){
-        if(authUser.listingHouse[obj] !== "null"){
-          let idTemp = authUser.listingHouse[obj].id;
+        console.log(obj)
+        if(snapshot.val()[obj]){
           h.push({
-            id: idTemp,
-            imageX: snapshot.val()[idTemp].images["0"],
-            address: snapshot.val()[idTemp].propertyInfor.details.address,
-            price: snapshot.val()[idTemp].propertyInfor.details.listPrice
+            id: obj,
+            imageX: snapshot.val()[obj].images["0"],
+            address: snapshot.val()[obj].propertyInfor.details.address,
+            price: snapshot.val()[obj].propertyInfor.details.listPrice
           });
         }
       }
